@@ -121,7 +121,7 @@
             </div>
             <div>
               <div class="problem-item-title">JSエラーは見えない</div>
-              <div class="problem-item-text">カートや決済フローのJSエラーが静かに売上を蝕んでいる。Sentryは導入ハードルが高い。</div>
+              <div class="problem-item-text">カートや決済フローのJSエラーが静かに売上を蝕んでいる。既存のエラー監視ツールは開発者向けで、非エンジニアには導入ハードルが高い。</div>
             </div>
           </div>
           <div class="problem-item">
@@ -296,6 +296,28 @@
 
     </div>
     <p class="pricing-note">✦ 14日間無料トライアル · クレジットカード不要 · いつでもキャンセル可能</p>
+
+    <div class="margin-calc">
+      <div class="margin-calc-label">代理店の収益シミュレーション</div>
+      <div class="margin-calc-grid">
+        <div class="margin-calc-item">
+          <div class="margin-calc-num">$499</div>
+          <div class="margin-calc-desc">月額コスト<br><span>10クライアント分</span></div>
+        </div>
+        <div class="margin-calc-arrow">→</div>
+        <div class="margin-calc-item">
+          <div class="margin-calc-num">$200</div>
+          <div class="margin-calc-desc">1クライアントへの請求<br><span>監視管理費として</span></div>
+        </div>
+        <div class="margin-calc-arrow">→</div>
+        <div class="margin-calc-item highlight">
+          <div class="margin-calc-num text-orange">$1,501</div>
+          <div class="margin-calc-desc">月間マージン<br><span>10クライアント時</span></div>
+        </div>
+      </div>
+      <p class="margin-calc-note">月額費用に上乗せ、レポートサービスにバンドル。価格設定はあなた次第です。</p>
+    </div>
+
   </div>
 </section>
 
@@ -355,6 +377,56 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">14日後にLemonSqueezy経由で有料プランに自動移行します。トライアル開始時にクレジットカードは不要です。期間内にいつでもキャンセルできます。</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Gemini以外のAIモデルは使えますか？
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">現在はGemini（gemini-2.5-flash）を使用しています。他のAIモデルへの対応は今後のアップデートで予定しています。GeminiはGA4データの分析に優れており、無料枠も充実しています。</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          既存のGA4設定を変更する必要はありますか？
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">不要です。NinjalensはGA4プロパティIDを使って公式APIからデータを取得するため、既存のGA4設定はそのままで構いません。JSエラー検知については、サイトに1行のスクリプトタグを追加するだけです。</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          どのGA4指標を取得しますか？
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">セッション数・PV数・アクティブユーザー数・コンバージョン数・売上高・CVR・エンゲージメント率・流入チャネルTOP3を取得します。JSエラー監視ではページグループ別（TOP・商品詳細・カート・決済・購入完了等）かつエラー種別（自サイト・GTM・サードパーティ）ごとに集計します。</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          日本語でレポートを出力できますか？
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">はい、日本語と英語に対応しています。ConfigシートのLocale設定を「JA」に変更するだけで、Slack通知・ログ・UIがすべて日本語になります。</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          アップデートはどのように適用されますか？
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">NinjalensはGoogle Apps Scriptライブラリとして構築されています。アップデートは自動で反映されるため、スプレッドシートを再コピーしたり再設定する必要はありません。Configシートの設定はアップデート後も保持されます。</div>
         </div>
       </div>
 

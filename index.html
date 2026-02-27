@@ -122,7 +122,7 @@
             </div>
             <div>
               <div class="problem-item-title">JS errors are invisible</div>
-              <div class="problem-item-text">Checkout breakages, cart errors, payment failures — silently costing your clients revenue.</div>
+              <div class="problem-item-text">Checkout breakages, cart errors, payment failures — silently costing your clients revenue. Existing error monitoring tools are built for developers and too complex to deploy.</div>
             </div>
           </div>
           <div class="problem-item">
@@ -297,6 +297,28 @@
 
     </div>
     <p class="pricing-note">✦ 14-day free trial · No credit card required · Cancel anytime</p>
+
+    <div class="margin-calc">
+      <div class="margin-calc-label">Agency Margin Example</div>
+      <div class="margin-calc-grid">
+        <div class="margin-calc-item">
+          <div class="margin-calc-num">$499</div>
+          <div class="margin-calc-desc">Your monthly cost<br><span>10 client licenses</span></div>
+        </div>
+        <div class="margin-calc-arrow">→</div>
+        <div class="margin-calc-item">
+          <div class="margin-calc-num">$200</div>
+          <div class="margin-calc-desc">Charge per client<br><span>as a monitoring fee</span></div>
+        </div>
+        <div class="margin-calc-arrow">→</div>
+        <div class="margin-calc-item highlight">
+          <div class="margin-calc-num text-orange">$1,501</div>
+          <div class="margin-calc-desc">Monthly margin<br><span>from 10 clients</span></div>
+        </div>
+      </div>
+      <p class="margin-calc-note">Add it to your retainer. Bundle it with your reporting service. Your pricing, your margin.</p>
+    </div>
+
   </div>
 </section>
 
@@ -356,6 +378,56 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">After 14 days, your plan converts to a paid subscription via LemonSqueezy. No credit card is required to start the trial. You can cancel at any time before the trial ends.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I use a different AI model instead of Gemini?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Currently Ninjalens uses Gemini (gemini-2.5-flash) as its AI engine. Support for other models is planned for a future update. Gemini is free-tier friendly and delivers excellent analysis quality for GA4 data.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do I need to change my existing GA4 setup?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No changes to your existing GA4 configuration are needed. Ninjalens reads your GA4 data via the official Google Analytics Data API using your Property ID. For JS error detection, you add one lightweight script tag to your site — that's it.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What GA4 metrics does Ninjalens track?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sessions, pageviews, active users, conversions, revenue, conversion rate, engagement rate, and top acquisition channels. For JS error monitoring, Ninjalens tracks errors by page group (home, product, cart, checkout, purchase, etc.) and by error type (own site, GTM, 3rd-party).</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Are reports available in languages other than English?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. Ninjalens supports English and Japanese out of the box. You can switch languages in the Config sheet. Additional languages can be added to the Messages sheet by the user.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I receive product updates?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ninjalens is built as a Google Apps Script library. Updates are applied automatically — you don't need to re-copy or redeploy anything. Your Config sheet settings are always preserved across updates.</div>
         </div>
       </div>
 
