@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninjalens — Outreach Templates × 100</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: 'Space Mono', 'Courier New', monospace;
+  }
+  /* Header */
+  #header {
+    border-bottom: 1px solid #21262d;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: #0d1117;
+    z-index: 100;
+  }
+  #header-left { display: flex; align-items: center; gap: 14px; }
+  #logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  #logo-title { font-size: 15px; font-weight: 700; letter-spacing: .05em; color: #f97316; }
+  #logo-sub { font-size: 11px; color: #6e7681; letter-spacing: .08em; }
+  #count { font-size: 12px; color: #6e7681; }
+  /* Controls */
+  #controls { padding: 18px 28px; border-bottom: 1px solid #21262d; }
+  #search {
+    width: 100%;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: #e6edf3;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    margin-bottom: 14px;
+  }
+  #search:focus { border-color: #f97316; }
+  #filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid #30363d;
+    background: transparent;
+    color: #8b949e;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: .05em;
+    white-space: nowrap;
+    transition: all .15s;
+  }
+  .filter-btn:hover { border-color: #8b949e; color: #cdd9e5; }
+  /* Legend */
+  #legend {
+    padding: 10px 28px;
+    border-bottom: 1px solid #161b22;
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: 11px; color: #6e7681;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  /* Grid */
+  #grid {
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 14px;
+  }
+  /* Card */
+  .card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .card.open { border-color: var(--cat-color); }
+  .card-header {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: background .15s;
+  }
+  .card.open .card-header { background: color-mix(in srgb, var(--cat-color) 7%, transparent); }
+  .card-header:hover { background: color-mix(in srgb, var(--cat-color) 5%, transparent); }
+  .card-num {
+    min-width: 28px; height: 28px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--cat-color) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cat-color) 40%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    color: var(--cat-color);
+    flex-shrink: 0;
+  }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 700;
+    background: color-mix(in srgb, var(--cat-color) 20%, transparent);
+    color: var(--cat-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: .08em;
+    margin-bottom: 5px;
+  }
+  .card-subject {
+    font-size: 12px;
+    color: #cdd9e5;
+    line-height: 1.55;
+    font-weight: 600;
+    word-break: break-word;
+  }
+  .card-chevron { color: #6e7681; font-size: 12px; flex-shrink: 0; margin-top: 4px; }
+  /* Body */
+  .card-body { padding: 0 16px 16px; display: none; }
+  .card.open .card-body { display: block; }
+  .body-pre {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #8b949e;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 12px;
+    font-family: inherit;
+  }
+  .btn-row { display: flex; gap: 8px; }
+  .btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: .05em;
+    transition: all .15s;
+    border: 1px solid #30363d;
+    background: #21262d;
+    color: #8b949e;
+  }
+  .btn:hover { background: #2d333b; color: #cdd9e5; }
+  .btn.primary {
+    flex: 2;
+    border: none;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--cat-color) 80%, transparent), color-mix(in srgb, var(--cat-color) 55%, transparent));
+    color: #fff;
+  }
+  .btn.primary:hover { opacity: .85; }
+  .btn.copied { background: #1f6133 !important; color: #3fb950 !important; border-color: #238636 !important; }
+  /* Footer */
+  #footer {
+    padding: 24px;
+    border-top: 1px solid #21262d;
+    text-align: center;
+    font-size: 11px;
+    color: #6e7681;
+    letter-spacing: .08em;
+  }
+  #no-results { padding: 60px; text-align: center; color: #6e7681; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <div id="header-left">
+    <div id="logo-icon">⚡</div>
+    <div>
+      <div id="logo-title">NINJALENS</div>
+      <div id="logo-sub">OUTREACH TEMPLATES × 100</div>
+    </div>
+  </div>
+  <div id="count">100 / 100 templates</div>
+</div>
+
+<div id="controls">
+  <input id="search" type="text" placeholder="🔍  Search by subject or body..." oninput="render()">
+  <div id="filters"></div>
+</div>
+
+<div id="legend"></div>
+<div id="grid"></div>
+<div id="no-results" style="display:none">No templates found.</div>
+
+<div id="footer">NINJALENS.NET — CATCH SITE PROBLEMS BEFORE YOUR CLIENTS DO</div>
+
+<script>
+const CATEGORIES = {
+  A: { label: "Problem-First", color: "#ef4444", desc: "クライアントに先を越される恐怖を刺激" },
+  B: { label: "White-Label",   color: "#f97316", desc: "ホワイトラベル・付加価値サービス訴求" },
+  C: { label: "Tech / Trust",  color: "#3b82f6", desc: "技術・信頼性・プライバシー訴求" },
+  D: { label: "ROI",           color: "#10b981", desc: "コスト・収益化・ROI訴求" },
+  E: { label: "Ultra-Short",   color: "#8b5cf6", desc: "超短文・忙しい相手向け" },
+  F: { label: "Story",         color: "#ec4899", desc: "共感・ストーリー型" },
+  G: { label: "Niche",         color: "#f59e0b", desc: "業種・ニッチ特化型" },
+};
+
+const T = [
+  // ===== A: Problem-First =====
+  {id:1,c:"A",s:"Do your clients call YOU about site issues — or the other way around?",b:`Hi [Name],
+
+Most agencies find out about GA4 anomalies the same way — their client calls them first.
+
+Ninjalens monitors GA4 around the clock and alerts your Slack before anyone picks up the phone. Powered by Gemini AI + Z-Score anomaly detection.
+
+14-day free trial, no credit card. 15-minute setup.
+
+→ ninjalens.net`},
+  {id:2,c:"A",s:"What if Slack told you about site problems before 9am?",b:`Hi [Name],
+
+Imagine starting every day with an AI-generated GA4 briefing already in your Slack — before your client's first email arrives.
+
+That's what Ninjalens does. Every morning. Automatically.
+
+Try free for 14 days → ninjalens.net`},
+  {id:3,c:"A",s:"How many GA4 dashboards does your team check every morning?",b:`Hi [Name],
+
+If the answer is "too many" — Ninjalens was built for you.
+
+One tool. All your client GA4s. Automatic daily Slack alerts with AI analysis. Agency plan covers 10 clients at $499/mo.
+
+Free trial → ninjalens.net`},
+  {id:4,c:"A",s:"The GA4 drop your team missed last Tuesday",b:`Hi [Name],
+
+Traffic drops happen. Conversion crashes happen. The question is: do you see them before your client does?
+
+Ninjalens runs statistical anomaly detection 24/7 and pushes AI-written alerts to Slack the moment something looks wrong.
+
+14-day trial, no card needed → ninjalens.net`},
+  {id:5,c:"A",s:`"How did you catch that so fast?" — what your clients should be saying`,b:`Hi [Name],
+
+When a site issue hits, the agency that calls first builds trust. The one that waits loses it.
+
+Ninjalens monitors GA4 in real-time and tells your team in Slack exactly what happened, why, and what to do — before your client notices.
+
+→ ninjalens.net`},
+  {id:6,c:"A",s:"How much of your team's time goes to GA4 check-ins?",b:`Hi [Name],
+
+Daily GA4 reviews. Weekly reports. Hunting for anomalies.
+
+Ninjalens automates all of it — AI analysis, anomaly detection, Slack delivery — so your team focuses on strategy, not surveillance.
+
+Free 14-day trial → ninjalens.net`},
+  {id:7,c:"A",s:"Would you know within the hour if a client's checkout broke?",b:`Hi [Name],
+
+JS errors on checkout pages kill conversions silently. GA4 doesn't scream. Your client doesn't know. You find out too late.
+
+Ninjalens detects JS errors via GA4 Realtime API and alerts your Slack within the hour.
+
+→ ninjalens.net (14-day free trial)`},
+  {id:8,c:"A",s:"What separates a $2k/mo agency from a $10k/mo agency?",b:`Hi [Name],
+
+Speed and proactivity.
+
+Agencies that spot problems first — and explain them clearly — command premium fees. Ninjalens gives your team AI-generated GA4 alerts in Slack before clients even open their dashboards.
+
+→ ninjalens.net`},
+  {id:9,c:"A",s:"A better Monday morning for your GA4 team",b:`Hi [Name],
+
+Instead of manually checking 10 GA4 accounts every Monday, what if Slack had already briefed your team on every anomaly — with AI analysis attached?
+
+Ninjalens does that. Every day. Automatically.
+
+→ ninjalens.net`},
+  {id:10,c:"A",s:`"Traffic dropped 10%" means nothing without context`,b:`Hi [Name],
+
+A 10% drop on a Tuesday might be normal. On a Thursday after a campaign launch, it's a crisis.
+
+Ninjalens uses Z-Score statistical analysis to tell the difference — and alerts your Slack only when it actually matters.
+
+Free trial → ninjalens.net`},
+  {id:11,c:"A",s:"Your client's site has a JS error. Do you know about it?",b:`Hi [Name],
+
+Right now, one of your client's sites might have a broken checkout, a failing form, or a GTM error eating conversions silently.
+
+Ninjalens catches JS errors in real-time via GA4 and pings your Slack immediately.
+
+→ ninjalens.net`},
+  {id:12,c:"A",s:"If Ninjalens catches one conversion drop per month, it pays for itself",b:`Hi [Name],
+
+One missed checkout bug. One undetected traffic crash. That's more lost revenue than $499/mo.
+
+Ninjalens monitors all 10 of your client GA4s 24/7 for $499.
+
+→ ninjalens.net (14-day free trial)`},
+  {id:13,c:"A",s:"Cut your weekly GA4 reporting time to near zero",b:`Hi [Name],
+
+Ninjalens generates AI-written daily GA4 reports — delivered to your Slack before your team starts work. No manual pulling. No formatting. Just insights.
+
+Agency plan: 10 clients, $499/mo → ninjalens.net`},
+  {id:14,c:"A",s:"While you're building reports, your competitor already sent the alert",b:`Hi [Name],
+
+The agency that alerts clients first wins the trust game. Manual reporting can't compete with automated 24/7 monitoring.
+
+Ninjalens runs while your team sleeps.
+
+→ ninjalens.net`},
+  {id:15,c:"A",s:"15-minute setup. 24/7 GA4 monitoring.",b:`Hi [Name],
+
+No server. No code. No maintenance.
+
+Ninjalens runs on Google Sheets + Google Apps Script. Setup takes 15 minutes. Then it monitors GA4 forever.
+
+→ ninjalens.net`},
+  {id:16,c:"A",s:"Your clients will think you have a dedicated monitoring team",b:`Hi [Name],
+
+They don't need to know it's automated.
+
+Ninjalens delivers white-labeled GA4 alerts in your agency's name — so your clients think you're watching 24/7. (You are. Just not manually.)
+
+→ ninjalens.net`},
+  {id:17,c:"A",s:"Something just happened on your client's site. Are you finding out at 9am?",b:`Hi [Name],
+
+Site issues don't wait for business hours. Revenue drops don't either.
+
+Ninjalens monitors GA4 around the clock and alerts your Slack the moment a statistical anomaly appears.
+
+→ ninjalens.net`},
+  {id:18,c:"A",s:"GA4 is powerful. It's also a daily time sink.",b:`Hi [Name],
+
+Dashboard checks, custom reports, client updates — GA4 management eats hours your team could spend on strategy.
+
+Ninjalens automates the monitoring layer entirely. AI does the analysis. Slack gets the report.
+
+→ ninjalens.net`},
+  {id:19,c:"A",s:"Adding a 10th GA4 client shouldn't mean 10x more monitoring work",b:`Hi [Name],
+
+Ninjalens scales with you. One Agency plan covers 10 clients — same effort, regardless of portfolio size.
+
+→ ninjalens.net (14-day free trial, no card)`},
+  {id:20,c:"A",s:"Client's revenue dropped 40% last night. When do you find out?",b:`Hi [Name],
+
+Without monitoring: Tomorrow morning, when they call.
+With Ninjalens: Within the hour, via Slack — with AI analysis already explaining why.
+
+→ ninjalens.net`},
+  // ===== B: White-Label =====
+  {id:21,c:"B",s:"Send GA4 reports under your own brand. Clients will be impressed.",b:`Hi [Name],
+
+Ninjalens white-label feature lets you deliver AI-powered GA4 monitoring under your agency's name.
+
+Your clients see your brand. You see the ROI.
+
+→ ninjalens.net`},
+  {id:22,c:"B",s:"A new premium service line — without building anything",b:`Hi [Name],
+
+"24/7 GA4 Monitoring & AI Reporting" is a service your clients will pay for.
+
+Ninjalens lets you offer it under your brand in 15 minutes. Agency plan: 10 clients, $499/mo.
+
+→ ninjalens.net`},
+  {id:23,c:"B",s:"White-label GA4 monitoring your clients will think you built",b:`Hi [Name],
+
+Ninjalens sends Slack alerts with your agency's brand name — not ours. It's your service. We just run it.
+
+Free 14-day trial → ninjalens.net`},
+  {id:24,c:"B",s:"Add recurring revenue with white-label GA4 monitoring",b:`Hi [Name],
+
+Agencies are packaging Ninjalens as a $200–500/mo per-client monitoring retainer. At $499/mo for 10 clients, the math works very well.
+
+→ ninjalens.net`},
+  {id:25,c:"B",s:"Your brand. Our AI. Your clients' peace of mind.",b:`Hi [Name],
+
+Ninjalens white-label: Slack alerts arrive under your agency's name, powered by Gemini AI and GA4 real-time data.
+
+→ ninjalens.net`},
+  {id:26,c:"B",s:"Stop giving away monitoring work for free",b:`Hi [Name],
+
+If your team monitors GA4 manually for clients — that's unbillable time. Or it should be a paid service.
+
+Ninjalens automates it and lets you brand it. Turn cost into revenue.
+
+→ ninjalens.net`},
+  {id:27,c:"B",s:`"We monitor your site 24/7" — say it and mean it`,b:`Hi [Name],
+
+With Ninjalens, that sentence is literally true — and costs $499/mo for 10 clients.
+
+AI-powered. White-labeled. Delivered to Slack daily.
+
+→ ninjalens.net`},
+  {id:28,c:"B",s:"The easiest upsell in digital marketing right now",b:`Hi [Name],
+
+"24/7 GA4 monitoring with AI alerts" sells itself to any client who's ever had a site problem go undetected.
+
+Ninjalens powers it. Your brand delivers it.
+
+→ ninjalens.net`},
+  {id:29,c:"B",s:"How are you differentiating your GA4 service from cheaper agencies?",b:`Hi [Name],
+
+White-label AI monitoring is a genuinely hard-to-replicate advantage — and Ninjalens gets you there in 15 minutes.
+
+→ ninjalens.net`},
+  {id:30,c:"B",s:"Your clients already trust you with their data. Now watch it for them.",b:`Hi [Name],
+
+Ninjalens turns that trust into a tangible daily deliverable — AI-generated GA4 reports under your brand, in their Slack.
+
+→ ninjalens.net`},
+  {id:31,c:"B",s:"One tool. 10 clients. Your brand on every alert.",b:`Hi [Name],
+
+Ninjalens Agency plan: 10 GA4 properties, white-labeled Slack alerts, AI analysis, real-time error detection. $499/mo. Free trial first.
+
+→ ninjalens.net`},
+  {id:32,c:"B",s:"Make GA4 monitoring a service line, not a cost center",b:`Hi [Name],
+
+Package automated GA4 monitoring as a billable retainer under your brand.
+
+Infrastructure cost: $499/mo. Potential revenue: $2,000–5,000/mo across 10 clients.
+
+→ ninjalens.net`},
+  {id:33,c:"B",s:`"Our monitoring system caught that" — a phrase worth paying for`,b:`Hi [Name],
+
+With Ninjalens white-label, your clients hear your name when the alert arrives. That's brand equity that compounds.
+
+→ ninjalens.net`},
+  {id:34,c:"B",s:"Give every client their own GA4 watchdog — under your brand",b:`Hi [Name],
+
+Ninjalens creates a dedicated monitoring stream for each client property, alerts via Slack, and carries your agency's branding.
+
+Agency plan → ninjalens.net`},
+  {id:35,c:"B",s:"Your clients want proactive. Ninjalens makes that possible at scale.",b:`Hi [Name],
+
+White-label GA4 alerts — powered by AI, delivered daily, under your agency name.
+
+14-day free trial → ninjalens.net`},
+  // ===== C: Tech / Trust =====
+  {id:36,c:"C",s:"Z-Score anomaly detection for GA4 — useful alerts, not noise",b:`Hi [Name],
+
+Most monitoring tools cry wolf. Ninjalens uses statistical Z-Score analysis to alert only on genuine anomalies — not every daily fluctuation.
+
+→ ninjalens.net`},
+  {id:37,c:"C",s:"Gemini AI explains *why* the metric dropped — not just that it did",b:`Hi [Name],
+
+Ninjalens doesn't just flag anomalies. It uses Gemini 2.5 Flash to generate a written analysis: what changed, why it likely happened, what to do next.
+
+→ ninjalens.net`},
+  {id:38,c:"C",s:"Privacy-first GA4 monitoring — no PII ever leaves your stack",b:`Hi [Name],
+
+Ninjalens sends only numerical GA4 metrics to Gemini API. No customer data. No PII. For agencies with GDPR-conscious clients — that matters.
+
+→ ninjalens.net`},
+  {id:39,c:"C",s:"Zero infrastructure. Runs on Google Sheets.",b:`Hi [Name],
+
+No server to maintain. No SLA to worry about. Ninjalens runs entirely on Google Apps Script.
+
+Setup: 15 minutes. Ongoing maintenance: zero.
+
+→ ninjalens.net`},
+  {id:40,c:"C",s:"Real-time JS error detection via GA4 Realtime API",b:`Hi [Name],
+
+Ninjalens checks for JS errors — by page group — every hour via GA4 Realtime API.
+
+Checkout errors, login failures, GTM misfires — caught before they kill conversions.
+
+→ ninjalens.net`},
+  {id:41,c:"C",s:"GA4 vs 7-day moving average vs prior week — all in one Slack message",b:`Hi [Name],
+
+Ninjalens compares each day's metrics against multiple baselines: previous day, same weekday last week, and 7-day moving average.
+
+Context that actually helps your team take action.
+
+→ ninjalens.net`},
+  {id:42,c:"C",s:"Uses your own Gemini API key — you stay in control",b:`Hi [Name],
+
+Ninjalens doesn't route your data through our servers. You connect your own Gemini API key.
+
+Full data sovereignty. No third-party bottleneck.
+
+→ ninjalens.net`},
+  {id:43,c:"C",s:"Built on Google infrastructure. Inherits Google's uptime.",b:`Hi [Name],
+
+Because Ninjalens runs on Google Apps Script + Sheets, it inherits Google's reliability guarantees.
+
+No "is the monitoring tool down?" panic.
+
+→ ninjalens.net`},
+  {id:44,c:"C",s:"Page-group-level error tracking — know exactly where the problem is",b:`Hi [Name],
+
+Ninjalens tracks JS errors by page group: checkout, cart, login, product pages, LP, and more.
+
+When an error fires, your team knows exactly where to look.
+
+→ ninjalens.net`},
+  {id:45,c:"C",s:"Daily + hourly monitoring. Two layers of protection.",b:`Hi [Name],
+
+Ninjalens runs two jobs:
+• Daily AI report (via GA4 Data API)
+• Hourly error detection (via GA4 Realtime API)
+
+24/7 coverage from two angles.
+
+→ ninjalens.net`},
+  {id:46,c:"C",s:"Detects GTM errors separately from site errors",b:`Hi [Name],
+
+Ninjalens categorizes JS errors: your-site errors vs. GTM errors vs. third-party errors.
+
+Your team immediately knows whether it's a dev problem or a tagging problem.
+
+→ ninjalens.net`},
+  {id:47,c:"C",s:"No GA4 expertise required to understand the reports",b:`Hi [Name],
+
+Ninjalens has Gemini AI translate raw GA4 data into plain-language explanations — so clients and non-technical stakeholders actually understand what happened.
+
+→ ninjalens.net`},
+  {id:48,c:"C",s:"No-code setup. Your team doesn't need a developer.",b:`Hi [Name],
+
+Ninjalens is configured entirely via a Google Sheet. No code, no deployment, no DevOps.
+
+Any account manager can set it up in 15 minutes.
+
+→ ninjalens.net`},
+  {id:49,c:"C",s:"Works with any GA4 property — eCommerce, lead gen, SaaS, media",b:`Hi [Name],
+
+Ninjalens adapts its analysis to your client's business model — revenue for eCommerce, conversions for lead gen, engagement for content.
+
+→ ninjalens.net`},
+  {id:50,c:"C",s:"Historical analysis + real-time detection in one tool",b:`Hi [Name],
+
+Ninjalens combines daily trend analysis (10-day rolling) with hourly real-time error monitoring.
+
+Two perspectives. One Slack channel.
+
+→ ninjalens.net`},
+  // ===== D: ROI =====
+  {id:51,c:"D",s:"$499/mo for 10 clients = $49.90 per client per month",b:`Hi [Name],
+
+Less than a lunch per client per month for 24/7 AI-powered GA4 monitoring.
+
+→ ninjalens.net`},
+  {id:52,c:"D",s:"What's one undetected conversion drop worth to your client?",b:`Hi [Name],
+
+If Ninjalens catches one checkout error or traffic crash per month, it's saved more revenue than it costs.
+
+$499/mo. 10 clients. 14-day free trial.
+
+→ ninjalens.net`},
+  {id:53,c:"D",s:"The monitoring retainer you've been meaning to build — it already exists",b:`Hi [Name],
+
+Stop building. Ninjalens is already here. White-label it, price it as a retainer, collect recurring revenue.
+
+→ ninjalens.net`},
+  {id:54,c:"D",s:"Free your team from daily GA4 check-ins",b:`Hi [Name],
+
+How many hours/week does your team spend opening GA4 dashboards manually?
+
+Ninjalens makes that zero.
+
+→ ninjalens.net (14-day free trial)`},
+  {id:55,c:"D",s:"Reduce client churn with proactive monitoring",b:`Hi [Name],
+
+Clients stay with agencies that catch problems first. Ninjalens makes your team proactive by default.
+
+→ ninjalens.net`},
+  {id:56,c:"D",s:"Faster incident response = fewer angry client calls",b:`Hi [Name],
+
+Ninjalens alerts your Slack within the hour of any GA4 anomaly. Enough time to investigate and respond before your client even notices.
+
+→ ninjalens.net`},
+  {id:57,c:"D",s:"Turn GA4 monitoring from a cost center into a revenue stream",b:`Hi [Name],
+
+Automate the work. Package it as a service. Bill for it monthly.
+
+Ninjalens Agency plan makes this straightforward.
+
+→ ninjalens.net`},
+  {id:58,c:"D",s:"Build a monitoring service your clients will never want to cancel",b:`Hi [Name],
+
+Daily AI reports in Slack. Real-time error alerts. White-labeled to your agency.
+
+The kind of service that feels essential after week one.
+
+→ ninjalens.net`},
+  {id:59,c:"D",s:"Every client should have a GA4 watchdog. Now they can.",b:`Hi [Name],
+
+At $499/mo for 10 properties, there's no reason every client in your portfolio shouldn't have 24/7 GA4 monitoring.
+
+→ ninjalens.net`},
+  {id:60,c:"D",s:"The ROI case for automated GA4 monitoring writes itself",b:`Hi [Name],
+
+Average eCommerce site: $50k–$500k/mo revenue.
+Ninjalens cost: $50/mo per client.
+Risk of missing one crash: significant.
+
+→ ninjalens.net`},
+  {id:61,c:"D",s:"Less time on monitoring. More time on strategy. Better outcomes.",b:`Hi [Name],
+
+Ninjalens is the automation layer that lets your team focus on work that actually moves the needle.
+
+→ ninjalens.net`},
+  {id:62,c:"D",s:"For agencies managing 5+ clients — this is a no-brainer",b:`Hi [Name],
+
+5 clients. 5 GA4 dashboards. 5 sets of daily check-ins.
+
+Or: one Ninjalens Agency plan. One Slack channel. Zero manual effort.
+
+→ ninjalens.net`},
+  {id:63,c:"D",s:"Happy clients don't just stay — they refer",b:`Hi [Name],
+
+Agencies that catch site problems before clients do build the kind of trust that generates referrals.
+
+Ninjalens makes that your default operating mode.
+
+→ ninjalens.net`},
+  {id:64,c:"D",s:"Your competitors are still doing GA4 manually",b:`Hi [Name],
+
+Most agencies haven't automated GA4 monitoring yet. That's a differentiation opportunity — right now.
+
+→ ninjalens.net`},
+  {id:65,c:"D",s:"14 days, no card, full Agency features",b:`Hi [Name],
+
+Full Agency plan trial — 10 properties, white-label, AI analysis, real-time error detection.
+
+No credit card. No commitment. Just results.
+
+→ ninjalens.net`},
+  // ===== E: Ultra-Short =====
+  {id:66,c:"E",s:"GA4 monitoring on autopilot — for agencies",b:`Ninjalens monitors GA4, detects anomalies with AI, and alerts your Slack — under your brand.
+
+Agency plan: 10 clients, $499/mo. 14-day free trial.
+
+→ ninjalens.net`},
+  {id:67,c:"E",s:"Your clients' site problems. Detected before they call you.",b:`AI-powered GA4 monitoring. White-labeled. Delivered to Slack.
+
+→ ninjalens.net`},
+  {id:68,c:"E",s:"24/7 GA4 watchdog for your agency. Zero infrastructure.",b:`$499/mo. 10 clients. White-label. Free trial.
+
+→ ninjalens.net`},
+  {id:69,c:"E",s:"Stop checking GA4 manually.",b:`Ninjalens does it automatically. AI writes the report. Slack gets the alert.
+
+→ ninjalens.net`},
+  {id:70,c:"E",s:"GA4 anomaly detection + AI analysis + Slack alerts = Ninjalens",b:`14-day free trial. No card. 15-minute setup.
+
+→ ninjalens.net`},
+  {id:71,c:"E",s:"Catch GA4 problems in hours, not days.",b:`Real-time error detection. Statistical anomaly alerts. AI analysis.
+
+→ ninjalens.net`},
+  {id:72,c:"E",s:"The GA4 tool agencies actually need.",b:`White-label. 10 clients. Runs on Google Sheets.
+
+→ ninjalens.net`},
+  {id:73,c:"E",s:"AI-generated GA4 reports. Every day. No effort.",b:`Ninjalens + Gemini AI + your Slack = automated monitoring.
+
+→ ninjalens.net`},
+  {id:74,c:"E",s:"One license. Ten client GA4 properties. Full automation.",b:`→ ninjalens.net — 14-day free trial`},
+  {id:75,c:"E",s:"What happened in GA4 last night? Ninjalens already knows.",b:`→ ninjalens.net`},
+  {id:76,c:"E",s:"JS errors killing conversions? You'll know within the hour.",b:`Ninjalens. Real-time GA4 error monitoring for agencies.
+
+→ ninjalens.net`},
+  {id:77,c:"E",s:"Replace daily GA4 check-ins with one Slack message.",b:`→ ninjalens.net — Agency plan, 14-day free trial`},
+  {id:78,c:"E",s:"Ninjalens monitors GA4. You focus on clients.",b:`→ ninjalens.net`},
+  {id:79,c:"E",s:"Be the agency that always knows first.",b:`→ ninjalens.net`},
+  {id:80,c:"E",s:"$49.90/client/month for 24/7 AI GA4 monitoring.",b:`Worth it? We think so.
+
+→ ninjalens.net`},
+  // ===== F: Story =====
+  {id:81,c:"F",s:`"Why didn't you tell us sooner?" — a conversation no one wants`,b:`Hi [Name],
+
+We built Ninjalens after watching agencies lose clients over preventable GA4 incidents — traffic drops, conversion crashes, JS errors — all discovered too late.
+
+If your team manages multiple GA4 properties, this tool was made for you.
+
+14-day free trial → ninjalens.net`},
+  {id:82,c:"F",s:"The Monday morning no one wants",b:`Hi [Name],
+
+It's 9am Monday. A client's site had a checkout error all weekend. Revenue dropped 60%. They're about to call.
+
+Ninjalens would have alerted your Slack on Friday night.
+
+→ ninjalens.net`},
+  {id:83,c:"F",s:"Your best analyst can't watch 10 GA4 dashboards at 3am.",b:`Hi [Name],
+
+But Ninjalens can. And it'll summarize what it found — with AI analysis — before your team starts their day.
+
+→ ninjalens.net`},
+  {id:84,c:"F",s:`"We noticed something in your GA4 last night and wanted to reach out."`,b:`Hi [Name],
+
+That's the message your clients want to receive. Ninjalens makes it easy to send — because the alert already came to your Slack.
+
+→ ninjalens.net`},
+  {id:85,c:"F",s:"Not every traffic drop is a crisis. Ninjalens knows the difference.",b:`Hi [Name],
+
+Normal daily fluctuation vs. genuine statistical anomaly — Ninjalens uses Z-Score to tell them apart and only alerts when it matters.
+
+No alert fatigue. Just real signals.
+
+→ ninjalens.net`},
+  {id:86,c:"F",s:"One small tool. Massive impact on client relationships.",b:`Hi [Name],
+
+The agencies that retain clients longest aren't the ones with the best decks — they're the ones who catch problems first.
+
+Ninjalens is how you do that at scale.
+
+→ ninjalens.net`},
+  {id:87,c:"F",s:"The Slack message your team wants to start every day with",b:`Hi [Name],
+
+"Here's what happened in GA4 last night. One anomaly detected. Here's what it is and what to do."
+
+That's Ninjalens. Every morning.
+
+→ ninjalens.net`},
+  {id:88,c:"F",s:"What would you do with 5 extra hours per week?",b:`Hi [Name],
+
+That's roughly what agencies save when they stop doing manual GA4 check-ins.
+
+Ninjalens automates the monitoring. Your team reclaims the time.
+
+→ ninjalens.net`},
+  {id:89,c:"F",s:"Your clients are paying you to know their site. Do you?",b:`Hi [Name],
+
+GA4 doesn't push alerts. Clients don't always notice issues. But you're expected to.
+
+Ninjalens closes that gap — automatically, daily, in Slack.
+
+→ ninjalens.net`},
+  {id:90,c:"F",s:"14 days to see if Ninjalens changes how your agency works",b:`Hi [Name],
+
+No credit card. Full Agency features. 10 client properties.
+
+If it doesn't feel indispensable by day 14, you owe us nothing.
+
+→ ninjalens.net`},
+  // ===== G: Niche =====
+  {id:91,c:"G",s:"For Shopify agencies: know when a client's cart is broken before they do",b:`Hi [Name],
+
+Ninjalens monitors checkout page JS errors via GA4 Realtime API and alerts your Slack within the hour.
+
+For Shopify & WooCommerce clients — this is the early warning system you've been missing.
+
+→ ninjalens.net`},
+  {id:92,c:"G",s:"For performance marketing agencies: your ad traffic is hitting a broken page",b:`Hi [Name],
+
+You're spending client budget driving traffic. Ninjalens watches where that traffic lands — and alerts Slack if a JS error or conversion drop appears.
+
+→ ninjalens.net`},
+  {id:93,c:"G",s:"For GTM-heavy agencies: catch your own tagging errors before the client audit",b:`Hi [Name],
+
+Ninjalens separates GTM errors from site errors in its real-time monitoring. You'll know it's a tagging issue — before it becomes a client conversation.
+
+→ ninjalens.net`},
+  {id:94,c:"G",s:"For SEO agencies: traffic dropped. Was it Google or a site issue?",b:`Hi [Name],
+
+Ninjalens tracks sessions, engagement rate, and channel performance daily — and flags when traffic changes look like a site problem, not just an algorithm shift.
+
+→ ninjalens.net`},
+  {id:95,c:"G",s:"For CRO agencies: conversion rate dropped overnight. Did you know?",b:`Hi [Name],
+
+Ninjalens monitors CVR daily with Z-Score anomaly detection. When a conversion drop is statistically significant, Slack gets an AI-written alert immediately.
+
+→ ninjalens.net`},
+  {id:96,c:"G",s:"For eCommerce agencies: revenue anomalies, straight to Slack",b:`Hi [Name],
+
+Ninjalens tracks revenue, AOV, and conversion rate against 7-day moving averages and prior-week same-day baselines — and tells Slack when something's genuinely wrong.
+
+→ ninjalens.net`},
+  {id:97,c:"G",s:"For full-service agencies: one monitoring layer for your entire GA4 portfolio",b:`Hi [Name],
+
+10 client properties. One Agency plan. White-labeled Slack alerts. AI-written daily analysis.
+
+Ninjalens turns GA4 monitoring from a manual chore into an automated service.
+
+→ ninjalens.net`},
+  {id:98,c:"G",s:"For boutique agencies: compete with enterprise monitoring tools at $499/mo",b:`Hi [Name],
+
+Large agencies have dedicated analytics ops teams. Ninjalens gives smaller agencies the same 24/7 monitoring capability — automated, AI-powered, and white-labeled.
+
+→ ninjalens.net`},
+  {id:99,c:"G",s:"For lead gen agencies: is your client's form broken right now?",b:`Hi [Name],
+
+Ninjalens monitors inquiry page JS errors in real-time. If a contact form breaks, your Slack knows within the hour.
+
+→ ninjalens.net`},
+  {id:100,c:"G",s:"For analytics consultants: package monitoring as a retainer with your brand on it",b:`Hi [Name],
+
+Ninjalens white-label lets you offer branded 24/7 GA4 monitoring to your clients. You set the price. We run the engine.
+
+14-day free trial → ninjalens.net`},
+];
+
+let activeCategory = "ALL";
+
+// Build legend
+const legend = document.getElementById("legend");
+Object.entries(CATEGORIES).forEach(([cat, meta]) => {
+  const d = document.createElement("div");
+  d.className = "legend-item";
+  d.innerHTML = `<span style="color:${meta.color};font-weight:700">${cat}:</span><span>${meta.desc}</span>`;
+  legend.appendChild(d);
+});
+
+// Build filters
+const filters = document.getElementById("filters");
+const allBtn = document.createElement("button");
+allBtn.className = "filter-btn active-filter";
+allBtn.textContent = `ALL (${T.length})`;
+allBtn.style.borderColor = "#f97316";
+allBtn.style.color = "#f97316";
+allBtn.style.background = "#f9731622";
+allBtn.onclick = () => { activeCategory = "ALL"; render(); updateFilters(); };
+filters.appendChild(allBtn);
+
+Object.entries(CATEGORIES).forEach(([cat, meta]) => {
+  const count = T.filter(t => t.c === cat).length;
+  const btn = document.createElement("button");
+  btn.className = "filter-btn";
+  btn.id = `filter-${cat}`;
+  btn.textContent = `${cat}: ${meta.label} (${count})`;
+  btn.title = meta.desc;
+  btn.onclick = () => { activeCategory = cat; render(); updateFilters(); };
+  filters.appendChild(btn);
+});
+
+function updateFilters() {
+  allBtn.style.borderColor = activeCategory === "ALL" ? "#f97316" : "#30363d";
+  allBtn.style.color = activeCategory === "ALL" ? "#f97316" : "#8b949e";
+  allBtn.style.background = activeCategory === "ALL" ? "#f9731622" : "transparent";
+  Object.entries(CATEGORIES).forEach(([cat, meta]) => {
+    const btn = document.getElementById(`filter-${cat}`);
+    const active = activeCategory === cat;
+    btn.style.borderColor = active ? meta.color : "#30363d";
+    btn.style.color = active ? meta.color : "#8b949e";
+    btn.style.background = active ? `${meta.color}22` : "transparent";
+  });
+}
+
+function getFiltered() {
+  const q = document.getElementById("search").value.toLowerCase();
+  return T.filter(t => {
+    const matchCat = activeCategory === "ALL" || t.c === activeCategory;
+    const matchSearch = !q || t.s.toLowerCase().includes(q) || t.b.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+}
+
+function copyText(text, btn, label) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "✓ COPIED";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove("copied"); }, 2000);
+  });
+}
+
+function render() {
+  const filtered = getFiltered();
+  const grid = document.getElementById("grid");
+  const noResults = document.getElementById("no-results");
+  document.getElementById("count").textContent = `${filtered.length} / ${T.length} templates`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "";
+    noResults.style.display = "block";
+    return;
+  }
+  noResults.style.display = "none";
+
+  grid.innerHTML = filtered.map(t => {
+    const meta = CATEGORIES[t.c];
+    return `
+    <div class="card" id="card-${t.id}" style="--cat-color:${meta.color}">
+      <div class="card-header" onclick="toggleCard(${t.id})">
+        <div class="card-num">${String(t.id).padStart(2,"0")}</div>
+        <div class="card-meta">
+          <div><span class="card-tag">${meta.label}</span></div>
+          <div class="card-subject">${escHtml(t.s)}</div>
+        </div>
+        <div class="card-chevron" id="chev-${t.id}">▼</div>
+      </div>
+      <div class="card-body" id="body-${t.id}">
+        <pre class="body-pre">${escHtml(t.b)}</pre>
+        <div class="btn-row">
+          <button class="btn" onclick="copyText(${JSON.stringify(t.s)}, this)">COPY SUBJECT</button>
+          <button class="btn" onclick="copyText(${JSON.stringify(t.b)}, this)">COPY BODY</button>
+          <button class="btn primary" onclick="copyText(${JSON.stringify('SUBJECT: '+t.s+'\n\n'+t.b)}, this)">⚡ COPY ALL</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function toggleCard(id) {
+  const card = document.getElementById(`card-${id}`);
+  const chev = document.getElementById(`chev-${id}`);
+  const open = card.classList.toggle("open");
+  chev.textContent = open ? "▲" : "▼";
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+render();
+</script>
+</body>
+</html>
