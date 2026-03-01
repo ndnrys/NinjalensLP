@@ -125,56 +125,13 @@
   }
   .faq-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 200px 1fr;
     gap: 40px;
     align-items: start;
   }
   @media (max-width: 768px) {
     .faq-layout { grid-template-columns: 1fr; }
     .faq-sidebar { display: none; }
-  }
-
-  /* SP: フィルター開閉トグル */
-  .filter-toggle-btn {
-    display: none;
-    width: 100%;
-    padding: 10px 16px;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    color: #cdd9e5;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .05em;
-    cursor: pointer;
-    text-align: left;
-    margin-bottom: 8px;
-    align-items: center;
-    justify-content: space-between;
-    transition: border-color .2s;
-  }
-  .filter-toggle-btn:hover { border-color: #f97316; }
-  .filter-toggle-btn .toggle-arrow {
-    transition: transform .25s;
-    font-size: 10px;
-    color: #6e7681;
-  }
-  .filter-toggle-btn.open .toggle-arrow { transform: rotate(180deg); }
-  .filter-chips-wrap {
-    overflow: hidden;
-    transition: max-height .3s ease, opacity .3s ease;
-  }
-  @media (max-width: 768px) {
-    .filter-toggle-btn { display: flex; }
-    .filter-chips-wrap {
-      max-height: 0;
-      opacity: 0;
-    }
-    .filter-chips-wrap.open {
-      max-height: 500px;
-      opacity: 1;
-    }
   }
 
   /* ── Sidebar nav ── */
@@ -388,7 +345,7 @@
   <div class="container">
     <div class="section-label" id="hero-label">Frequently Asked Questions</div>
     <h1 id="hero-title">EVERYTHING YOU<br>NEED TO <span class="highlight">KNOW.</span></h1>
-    <p id="hero-sub">Can't find your answer? Email us at <a href="/cdn-cgi/l/email-protection#e5969095958a9791a58b8c8b8f8489808b96cb8b8091" style="color:#f97316;"><span class="__cf_email__" data-cfemail="41323431312e3335012f282f2b202d242f326f2f2435">[email&#160;protected]</span></a></p>
+    <p id="hero-sub">Can't find your answer? Email us at <a href="mailto:support@ninjalens.net" style="color:#f97316;">support@ninjalens.net</a></p>
   </div>
 </section>
 
@@ -402,13 +359,7 @@
         <button class="lang-btn" id="btn-ja" onclick="setLang('ja')">JA</button>
       </div>
     </div>
-    <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleFilterChips()">
-      <span id="filter-toggle-label">絞り込む（カテゴリ）</span>
-      <span class="toggle-arrow">▼</span>
-    </button>
-    <div class="filter-chips-wrap" id="filter-chips-wrap">
-      <div class="filter-chips" id="filter-chips"></div>
-    </div>
+    <div class="filter-chips" id="filter-chips"></div>
     <div class="faq-result-count" id="result-count"></div>
   </div>
 </div>
@@ -457,7 +408,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ============================================================
 // DATA
 // ============================================================
@@ -1032,7 +983,7 @@ const FAQS = [
 // ============================================================
 // STATE
 // ============================================================
-let lang = 'en';
+let lang = localStorage.getItem('nl_lang') || 'en';
 let activeCat = 'ALL';
 
 // ============================================================
@@ -1040,13 +991,13 @@ let activeCat = 'ALL';
 // ============================================================
 function setLang(l) {
   lang = l;
+  localStorage.setItem('nl_lang', l);
   document.getElementById('btn-en').classList.toggle('active', l === 'en');
   document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
   updateHeroText();
   buildChips();
   buildSidebar();
   renderFAQ();
-  updateToggleLabel();
 }
 
 function updateHeroText() {
@@ -1198,4 +1149,19 @@ function toggleFAQ(uid) {
   if (!isOpen) el.classList.add('open');
 }
 
-// Nav scr
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Init
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+updateHeroText();
+buildChips();
+buildSidebar();
+renderFAQ();
+</script>
+</body>
+</html>
