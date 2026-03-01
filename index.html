@@ -10,6 +10,31 @@
   <script>window.lemonSqueezyAffiliateConfig = { store: "ndnrys-works" };</script>
   <script src="https://lmsqueezy.com/affiliate.js" defer></script>
   <!-- End LemonSqueezy Affiliate -->
+<style>
+  .lang-toggle-nav {
+    display: flex;
+    background: rgba(255,255,255,.06);
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .lang-btn-nav {
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    letter-spacing: .05em;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #8b949e;
+    transition: all .15s;
+  }
+  .lang-btn-nav.active {
+    background: #f97316;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
 <!-- ============================================================
@@ -35,12 +60,18 @@
         </div>
         <span class="nav-logo-text">NINJA<span>LENS</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#pricing" class="nav-cta">Start Free Trial</a></li>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features" data-en="Features" data-ja="機能">Features</a></li>
+        <li><a href="#how" data-en="How it works" data-ja="使い方">How it works</a></li>
+        <li><a href="#pricing" data-en="Pricing" data-ja="料金">Pricing</a></li>
+        <li><a href="#faq" data-en="FAQ" data-ja="FAQ">FAQ</a></li>
+        <li>
+          <div class="lang-toggle-nav">
+            <button class="lang-btn-nav active" id="btn-en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn-nav" id="btn-ja" onclick="setLang('ja')">JA</button>
+          </div>
+        </li>
+        <li><a href="#pricing" class="nav-cta" id="nav-cta-btn">Start Free Trial</a></li>
       </ul>
     </div>
   </div>
@@ -58,42 +89,34 @@
     <div class="hero-content">
       <div class="hero-badge fade-up fade-up-1">
         <div class="hero-badge-dot"></div>
-        GA4 AI Monitoring — Built in Japan
+        <span id="hero-badge-text">GA4 AI Monitoring — Built in Japan</span>
       </div>
-      <h1 class="hero-title fade-up fade-up-2">
-        CATCH SITE<br>
-        PROBLEMS<br>
-        <span class="highlight">BEFORE</span><br>
-        YOUR CLIENTS DO
-      </h1>
-      <p class="hero-sub fade-up fade-up-3">
-        Ninjalens watches your clients' GA4 data 24/7 — detecting statistical anomalies, JS errors, and revenue drops — then sends AI-powered analysis straight to Slack. Under your brand.
-      </p>
+      <h1 class="hero-title fade-up fade-up-2" id="hero-title">
+        CATCH SITE<br>PROBLEMS<br><span class="highlight">BEFORE</span><br>YOUR CLIENTS DO</h1>
+      <p class="hero-sub fade-up fade-up-3" id="hero-sub">Ninjalens watches your clients' GA4 data 24/7 — detecting statistical anomalies, JS errors, and revenue drops — then sends AI-powered analysis straight to Slack. Under your brand.</p>
       <div class="hero-actions fade-up fade-up-4">
         <a href="#pricing" class="btn-primary">
-          Start 14-Day Free Trial
+          <span id="hero-cta-primary">Start 14-Day Free Trial</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#features" class="btn-secondary">
-          See How It Works
-        </a>
+        <a href="#features" class="btn-secondary" id="hero-cta-secondary">See How It Works</a>
       </div>
       <div class="hero-stats fade-up fade-up-5">
         <div>
           <div class="hero-stat-num">14</div>
-          <div class="hero-stat-label">Day Free Trial</div>
+          <div class="hero-stat-label" id="stat-trial">Day Free Trial</div>
         </div>
         <div>
           <div class="hero-stat-num">$0</div>
-          <div class="hero-stat-label">Infrastructure Cost</div>
+          <div class="hero-stat-label" id="stat-infra">Infrastructure Cost</div>
         </div>
         <div>
           <div class="hero-stat-num">10</div>
-          <div class="hero-stat-label">Clients per Agency Plan</div>
+          <div class="hero-stat-label" id="stat-clients">Clients per Agency Plan</div>
         </div>
         <div>
           <div class="hero-stat-num">24/7</div>
-          <div class="hero-stat-label">Automated Monitoring</div>
+          <div class="hero-stat-label" id="stat-monitoring">Automated Monitoring</div>
         </div>
       </div>
     </div>
@@ -107,16 +130,16 @@
   <div class="container">
     <div class="problem-grid">
       <div>
-        <div class="section-label">The Problem</div>
-        <h2 class="section-title">Your clients notice problems <span class="text-orange">before you do.</span></h2>
+        <div class="section-label" id="problem-label">The Problem</div>
+        <h2 class="section-title" id="problem-title">Your clients notice problems <span class="text-orange">before you do.</span></h2>
         <div class="problem-items">
           <div class="problem-item">
             <div class="problem-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
             <div>
-              <div class="problem-item-title">GA4 dashboards are overwhelming</div>
-              <div class="problem-item-text">Nobody has time to check GA4 every morning. Anomalies go unnoticed for days.</div>
+              <div class="problem-item-title" id="prob1-title">GA4 dashboards are overwhelming</div>
+              <div class="problem-item-text" id="prob1-text">Nobody has time to check GA4 every morning. Anomalies go unnoticed for days.</div>
             </div>
           </div>
           <div class="problem-item">
@@ -124,8 +147,8 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <div>
-              <div class="problem-item-title">JS errors are invisible</div>
-              <div class="problem-item-text">Checkout breakages, cart errors, payment failures — silently costing your clients revenue. Existing error monitoring tools are built for developers and too complex to deploy.</div>
+              <div class="problem-item-title" id="prob2-title">JS errors are invisible</div>
+              <div class="problem-item-text" id="prob2-text">Checkout breakages, cart errors, payment failures — silently costing your clients revenue. Existing error monitoring tools are built for developers and too complex to deploy.</div>
             </div>
           </div>
           <div class="problem-item">
@@ -133,8 +156,8 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .17h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
             </div>
             <div>
-              <div class="problem-item-title">Clients call you. Not the other way around.</div>
-              <div class="problem-item-text">Reactive support damages trust. Proactive detection wins long-term retainers.</div>
+              <div class="problem-item-title" id="prob3-title">Clients call you. Not the other way around.</div>
+              <div class="problem-item-text" id="prob3-text">Reactive support damages trust. Proactive detection wins long-term retainers.</div>
             </div>
           </div>
         </div>
@@ -150,17 +173,17 @@
           <div class="slack-message">
             <div class="slack-avatar">🥷</div>
             <div>
-              <div class="slack-name">Ninjalens <span>Today at 8:00 AM</span></div>
-              <div class="slack-text">🚨 Anomaly detected for <strong>client-shop.com</strong></div>
+              <div class="slack-name">Ninjalens <span id="slack-time">Today at 8:00 AM</span></div>
+              <div class="slack-text" id="slack-anomaly">🚨 Anomaly detected for <strong>client-shop.com</strong></div>
               <div class="slack-block">
-                <div class="slack-block-title">📊 Daily Report — Feb 26</div>
+                <div class="slack-block-title" id="slack-report">📊 Daily Report — Feb 26</div>
                 <div class="slack-metric"><span>Sessions</span><span class="alert">▼ 34% vs last week (Z: -2.8)</span></div>
                 <div class="slack-metric"><span>Revenue</span><span class="alert">▼ $1,240 (-41%)</span></div>
                 <div class="slack-metric"><span>JS Errors (Checkout)</span><span class="alert">↑ 18 errors detected</span></div>
                 <div class="slack-metric"><span>CV Rate</span><span class="alert">▼ 0.8% (was 2.1%)</span></div>
               </div>
               <div class="slack-text" style="margin-top:10px; font-size:12px; color:#a0aec0;">
-                🤖 <em>AI Analysis: Checkout JS error likely blocking purchases. Immediate review recommended.</em>
+                <span id="slack-ai">🤖 <em>AI Analysis: Checkout JS error likely blocking purchases. Immediate review recommended.</em></span>
               </div>
             </div>
           </div>
@@ -175,17 +198,17 @@
 ============================================================ -->
 <section class="section" id="features">
   <div class="container">
-    <div class="section-label">Features</div>
-    <h2 class="section-title">Everything your agency needs<br><span class="text-orange">in one tool.</span></h2>
-    <p class="section-subtitle">No BigQuery. No infrastructure. No engineers needed.</p>
+    <div class="section-label" id="features-label">Features</div>
+    <h2 class="section-title" id="features-title">Everything your agency needs<br><span class="text-orange">in one tool.</span></h2>
+    <p class="section-subtitle" id="features-sub">No BigQuery. No infrastructure. No engineers needed.</p>
     <div class="features-grid">
 
       <div class="feature-card">
         <div class="feature-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <div class="feature-title">STATISTICAL ANOMALY DETECTION</div>
-        <div class="feature-text">Not just "down 10%" — Ninjalens uses Z-Score analysis to distinguish real anomalies from daily noise. Moving averages and week-over-week comparisons give you statistical confidence.</div>
+        <div class="feature-title" id="feat1-title">STATISTICAL ANOMALY DETECTION</div>
+        <div class="feature-text" id="feat1-text">Not just "down 10%" — Ninjalens uses Z-Score analysis to distinguish real anomalies from daily noise. Moving averages and week-over-week comparisons give you statistical confidence.</div>
         <span class="feature-tag">Z-Score + Moving Average</span>
       </div>
 
@@ -193,8 +216,8 @@
         <div class="feature-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
         </div>
-        <div class="feature-title">REAL-TIME JS ERROR DETECTION</div>
-        <div class="feature-text">A lightweight script detects JS errors, GTM failures, and 3rd-party breakages by page group — checkout, cart, product, homepage. Alerts fire via Slack within the hour.</div>
+        <div class="feature-title" id="feat2-title">REAL-TIME JS ERROR DETECTION</div>
+        <div class="feature-text" id="feat2-text">A lightweight script detects JS errors, GTM failures, and 3rd-party breakages by page group — checkout, cart, product, homepage. Alerts fire via Slack within the hour.</div>
         <span class="feature-tag">Realtime API + Page Groups</span>
       </div>
 
@@ -202,8 +225,8 @@
         <div class="feature-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
-        <div class="feature-title">AI-POWERED ANALYSIS</div>
-        <div class="feature-text">Gemini AI analyzes your GA4 data and tells you not just what happened — but why, and what to do next. Every daily report includes actionable recommendations.</div>
+        <div class="feature-title" id="feat3-title">AI-POWERED ANALYSIS</div>
+        <div class="feature-text" id="feat3-text">Gemini AI analyzes your GA4 data and tells you not just what happened — but why, and what to do next. Every daily report includes actionable recommendations.</div>
         <span class="feature-tag">Gemini 2.5 Flash</span>
       </div>
 
@@ -211,8 +234,8 @@
         <div class="feature-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
-        <div class="feature-title">WHITE-LABEL REPORTS</div>
-        <div class="feature-text">Send Slack reports under your agency's brand name. Your clients think you built it. Charge them for the monitoring service and keep the margin — 10 licenses per Agency plan.</div>
+        <div class="feature-title" id="feat4-title">WHITE-LABEL REPORTS</div>
+        <div class="feature-text" id="feat4-text">Send Slack reports under your agency's brand name. Your clients think you built it. Charge them for the monitoring service and keep the margin — 10 licenses per Agency plan.</div>
         <span class="feature-tag">Agency Plan Feature</span>
       </div>
 
@@ -225,29 +248,29 @@
 ============================================================ -->
 <section class="section how" id="how">
   <div class="container">
-    <div class="section-label">Setup</div>
-    <h2 class="section-title">Live in <span class="text-orange">30 minutes.</span></h2>
-    <p class="section-subtitle">No server. No code. Just a Google Spreadsheet.</p>
+    <div class="section-label" id="setup-label">Setup</div>
+    <h2 class="section-title" id="setup-title">Live in <span class="text-orange">30 minutes.</span></h2>
+    <p class="section-subtitle" id="setup-sub">No server. No code. Just a Google Spreadsheet.</p>
     <div class="how-steps">
       <div class="how-step">
         <div class="how-step-num">01</div>
-        <div class="how-step-title">Copy the Spreadsheet</div>
-        <div class="how-step-text">Get your license key and make a copy of the Ninjalens Google Spreadsheet to your Drive.</div>
+        <div class="how-step-title" id="step1-title">Copy the Spreadsheet</div>
+        <div class="how-step-text" id="step1-text">Get your license key and make a copy of the Ninjalens Google Spreadsheet to your Drive.</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">02</div>
-        <div class="how-step-title">Enter your API Keys</div>
-        <div class="how-step-text">Add your GA4 Property ID, Gemini API key, and Slack Webhook URL to the Config sheet.</div>
+        <div class="how-step-title" id="step2-title">Enter your API Keys</div>
+        <div class="how-step-text" id="step2-text">Add your GA4 Property ID, Gemini API key, and Slack Webhook URL to the Config sheet.</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">03</div>
-        <div class="how-step-title">Add Error Tracking Script</div>
-        <div class="how-step-text">Paste a one-line script tag to your site. Ninjalens auto-generates it from your page group settings.</div>
+        <div class="how-step-title" id="step3-title">Add Error Tracking Script</div>
+        <div class="how-step-text" id="step3-text">Paste a one-line script tag to your site. Ninjalens auto-generates it from your page group settings.</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">04</div>
-        <div class="how-step-title">Reports Come to You</div>
-        <div class="how-step-text">Set your daily trigger time. Every morning, AI analysis arrives in Slack. Automatically.</div>
+        <div class="how-step-title" id="step4-title">Reports Come to You</div>
+        <div class="how-step-text" id="step4-text">Set your daily trigger time. Every morning, AI analysis arrives in Slack. Automatically.</div>
       </div>
     </div>
   </div>
@@ -258,68 +281,68 @@
 ============================================================ -->
 <section class="section" id="pricing">
   <div class="container">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">Simple, transparent <span class="text-orange">pricing.</span></h2>
-    <p class="section-subtitle">No per-event fees. No hidden costs. Your Gemini API key means you control the AI spend.</p>
+    <div class="section-label" id="pricing-label">Pricing</div>
+    <h2 class="section-title" id="pricing-title">Simple, transparent <span class="text-orange">pricing.</span></h2>
+    <p class="section-subtitle" id="pricing-sub">No per-event fees. No hidden costs. Your Gemini API key means you control the AI spend.</p>
     <div class="pricing-grid">
 
       <div class="pricing-card">
         <div class="pricing-plan">Starter</div>
         <div class="pricing-price"><sup>$</sup>49</div>
-        <div class="pricing-period">/ month</div>
-        <div class="pricing-license">1 License · 1 GA4 Property</div>
+        <div class="pricing-period" id="starter-period">/ month</div>
+        <div class="pricing-license" id="starter-license">1 License · 1 GA4 Property</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
-          <li>Daily AI-powered Slack reports</li>
-          <li>Statistical anomaly detection (Z-Score)</li>
-          <li>Real-time JS error monitoring</li>
-          <li>Email notifications</li>
-          <li>Multi-language support (EN / JA)</li>
-          <li>Setup guide included</li>
+          <li id="starter-f1">Daily AI-powered Slack reports</li>
+          <li id="starter-f2">Statistical anomaly detection (Z-Score)</li>
+          <li id="starter-f3">Real-time JS error monitoring</li>
+          <li id="starter-f4">Email notifications</li>
+          <li id="starter-f5">Multi-language support (EN / JA)</li>
+          <li id="starter-f6">Setup guide included</li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn-secondary">Start Free Trial</a>
+        <a href="#" class="pricing-btn pricing-btn-secondary" id="starter-cta">Start Free Trial</a>
       </div>
 
       <div class="pricing-card featured">
-        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-badge" id="agency-badge">Most Popular</div>
         <div class="pricing-plan">Agency</div>
         <div class="pricing-price"><sup>$</sup>499</div>
-        <div class="pricing-period">/ month</div>
-        <div class="pricing-license">10 Licenses · 10 GA4 Properties</div>
+        <div class="pricing-period" id="agency-period">/ month</div>
+        <div class="pricing-license" id="agency-license">10 Licenses · 10 GA4 Properties</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
-          <li>Everything in Starter ×10</li>
-          <li>White-label Slack reports</li>
-          <li>Your brand name on every report</li>
-          <li>$49.9 per client — resell at your rate</li>
-          <li>Priority support</li>
-          <li>Looker Studio dashboard template</li>
+          <li id="agency-f1">Everything in Starter ×10</li>
+          <li id="agency-f2">White-label Slack reports</li>
+          <li id="agency-f3">Your brand name on every report</li>
+          <li id="agency-f4">$49.9 per client — resell at your rate</li>
+          <li id="agency-f5">Priority support</li>
+          <li id="agency-f6">Looker Studio dashboard template</li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn-primary">Start Free Trial</a>
+        <a href="#" class="pricing-btn pricing-btn-primary" id="agency-cta">Start Free Trial</a>
       </div>
 
     </div>
-    <p class="pricing-note">✦ 14-day free trial · No credit card required · Cancel anytime</p>
+    <p class="pricing-note" id="pricing-note">✦ 14-day free trial · No credit card required · Cancel anytime</p>
 
     <div class="margin-calc">
-      <div class="margin-calc-label">Agency Margin Example</div>
+      <div class="margin-calc-label" id="margin-label">Agency Margin Example</div>
       <div class="margin-calc-grid">
         <div class="margin-calc-item">
           <div class="margin-calc-num">$499</div>
-          <div class="margin-calc-desc">Your monthly cost<br><span>10 client licenses</span></div>
+          <div class="margin-calc-desc" id="margin-cost-desc">Your monthly cost<br><span>10 client licenses</span></div>
         </div>
         <div class="margin-calc-arrow">→</div>
         <div class="margin-calc-item">
           <div class="margin-calc-num">$200</div>
-          <div class="margin-calc-desc">Charge per client<br><span>as a monitoring fee</span></div>
+          <div class="margin-calc-desc" id="margin-charge-desc">Charge per client<br><span>as a monitoring fee</span></div>
         </div>
         <div class="margin-calc-arrow">→</div>
         <div class="margin-calc-item highlight">
           <div class="margin-calc-num text-orange">$1,501</div>
-          <div class="margin-calc-desc">Monthly margin<br><span>from 10 clients</span></div>
+          <div class="margin-calc-desc" id="margin-result-desc">Monthly margin<br><span>from 10 clients</span></div>
         </div>
       </div>
-      <p class="margin-calc-note">Add it to your retainer. Bundle it with your reporting service. Your pricing, your margin.</p>
+      <p class="margin-calc-note" id="margin-note">Add it to your retainer. Bundle it with your reporting service. Your pricing, your margin.</p>
     </div>
 
   </div>
@@ -330,47 +353,47 @@
 ============================================================ -->
 <section class="section" id="faq">
   <div class="container">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title">Common <span class="text-orange">questions.</span></h2>
+    <div class="section-label" id="faq-label">FAQ</div>
+    <h2 class="section-title" id="faq-title">Common <span class="text-orange">questions.</span></h2>
     <div class="faq-list">
 
       <div class="faq-item">
         <button class="faq-question">
-          Do I need to pay for Gemini API separately?
+          <span id="fq1">Do I need to pay for Gemini API separately?</span>
           <span class="faq-arrow">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes — you bring your own Gemini API key. This means your data stays in your own Google ecosystem, and costs are typically under $10/month even for 10 clients. This is also a strong privacy selling point with your clients.</div>
+          <div class="faq-answer-inner" id="fa1">Yes — you bring your own Gemini API key. This means your data stays in your own Google ecosystem, and costs are typically under $10/month even for 10 clients. This is also a strong privacy selling point with your clients.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          How does the Agency plan work for my clients?
+          <span id="fq2">How does the Agency plan work for my clients?</span>
           <span class="faq-arrow">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">You receive one license key that can be activated on 10 separate Google Spreadsheets — one per client. Each client gets their own monitoring setup. With the white-label feature, reports arrive in their Slack under your agency's brand name.</div>
+          <div class="faq-answer-inner" id="fa2">You receive one license key that can be activated on 10 separate Google Spreadsheets — one per client. Each client gets their own monitoring setup. With the white-label feature, reports arrive in their Slack under your agency's brand name.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Is there any server or infrastructure to manage?
+          <span id="fq3">Is there any server or infrastructure to manage?</span>
           <span class="faq-arrow">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">None. Ninjalens runs entirely on Google Apps Script — Google's serverless infrastructure. No deployments, no downtime, no DevOps. If you can use Google Sheets, you can run Ninjalens.</div>
+          <div class="faq-answer-inner" id="fa3">None. Ninjalens runs entirely on Google Apps Script — Google's serverless infrastructure. No deployments, no downtime, no DevOps. If you can use Google Sheets, you can run Ninjalens.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Is client data safe?
+          <span id="fq4">Is client data safe?</span>
           <span class="faq-arrow">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Ninjalens only sends numerical GA4 metrics to Gemini — no PII, no customer names, no personal data. Your API keys and property IDs stay in your own Google Spreadsheet and are never stored on our servers.</div>
+          <div class="faq-answer-inner" id="fa4">Ninjalens only sends numerical GA4 metrics to Gemini — no PII, no customer names, no personal data. Your API keys and property IDs stay in your own Google Spreadsheet and are never stored on our servers.</div>
         </div>
       </div>
 
@@ -397,7 +420,7 @@
       onmouseover="this.style.background='rgba(249,115,22,.14)'; this.style.borderColor='#f97316';"
       onmouseout="this.style.background='rgba(249,115,22,.06)'; this.style.borderColor='rgba(249,115,22,.4)';"
       >
-        View all FAQs (60+ questions)
+        <span id="faq-link-text">View all FAQs (60+ questions)</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -410,14 +433,13 @@
 ============================================================ -->
 <section class="section" style="padding-bottom: 0;">
   <div class="cta-banner">
-    <h2 class="cta-banner-title">START MONITORING.<br><span class="text-orange">BEFORE THEY CALL.</span></h2>
-    <p class="cta-banner-sub">14-day free trial. No credit card. Setup in 30 minutes.</p>
+    <h2 class="cta-banner-title" id="cta-title">START MONITORING.<br><span class="text-orange">BEFORE THEY CALL.</span></h2>
+    <p class="cta-banner-sub" id="cta-sub">14-day free trial. No credit card. Setup in 30 minutes.</p>
     <div class="cta-banner-actions">
       <a href="#" class="btn-primary">
-        Start Free Trial
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span id="cta-btn">Start Free Trial <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
-      <a href="#faq" class="btn-secondary">Read FAQ</a>
+      <a href="#faq" class="btn-secondary" id="cta-faq">Read FAQ</a>
     </div>
   </div>
 </section>
@@ -430,13 +452,12 @@
     <div class="footer-inner">
       <div class="footer-logo">NINJA<span>LENS</span></div>
       <ul class="footer-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="jp/">日本語</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-        <li><a href="terms.html">Terms</a></li>
-        <li><a href="refund.html">Refund</a></li>
+        <li><a href="#features" id="footer-features">Features</a></li>
+        <li><a href="#pricing" id="footer-pricing">Pricing</a></li>
+        <li><a href="#faq" id="footer-faq">FAQ</a></li>
+        <li><a href="privacy.html" id="footer-privacy">Privacy</a></li>
+        <li><a href="terms.html" id="footer-terms">Terms</a></li>
+        <li><a href="refund.html" id="footer-refund">Refund</a></li>
       </ul>
       <div class="footer-copy">© 2025 Ninjalens · Built in Japan 🇯🇵</div>
     </div>
@@ -447,21 +468,115 @@
   JS
 ============================================================ -->
 <script>
-  // Nav scroll effect
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
+// ============================================================
+// i18n — index.html
+// ============================================================
+const I18N = {"en": {"nav-cta-btn": "Start Free Trial", "hero-badge-text": "GA4 AI Monitoring — Built in Japan", "hero-title": "CATCH SITE<br>PROBLEMS<br><span class=\"highlight\">BEFORE</span><br>YOUR CLIENTS DO", "hero-sub": "Ninjalens watches your clients' GA4 data 24/7 — detecting statistical anomalies, JS errors, and revenue drops — then sends AI-powered analysis straight to Slack. Under your brand.", "hero-cta-primary": "Start 14-Day Free Trial", "hero-cta-secondary": "See How It Works", "stat-trial": "Day Free Trial", "stat-infra": "Infrastructure Cost", "stat-clients": "Clients per Agency Plan", "stat-monitoring": "Automated Monitoring", "problem-label": "The Problem", "problem-title": "Your clients notice problems <span class=\"text-orange\">before you do.</span>", "prob1-title": "GA4 dashboards are overwhelming", "prob1-text": "Nobody has time to check GA4 every morning. Anomalies go unnoticed for days.", "prob2-title": "JS errors are invisible", "prob2-text": "Checkout breakages, cart errors, payment failures — silently costing your clients revenue. Existing error monitoring tools are built for developers and too complex to deploy.", "prob3-title": "Clients call you. Not the other way around.", "prob3-text": "Reactive support damages trust. Proactive detection wins long-term retainers.", "features-label": "Features", "features-title": "Everything your agency needs<br><span class=\"text-orange\">in one tool.</span>", "features-sub": "No BigQuery. No infrastructure. No engineers needed.", "feat1-title": "STATISTICAL ANOMALY DETECTION", "feat1-text": "Not just \"down 10%\" — Ninjalens uses Z-Score analysis to distinguish real anomalies from daily noise. Moving averages and week-over-week comparisons give you statistical confidence.", "feat2-title": "REAL-TIME JS ERROR DETECTION", "feat2-text": "A lightweight script detects JS errors, GTM failures, and 3rd-party breakages by page group — checkout, cart, product, homepage. Alerts fire via Slack within the hour.", "feat3-title": "AI-POWERED ANALYSIS", "feat3-text": "Gemini AI analyzes your GA4 data and tells you not just what happened — but why, and what to do next. Every daily report includes actionable recommendations.", "feat4-title": "WHITE-LABEL REPORTS", "feat4-text": "Send Slack reports under your agency's brand name. Your clients think you built it. Charge them for the monitoring service and keep the margin — 10 licenses per Agency plan.", "setup-label": "Setup", "setup-title": "Live in <span class=\"text-orange\">30 minutes.</span>", "setup-sub": "No server. No code. Just a Google Spreadsheet.", "step1-title": "Copy the Spreadsheet", "step1-text": "Get your license key and make a copy of the Ninjalens Google Spreadsheet to your Drive.", "step2-title": "Enter your API Keys", "step2-text": "Add your GA4 Property ID, Gemini API key, and Slack Webhook URL to the Config sheet.", "step3-title": "Add Error Tracking Script", "step3-text": "Paste a one-line script tag to your site. Ninjalens auto-generates it from your page group settings.", "step4-title": "Reports Come to You", "step4-text": "Set your daily trigger time. Every morning, AI analysis arrives in Slack. Automatically.", "pricing-label": "Pricing", "pricing-title": "Simple, transparent <span class=\"text-orange\">pricing.</span>", "pricing-sub": "No per-event fees. No hidden costs. Your Gemini API key means you control the AI spend.", "starter-period": "/ month", "starter-license": "1 License · 1 GA4 Property", "agency-period": "/ month", "agency-license": "10 Licenses · 10 GA4 Properties", "agency-badge": "Most Popular", "starter-f1": "Daily AI-powered Slack reports", "starter-f2": "Statistical anomaly detection (Z-Score)", "starter-f3": "Real-time JS error monitoring", "starter-f4": "Email notifications", "starter-f5": "Multi-language support (EN / JA)", "starter-f6": "Setup guide included", "agency-f1": "Everything in Starter ×10", "agency-f2": "White-label Slack reports", "agency-f3": "Your brand name on every report", "agency-f4": "$49.9 per client — resell at your rate", "agency-f5": "Priority support", "agency-f6": "Looker Studio dashboard template", "starter-cta": "Start Free Trial", "agency-cta": "Start Free Trial", "pricing-note": "✦ 14-day free trial · No credit card required · Cancel anytime", "margin-label": "Agency Margin Example", "margin-cost-desc": "Your monthly cost<br><span>10 client licenses</span>", "margin-charge-desc": "Charge per client<br><span>as a monitoring fee</span>", "margin-result-desc": "Monthly margin<br><span>from 10 clients</span>", "margin-note": "Add it to your retainer. Bundle it with your reporting service. Your pricing, your margin.", "faq-label": "FAQ", "faq-title": "Common <span class=\"text-orange\">questions.</span>", "fq1": "Do I need to pay for Gemini API separately?", "fa1": "Yes — you bring your own Gemini API key. This means your data stays in your own Google ecosystem, and costs are typically under $10/month even for 10 clients. This is also a strong privacy selling point with your clients.", "fq2": "How does the Agency plan work for my clients?", "fa2": "You receive one license key that can be activated on 10 separate Google Spreadsheets — one per client. Each client gets their own monitoring setup. With the white-label feature, reports arrive in their Slack under your agency's brand name.", "fq3": "Is there any server or infrastructure to manage?", "fa3": "None. Ninjalens runs entirely on Google Apps Script — Google's serverless infrastructure. No deployments, no downtime, no DevOps. If you can use Google Sheets, you can run Ninjalens.", "fq4": "Is client data safe?", "fa4": "Ninjalens only sends numerical GA4 metrics to Gemini — no PII, no customer names, no personal data. Your API keys and property IDs stay in your own Google Spreadsheet and are never stored on our servers.", "faq-link-text": "View all FAQs (60+ questions)", "cta-title": "START MONITORING.<br><span class=\"text-orange\">BEFORE THEY CALL.</span>", "cta-sub": "14-day free trial. No credit card. Setup in 30 minutes.", "cta-btn": "Start Free Trial <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg>", "cta-faq": "Read FAQ", "footer-features": "Features", "footer-pricing": "Pricing", "footer-faq": "FAQ", "footer-privacy": "Privacy", "footer-terms": "Terms", "footer-refund": "Refund", "slack-time": "Today at 8:00 AM", "slack-anomaly": "🚨 Anomaly detected for <strong>client-shop.com</strong>", "slack-report": "📊 Daily Report — Feb 26", "slack-ai": "🤖 <em>AI Analysis: Checkout JS error likely blocking purchases. Immediate review recommended.</em>"}, "ja": {"nav-cta-btn": "無料トライアルを始める", "hero-badge-text": "GA4 AI監視ツール — Made in Japan", "hero-title": "クライアントより先に<br>サイトの問題を<br><span class=\"highlight\">検知する。</span>", "hero-sub": "NinjalensはクライアントのGA4データを24時間365日監視。統計的異常・JSエラー・売上ドロップを検知し、AI分析レポートをSlackへ自動送信。あなたのブランドで。", "hero-cta-primary": "14日間無料トライアルを始める", "hero-cta-secondary": "使い方を見る", "stat-trial": "日間無料トライアル", "stat-infra": "インフラコスト", "stat-clients": "クライアント数（Agency）", "stat-monitoring": "自動監視", "problem-label": "課題", "problem-title": "クライアントが問題に気づく前に、<span class=\"text-orange\">あなたが検知する。</span>", "prob1-title": "GA4ダッシュボードの確認は手間がかかる", "prob1-text": "毎朝GA4を確認する時間はありません。異常は何日も気づかれないまま放置されます。", "prob2-title": "JSエラーは見えない", "prob2-text": "チェックアウトのバグ、カートエラー、決済障害——クライアントの売上を静かに奪い続けます。既存のエラー監視ツールは開発者向けで、導入ハードルが高すぎます。", "prob3-title": "クライアントから連絡が来る。あなたからではなく。", "prob3-text": "事後対応は信頼を損ないます。先手を打つ検知が、長期契約につながります。", "features-label": "機能", "features-title": "代理店に必要なすべてが<br><span class=\"text-orange\">1つのツールに。</span>", "features-sub": "BigQuery不要。インフラ不要。エンジニア不要。", "feat1-title": "統計的異常検知", "feat1-text": "「10%減」という数字だけでなく、Zスコア分析で日常的な変動と真の異常を区別。移動平均と前週比較で統計的な根拠のあるアラートを実現します。", "feat2-title": "リアルタイムJSエラー検知", "feat2-text": "軽量スクリプトがJSエラー・GTM障害・サードパーティの問題をページグループ別に検知。チェックアウト・カート・商品ページなど、1時間以内にSlackへアラート。", "feat3-title": "AIによる分析", "feat3-text": "Gemini AIがGA4データを分析し、「何が起きたか」だけでなく「なぜか」「何をすべきか」まで説明。毎日のレポートに実践的な推奨アクションが含まれます。", "feat4-title": "ホワイトラベルレポート", "feat4-text": "Slackレポートをあなたの代理店名で送信。クライアントはあなたが作ったと思います。監視サービスとして請求してマージンを確保。Agencyプランで10ライセンス。", "setup-label": "セットアップ", "setup-title": "<span class=\"text-orange\">30分</span>で稼働開始。", "setup-sub": "サーバー不要。コード不要。Googleスプレッドシートだけ。", "step1-title": "スプレッドシートをコピー", "step1-text": "ライセンスキーを取得し、NinjalensのGoogleスプレッドシートをあなたのドライブにコピーします。", "step2-title": "APIキーを入力", "step2-text": "GA4プロパティID、Gemini APIキー、Slack Webhook URLをConfigシートに入力します。", "step3-title": "エラートラッキングスクリプトを設置", "step3-text": "1行のscriptタグをサイトに貼り付けるだけ。ページグループ設定からNinjalensが自動生成します。", "step4-title": "レポートが届く", "step4-text": "デイリートリガーの時刻を設定。毎朝、AI分析レポートがSlackに自動で届きます。", "pricing-label": "料金", "pricing-title": "シンプルで明快な<span class=\"text-orange\">料金体系。</span>", "pricing-sub": "イベント課金なし。隠れたコストなし。Gemini APIキーはご自身で管理するため、AI利用コストも自分でコントロール。", "starter-period": "/ 月", "starter-license": "1ライセンス · 1 GA4プロパティ", "agency-period": "/ 月", "agency-license": "10ライセンス · 10 GA4プロパティ", "agency-badge": "最も人気", "starter-f1": "毎日のAI分析Slackレポート", "starter-f2": "統計的異常検知（Zスコア）", "starter-f3": "リアルタイムJSエラー監視", "starter-f4": "メール通知", "starter-f5": "多言語対応（EN / JA）", "starter-f6": "セットアップガイド付き", "agency-f1": "Starterの全機能 ×10", "agency-f2": "ホワイトラベルSlackレポート", "agency-f3": "すべてのレポートにあなたのブランド名", "agency-f4": "1クライアントあたり$49.9 — 自由な価格で再販可", "agency-f5": "優先サポート", "agency-f6": "Looker Studioダッシュボードテンプレート", "starter-cta": "無料トライアルを始める", "agency-cta": "無料トライアルを始める", "pricing-note": "✦ 14日間無料トライアル · クレジットカード不要 · いつでも解約可", "margin-label": "Agencyプランの収益例", "margin-cost-desc": "月額コスト<br><span>10クライアントライセンス</span>", "margin-charge-desc": "クライアントへの請求<br><span>監視サービス料として</span>", "margin-result-desc": "月間マージン<br><span>10クライアント分</span>", "margin-note": "リテーナーに上乗せするか、レポートサービスとバンドルしても。価格設定はあなた次第。", "faq-label": "FAQ", "faq-title": "よくある<span class=\"text-orange\">質問。</span>", "fq1": "Gemini APIの費用は別途かかりますか？", "fa1": "はい。ご自身のGemini APIキーをご用意いただきます。データがGoogleのエコシステム内に留まり、10クライアントでも月$10以下が一般的です。クライアントへのプライバシー訴求にもなります。", "fq2": "Agencyプランで複数クライアントを管理する仕組みは？", "fa2": "1つのライセンスキーで10個の独立したGoogleスプレッドシートを有効化できます。各クライアントは独立した監視設定を持ちます。ホワイトラベル機能により、レポートはあなたの代理店名でSlackに届きます。", "fq3": "サーバーやインフラの管理は必要ですか？", "fa3": "不要です。NinjalensはGoogle Apps Script上で完全に動作します。デプロイもダウンタイムもDevOpsも不要。Googleスプレッドシートが使えれば運用できます。", "fq4": "クライアントデータは安全ですか？", "fa4": "NinjalensはGeminiに数値のGA4指標のみを送信します。個人情報・顧客名・個人データは一切含まれません。APIキーとプロパティIDはあなたのGoogleスプレッドシート内に留まり、当社サーバーには保存されません。", "faq-link-text": "すべてのFAQを見る（60問以上）", "cta-title": "今すぐ監視を始めよう。<br><span class=\"text-orange\">クライアントの前に。</span>", "cta-sub": "14日間無料トライアル。クレジットカード不要。30分でセットアップ完了。", "cta-btn": "無料トライアルを始める <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg>", "cta-faq": "FAQを読む", "footer-features": "機能", "footer-pricing": "料金", "footer-faq": "FAQ", "footer-privacy": "プライバシーポリシー", "footer-terms": "利用規約", "footer-refund": "返金ポリシー", "slack-time": "本日 8:00 AM", "slack-anomaly": "🚨 異常を検知しました: <strong>client-shop.com</strong>", "slack-report": "📊 日次レポート — 2月26日", "slack-ai": "🤖 <em>AI分析: チェックアウトのJSエラーが購入を妨げている可能性があります。即時確認を推奨します。</em>"}};
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
+let currentLang = localStorage.getItem('nl_lang') || 'en';
+
+function setLang(l) {
+  currentLang = l;
+  localStorage.setItem('nl_lang', l);
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
+  applyLang(l);
+}
+
+function applyLang(l) {
+  const d = I18N[l];
+  const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  const setText = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+
+  set('nav-cta-btn', d['nav-cta-btn']);
+  set('hero-badge-text', d['hero-badge']);
+  set('hero-title', d['hero-title']);
+  set('hero-sub', d['hero-sub']);
+  set('hero-cta-primary', d['hero-cta-primary']);
+  set('hero-cta-secondary', d['hero-cta-secondary']);
+  setText('stat-trial', d['stat-trial']);
+  setText('stat-infra', d['stat-infra']);
+  setText('stat-clients', d['stat-clients']);
+  setText('stat-monitoring', d['stat-monitoring']);
+  setText('problem-label', d['problem-label']);
+  set('problem-title', d['problem-title']);
+  setText('prob1-title', d['prob1-title']); setText('prob1-text', d['prob1-text']);
+  setText('prob2-title', d['prob2-title']); setText('prob2-text', d['prob2-text']);
+  setText('prob3-title', d['prob3-title']); setText('prob3-text', d['prob3-text']);
+  setText('features-label', d['features-label']);
+  set('features-title', d['features-title']);
+  setText('features-sub', d['features-sub']);
+  setText('feat1-title', d['feat1-title']); setText('feat1-text', d['feat1-text']);
+  setText('feat2-title', d['feat2-title']); setText('feat2-text', d['feat2-text']);
+  setText('feat3-title', d['feat3-title']); setText('feat3-text', d['feat3-text']);
+  setText('feat4-title', d['feat4-title']); setText('feat4-text', d['feat4-text']);
+  setText('setup-label', d['setup-label']);
+  set('setup-title', d['setup-title']);
+  setText('setup-sub', d['setup-sub']);
+  setText('step1-title', d['step1-title']); setText('step1-text', d['step1-text']);
+  setText('step2-title', d['step2-title']); setText('step2-text', d['step2-text']);
+  setText('step3-title', d['step3-title']); setText('step3-text', d['step3-text']);
+  setText('step4-title', d['step4-title']); setText('step4-text', d['step4-text']);
+  setText('pricing-label', d['pricing-label']);
+  set('pricing-title', d['pricing-title']);
+  setText('pricing-sub', d['pricing-sub']);
+  setText('starter-period', d['starter-period']); setText('starter-license', d['starter-license']);
+  setText('agency-period', d['agency-period']); setText('agency-license', d['agency-license']);
+  setText('agency-badge', d['agency-badge']);
+  setText('starter-f1',d['starter-f1']);setText('starter-f2',d['starter-f2']);setText('starter-f3',d['starter-f3']);setText('starter-f4',d['starter-f4']);setText('starter-f5',d['starter-f5']);setText('starter-f6',d['starter-f6']);
+  setText('agency-f1',d['agency-f1']);setText('agency-f2',d['agency-f2']);setText('agency-f3',d['agency-f3']);setText('agency-f4',d['agency-f4']);setText('agency-f5',d['agency-f5']);setText('agency-f6',d['agency-f6']);
+  setText('starter-cta', d['starter-cta']); setText('agency-cta', d['agency-cta']);
+  setText('pricing-note', d['pricing-note']);
+  setText('margin-label', d['margin-label']);
+  set('margin-cost-desc', d['margin-cost-desc']);
+  set('margin-charge-desc', d['margin-charge-desc']);
+  set('margin-result-desc', d['margin-result-desc']);
+  setText('margin-note', d['margin-note']);
+  setText('faq-label', d['faq-label']);
+  set('faq-title', d['faq-title']);
+  setText('fq1',d['fq1']);setText('fa1',d['fa1']);
+  setText('fq2',d['fq2']);setText('fa2',d['fa2']);
+  setText('fq3',d['fq3']);setText('fa3',d['fa3']);
+  setText('fq4',d['fq4']);setText('fa4',d['fa4']);
+  setText('faq-link-text', d['faq-link']);
+  set('cta-title', d['cta-title']);
+  setText('cta-sub', d['cta-sub']);
+  set('cta-btn', d['cta-btn'] + ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>');
+  setText('cta-faq', d['cta-faq']);
+  setText('footer-features', d['footer-features']);
+  setText('footer-pricing', d['footer-pricing']);
+  setText('footer-faq', d['footer-faq']);
+  setText('footer-privacy', d['footer-privacy']);
+  setText('footer-terms', d['footer-terms']);
+  setText('footer-refund', d['footer-refund']);
+  setText('slack-time', d['slack-time']);
+  set('slack-anomaly', d['slack-anomaly']);
+  setText('slack-report', d['slack-report']);
+  set('slack-ai', d['slack-ai']);
+
+  // nav links text
+  const navLinks = document.querySelectorAll('#nav-links a[data-en]');
+  navLinks.forEach(a => { a.textContent = a.getAttribute('data-' + l); });
+}
+
+// FAQ accordion (preserve existing)
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   });
+});
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Init
+setLang(currentLang);
 </script>
 
 </body>

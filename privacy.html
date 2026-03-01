@@ -16,13 +16,32 @@
     .legal-page a { color: var(--orange); text-decoration: underline; }
     .legal-divider { height: 1px; background: var(--navy-border); margin: 48px 0; }
   </style>
-  <!-- LemonSqueezy Affiliate (GDPR-compliant: no personal data collected) -->
+  <style>
+  .lang-toggle-nav {
+    display: flex;
+    background: rgba(255,255,255,.06);
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .lang-btn-nav {
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    letter-spacing: .05em;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #8b949e;
+    transition: all .15s;
+  }
+  .lang-btn-nav.active { background: #f97316; color: #fff; }
+</style>
   <script>window.lemonSqueezyAffiliateConfig = { store: "ndnrys-works" };</script>
   <script src="https://lmsqueezy.com/affiliate.js" defer></script>
-  <!-- End LemonSqueezy Affiliate -->
 </head>
 <body>
-
 <nav class="nav scrolled">
   <div class="container">
     <div class="nav-inner">
@@ -44,106 +63,133 @@
         <span class="nav-logo-text">NINJA<span>LENS</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="/#features">Features</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="/#pricing" class="nav-cta">Start Free Trial</a></li>
+        <li><a href="/#features" id="nav-features">Features</a></li>
+        <li><a href="/#pricing" id="nav-pricing">Pricing</a></li>
+        <li>
+          <div class="lang-toggle-nav">
+            <button class="lang-btn-nav active" id="btn-en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn-nav" id="btn-ja" onclick="setLang('ja')">JA</button>
+          </div>
+        </li>
+        <li><a href="/#pricing" class="nav-cta" id="nav-cta">Start Free Trial</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
 <div class="legal-page">
-  <h1>PRIVACY POLICY</h1>
-  <div class="updated">Last updated: March 1, 2025</div>
-
-  <p>This Privacy Policy describes how Ninjalens ("we", "us", or "our") collects, uses, and protects information in connection with your use of the service available at ninjalens.net (the "Service").</p>
-  <p>By using the Service, you agree to the collection and use of information in accordance with this policy.</p>
-
-  <h2>1. Information We Collect</h2>
-  <p>We collect only the minimum information necessary to operate the Service:</p>
+  <h1 id="page-title">PRIVACY POLICY</h1>
+  <div class="updated" id="updated">Last updated: March 1, 2025</div>
+  <p id="intro1">This Privacy Policy describes how Ninjalens ("we", "us", or "our") collects, uses, and protects information in connection with your use of the service available at ninjalens.net (the "Service").</p>
+  <p id="intro2">By using the Service, you agree to the collection and use of information in accordance with this policy.</p>
+  <h2 id="h1">1. Information We Collect</h2>
+  <p id="h1-intro">We collect only the minimum information necessary to operate the Service:</p>
   <ul>
-    <li><strong>Account information:</strong> Your email address, provided at the time of purchase through LemonSqueezy.</li>
-    <li><strong>License information:</strong> Your license key and spreadsheet instance ID, used solely to authenticate and validate your subscription.</li>
-    <li><strong>Support communications:</strong> Any information you voluntarily provide when contacting us for support.</li>
+    <li id="h1-li1"><strong>Account information:</strong> Your email address, provided at the time of purchase through LemonSqueezy.</li>
+    <li id="h1-li2"><strong>License information:</strong> Your license key and spreadsheet instance ID, used solely to authenticate and validate your subscription.</li>
+    <li id="h1-li3"><strong>Support communications:</strong> Any information you voluntarily provide when contacting us for support.</li>
   </ul>
-
-  <h2>2. Information We Do NOT Collect</h2>
-  <p>Ninjalens is built with a privacy-first architecture. The following data is <strong>never collected, transmitted to, or stored on our servers</strong>:</p>
+  <h2 id="h2">2. Information We Do NOT Collect</h2>
+  <p id="h2-intro">Ninjalens is built with a privacy-first architecture. The following data is <strong>never collected, transmitted to, or stored on our servers</strong>:</p>
   <ul>
-    <li>Your GA4 analytics data or your clients' GA4 data</li>
-    <li>Your Gemini API key or any Google credentials</li>
-    <li>Your Slack Webhook URLs</li>
-    <li>Any personal data belonging to your clients or their end users</li>
-    <li>The contents of AI-generated analysis reports</li>
-    <li>Website visitor behavioral data or analytics</li>
+    <li id="h2-li1">Your GA4 analytics data or your clients' GA4 data</li>
+    <li id="h2-li2">Your Gemini API key or any Google credentials</li>
+    <li id="h2-li3">Your Slack Webhook URLs</li>
+    <li id="h2-li4">Any personal data belonging to your clients or their end users</li>
+    <li id="h2-li5">The contents of AI-generated analysis reports</li>
+    <li id="h2-li6">Website visitor behavioral data or analytics</li>
   </ul>
-  <p>All GA4 data processing occurs entirely within your own Google Account. Your Gemini API key is stored only in your personal Google Spreadsheet and is never transmitted to Ninjalens.</p>
-
-  <h2>3. How We Use Your Information</h2>
-  <p>The information we collect is used exclusively for the following purposes:</p>
+  <p id="h2-note">All GA4 data processing occurs entirely within your own Google Account. Your Gemini API key is stored only in your personal Google Spreadsheet and is never transmitted to Ninjalens.</p>
+  <h2 id="h3">3. How We Use Your Information</h2>
+  <p id="h3-intro">The information we collect is used exclusively for the following purposes:</p>
   <ul>
-    <li>To deliver and maintain the Service</li>
-    <li>To verify license validity and prevent unauthorized use</li>
-    <li>To send transactional communications (license keys, receipts) via LemonSqueezy</li>
-    <li>To respond to support inquiries</li>
+    <li id="h3-li1">To deliver and maintain the Service</li>
+    <li id="h3-li2">To verify license validity and prevent unauthorized use</li>
+    <li id="h3-li3">To send transactional communications (license keys, receipts) via LemonSqueezy</li>
+    <li id="h3-li4">To respond to support inquiries</li>
   </ul>
-  <p>We do not use your information for advertising, profiling, or any purpose beyond operating the Service.</p>
-
-  <h2>4. Third-Party Services</h2>
-  <p>We use the following third-party services to operate the Service:</p>
+  <p id="h3-note">We do not use your information for advertising, profiling, or any purpose beyond operating the Service.</p>
+  <h2 id="h4">4. Third-Party Services</h2>
+  <p id="h4-intro">We use the following third-party services to operate the Service:</p>
   <ul>
-    <li><strong>LemonSqueezy</strong> — payment processing, license management, and affiliate program management. LemonSqueezy acts as our Merchant of Record and processes all payments on our behalf. The LemonSqueezy affiliate script is loaded on this website to enable our affiliate referral program, through which partners may earn commissions for referring customers. This script is necessary for the commercial operation of the Service. It identifies referral sources using a cookie and does not collect personal data for advertising or profiling purposes. LemonSqueezy's handling of payment data is governed by their own <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</li>
-    <li><strong>Google Apps Script</strong> — the serverless runtime environment in which the Service operates. Your use of Google Apps Script is subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
-    <li><strong>Google Gemini API</strong> — AI-powered analysis engine. You provide your own Gemini API key, which is stored in your Google Spreadsheet. We have no access to your Gemini API key, your usage data, or the content you send to Gemini.</li>
+    <li id="h4-li1"><strong>LemonSqueezy</strong> — payment processing, license management, and affiliate program management. LemonSqueezy acts as our Merchant of Record and processes all payments on our behalf. The LemonSqueezy affiliate script is loaded on this website to enable our affiliate referral program, through which partners may earn commissions for referring customers. This script is necessary for the commercial operation of the Service. It identifies referral sources using a cookie and does not collect personal data for advertising or profiling purposes. LemonSqueezy's handling of payment data is governed by their own <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</li>
+    <li id="h4-li2"><strong>Google Apps Script</strong> — the serverless runtime environment in which the Service operates. Your use of Google Apps Script is subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+    <li id="h4-li3"><strong>Google Gemini API</strong> — AI-powered analysis engine. You provide your own Gemini API key, which is stored in your Google Spreadsheet. We have no access to your Gemini API key, your usage data, or the content you send to Gemini.</li>
   </ul>
-  <p>We do not use Google Analytics, Google Tag Manager, Meta Pixel, or any other third-party tracking or advertising scripts on this website. Third-party integrations are limited strictly to what is necessary to operate and monetize the Service.</p>
-
-  <h2>5. Cookies</h2>
-  <p>This website does not use analytics cookies or advertising cookies. The only cookie that may be set is a referral attribution cookie from the LemonSqueezy affiliate script, used solely to credit affiliate partners for referring customers. This cookie does not collect personal data for advertising purposes. You may disable cookies in your browser settings at any time.</p>
-
-  <h2>6. Data Retention</h2>
-  <p>We retain your email address and license information for the duration of your active subscription, and for up to 12 months following cancellation for accounting and fraud prevention purposes. You may request deletion of your data at any time by contacting us, subject to applicable legal retention obligations.</p>
-
-  <h2>7. Your Rights (GDPR / UK GDPR)</h2>
-  <p>If you are located in the European Economic Area (EEA) or United Kingdom, you have the following rights regarding your personal data:</p>
+  <p id="h4-note">We do not use Google Analytics, Google Tag Manager, Meta Pixel, or any other third-party tracking or advertising scripts on this website. Third-party integrations are limited strictly to what is necessary to operate and monetize the Service.</p>
+  <h2 id="h5">5. Cookies</h2>
+  <p id="h5-text">This website does not use analytics cookies or advertising cookies. The only cookie that may be set is a referral attribution cookie from the LemonSqueezy affiliate script, used solely to credit affiliate partners for referring customers. This cookie does not collect personal data for advertising purposes. You may disable cookies in your browser settings at any time.</p>
+  <h2 id="h6">6. Data Retention</h2>
+  <p id="h6-text">We retain your email address and license information for the duration of your active subscription, and for up to 12 months following cancellation for accounting and fraud prevention purposes. You may request deletion of your data at any time by contacting us, subject to applicable legal retention obligations.</p>
+  <h2 id="h7">7. Your Rights (GDPR / UK GDPR)</h2>
+  <p id="h7-intro">If you are located in the European Economic Area (EEA) or United Kingdom, you have the following rights regarding your personal data:</p>
   <ul>
-    <li>Right to access the personal data we hold about you</li>
-    <li>Right to rectification of inaccurate or incomplete data</li>
-    <li>Right to erasure ("right to be forgotten")</li>
-    <li>Right to restriction of processing</li>
-    <li>Right to data portability</li>
-    <li>Right to object to processing</li>
-    <li>Right to lodge a complaint with your local supervisory authority</li>
+    <li id="h7-li1">Right to access the personal data we hold about you</li>
+    <li id="h7-li2">Right to rectification of inaccurate or incomplete data</li>
+    <li id="h7-li3">Right to erasure ("right to be forgotten")</li>
+    <li id="h7-li4">Right to restriction of processing</li>
+    <li id="h7-li5">Right to data portability</li>
+    <li id="h7-li6">Right to object to processing</li>
+    <li id="h7-li7">Right to lodge a complaint with your local supervisory authority</li>
   </ul>
-  <p>To exercise any of these rights, please contact us at the address below. We will respond within 30 days.</p>
-
-  <h2>8. Children's Privacy</h2>
-  <p>The Service is intended for business use and is not directed to individuals under the age of 16. We do not knowingly collect personal information from minors.</p>
-
-  <h2>9. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on this page with a revised date. Continued use of the Service following such changes constitutes your acceptance of the updated policy.</p>
-
-  <h2>10. Contact</h2>
-  <p>For questions or requests regarding this Privacy Policy, please contact us at:<br>
-  <a href="mailto:support@ninjalens.net">support@ninjalens.net</a></p>
-
+  <p id="h7-note">To exercise any of these rights, please contact us at the address below. We will respond within 30 days.</p>
+  <h2 id="h8">8. Children's Privacy</h2>
+  <p id="h8-text">The Service is intended for business use and is not directed to individuals under the age of 16. We do not knowingly collect personal information from minors.</p>
+  <h2 id="h9">9. Changes to This Policy</h2>
+  <p id="h9-text">We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on this page with a revised date. Continued use of the Service following such changes constitutes your acceptance of the updated policy.</p>
+  <h2 id="h10">10. Contact</h2>
+  <p id="h10-text">For questions or requests regarding this Privacy Policy, please contact us at:<br><a href="mailto:support@ninjalens.net">support@ninjalens.net</a></p>
   <div class="legal-divider"></div>
-  <p style="font-size:13px;"><a href="/">← Back to Ninjalens</a> &nbsp;·&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="/refund.html">Refund Policy</a></p>
+  <p style="font-size:13px;"><a href="/" id="back">← Back to Ninjalens</a> &nbsp;·&nbsp; <a href="/terms.html" id="link-terms">Terms of Service</a> &nbsp;·&nbsp; <a href="/refund.html" id="link-refund">Refund Policy</a></p>
 </div>
-
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">NINJA<span>LENS</span></div>
       <ul class="footer-links">
-        <li><a href="/privacy.html">Privacy Policy</a></li>
-        <li><a href="/terms.html">Terms of Service</a></li>
-        <li><a href="/refund.html">Refund Policy</a></li>
+        <li><a href="/privacy.html" id="footer-privacy">Privacy Policy</a></li>
+        <li><a href="/terms.html" id="footer-terms">Terms of Service</a></li>
+        <li><a href="/refund.html" id="footer-refund">Refund Policy</a></li>
       </ul>
       <div class="footer-copy">© 2025 Ninjalens · Built in Japan 🇯🇵</div>
     </div>
   </div>
 </footer>
+<script>
+const PAGE_I18N = {"en": {"page-title": "PRIVACY POLICY", "updated": "Last updated: March 1, 2025", "intro1": "This Privacy Policy describes how Ninjalens (\"we\", \"us\", or \"our\") collects, uses, and protects information in connection with your use of the service available at ninjalens.net (the \"Service\").", "intro2": "By using the Service, you agree to the collection and use of information in accordance with this policy.", "h1": "1. Information We Collect", "h1-intro": "We collect only the minimum information necessary to operate the Service:", "h1-li1": "<strong>Account information:</strong> Your email address, provided at the time of purchase through LemonSqueezy.", "h1-li2": "<strong>License information:</strong> Your license key and spreadsheet instance ID, used solely to authenticate and validate your subscription.", "h1-li3": "<strong>Support communications:</strong> Any information you voluntarily provide when contacting us for support.", "h2": "2. Information We Do NOT Collect", "h2-intro": "Ninjalens is built with a privacy-first architecture. The following data is <strong>never collected, transmitted to, or stored on our servers</strong>:", "h2-li1": "Your GA4 analytics data or your clients' GA4 data", "h2-li2": "Your Gemini API key or any Google credentials", "h2-li3": "Your Slack Webhook URLs", "h2-li4": "Any personal data belonging to your clients or their end users", "h2-li5": "The contents of AI-generated analysis reports", "h2-li6": "Website visitor behavioral data or analytics", "h2-note": "All GA4 data processing occurs entirely within your own Google Account. Your Gemini API key is stored only in your personal Google Spreadsheet and is never transmitted to Ninjalens.", "h3": "3. How We Use Your Information", "h3-intro": "The information we collect is used exclusively for the following purposes:", "h3-li1": "To deliver and maintain the Service", "h3-li2": "To verify license validity and prevent unauthorized use", "h3-li3": "To send transactional communications (license keys, receipts) via LemonSqueezy", "h3-li4": "To respond to support inquiries", "h3-note": "We do not use your information for advertising, profiling, or any purpose beyond operating the Service.", "h4": "4. Third-Party Services", "h4-intro": "We use the following third-party services to operate the Service:", "h4-li1": "<strong>LemonSqueezy</strong> — payment processing, license management, and affiliate program management. LemonSqueezy acts as our Merchant of Record and processes all payments on our behalf. The LemonSqueezy affiliate script is loaded on this website to enable our affiliate referral program, through which partners may earn commissions for referring customers. This script is necessary for the commercial operation of the Service. It identifies referral sources using a cookie and does not collect personal data for advertising or profiling purposes. LemonSqueezy's handling of payment data is governed by their own <a href=\"https://www.lemonsqueezy.com/privacy\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.", "h4-li2": "<strong>Google Apps Script</strong> — the serverless runtime environment in which the Service operates. Your use of Google Apps Script is subject to <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google's Privacy Policy</a>.", "h4-li3": "<strong>Google Gemini API</strong> — AI-powered analysis engine. You provide your own Gemini API key, which is stored in your Google Spreadsheet. We have no access to your Gemini API key, your usage data, or the content you send to Gemini.", "h4-note": "We do not use Google Analytics, Google Tag Manager, Meta Pixel, or any other third-party tracking or advertising scripts on this website. Third-party integrations are limited strictly to what is necessary to operate and monetize the Service.", "h5": "5. Cookies", "h5-text": "This website does not use analytics cookies or advertising cookies. The only cookie that may be set is a referral attribution cookie from the LemonSqueezy affiliate script, used solely to credit affiliate partners for referring customers. This cookie does not collect personal data for advertising purposes. You may disable cookies in your browser settings at any time.", "h6": "6. Data Retention", "h6-text": "We retain your email address and license information for the duration of your active subscription, and for up to 12 months following cancellation for accounting and fraud prevention purposes. You may request deletion of your data at any time by contacting us, subject to applicable legal retention obligations.", "h7": "7. Your Rights (GDPR / UK GDPR)", "h7-intro": "If you are located in the European Economic Area (EEA) or United Kingdom, you have the following rights regarding your personal data:", "h7-li1": "Right to access the personal data we hold about you", "h7-li2": "Right to rectification of inaccurate or incomplete data", "h7-li3": "Right to erasure (\"right to be forgotten\")", "h7-li4": "Right to restriction of processing", "h7-li5": "Right to data portability", "h7-li6": "Right to object to processing", "h7-li7": "Right to lodge a complaint with your local supervisory authority", "h7-note": "To exercise any of these rights, please contact us at the address below. We will respond within 30 days.", "h8": "8. Children's Privacy", "h8-text": "The Service is intended for business use and is not directed to individuals under the age of 16. We do not knowingly collect personal information from minors.", "h9": "9. Changes to This Policy", "h9-text": "We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on this page with a revised date. Continued use of the Service following such changes constitutes your acceptance of the updated policy.", "h10": "10. Contact", "h10-text": "For questions or requests regarding this Privacy Policy, please contact us at:<br><a href=\"mailto:support@ninjalens.net\">support@ninjalens.net</a>", "back": "← Back to Ninjalens", "link-terms": "Terms of Service", "link-refund": "Refund Policy"}, "ja": {"page-title": "プライバシーポリシー", "updated": "最終更新日：2025年3月1日", "intro1": "このプライバシーポリシーは、Ninjalens（以下「当社」）がninjalens.netで提供するサービス（以下「本サービス」）の利用に関連して、情報をどのように収集・使用・保護するかを説明するものです。", "intro2": "本サービスを利用することで、このポリシーに従った情報の収集・使用に同意したものとみなします。", "h1": "1. 収集する情報", "h1-intro": "当社は本サービスの運営に必要最小限の情報のみを収集します：", "h1-li1": "<strong>アカウント情報：</strong>LemonSqueezyを通じた購入時に提供されるメールアドレス。", "h1-li2": "<strong>ライセンス情報：</strong>ライセンスキーおよびスプレッドシートのインスタンスID。サブスクリプションの認証・検証のみに使用されます。", "h1-li3": "<strong>サポートへの連絡：</strong>サポートへのお問い合わせ時に自発的に提供される情報。", "h2": "2. 収集しない情報", "h2-intro": "Ninjalensはプライバシーファーストの設計思想で構築されています。以下のデータは<strong>当社サーバーに収集・送信・保存されることは一切ありません</strong>：", "h2-li1": "お客様またはクライアントのGA4アナリティクスデータ", "h2-li2": "Gemini APIキーまたはGoogleの認証情報", "h2-li3": "Slack Webhook URL", "h2-li4": "クライアントまたはその顧客の個人データ", "h2-li5": "AI生成分析レポートの内容", "h2-li6": "Webサイト訪問者の行動データやアナリティクス", "h2-note": "すべてのGA4データ処理はお客様自身のGoogleアカウント内で完結します。Gemini APIキーはお客様のGoogleスプレッドシートにのみ保存され、Ninjalensに送信されることはありません。", "h3": "3. 情報の利用目的", "h3-intro": "収集した情報は以下の目的のみに使用されます：", "h3-li1": "本サービスの提供・維持", "h3-li2": "ライセンスの有効性確認と不正使用防止", "h3-li3": "LemonSqueezy経由のトランザクションメール送信（ライセンスキー・領収書）", "h3-li4": "サポートへのお問い合わせへの対応", "h3-note": "お客様の情報を広告・プロファイリング・本サービス運営以外の目的で使用することはありません。", "h4": "4. 第三者サービス", "h4-intro": "当社は本サービスの運営に以下の第三者サービスを使用しています：", "h4-li1": "<strong>LemonSqueezy</strong> — 決済処理、ライセンス管理、アフィリエイトプログラム管理。LemonSqueezyは当社のMerchant of Recordとして、すべての決済を代行処理します。LemonSqueezyのアフィリエイトスクリプトはアフィリエイト紹介プログラムのためにサイト上で読み込まれ、パートナーが顧客紹介の報酬を受け取れるようにします。このスクリプトは本サービスの商業運営に必要なものです。Cookieを使用して紹介元を識別しますが、広告やプロファイリングを目的とした個人データの収集は行いません。LemonSqueezyによる決済データの取り扱いは、同社の<a href=\"https://www.lemonsqueezy.com/privacy\" target=\"_blank\" rel=\"noopener\">プライバシーポリシー</a>に準じます。", "h4-li2": "<strong>Google Apps Script</strong> — 本サービスが動作するサーバーレス実行環境。Google Apps Scriptの使用は<a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Googleのプライバシーポリシー</a>に準じます。", "h4-li3": "<strong>Google Gemini API</strong> — AI分析エンジン。お客様が提供するGemini APIキーはGoogleスプレッドシートに保存されます。当社はGemini APIキー、使用データ、Geminiへの送信内容にアクセスできません。", "h4-note": "当社はGoogle Analytics、Google Tag Manager、Meta Pixel、その他のサードパーティのトラッキングや広告スクリプトをこのWebサイトでは使用していません。サードパーティとの連携は本サービスの運営と収益化に必要なものに限定されています。", "h5": "5. Cookie", "h5-text": "このWebサイトはアナリティクスCookieや広告Cookieを使用しません。設定される可能性があるCookieは、LemonSqueezyのアフィリエイトスクリプトによる紹介元帰属Cookieのみであり、アフィリエイトパートナーへのクレジット付与のみを目的としています。このCookieは広告目的での個人データ収集は行いません。ブラウザの設定からいつでもCookieを無効にできます。", "h6": "6. データの保持期間", "h6-text": "メールアドレスとライセンス情報は、有効なサブスクリプション期間中、および解約後12ヶ月間（会計処理・不正防止目的）保持します。データの削除はいつでもご連絡いただければ対応します（法的な保持義務がある場合を除く）。", "h7": "7. お客様の権利（GDPR / UK GDPR）", "h7-intro": "EEA（欧州経済領域）またはイギリスにお住まいの方は、個人データに関して以下の権利を有します：", "h7-li1": "当社が保有するお客様の個人データへのアクセス権", "h7-li2": "不正確または不完全なデータの訂正権", "h7-li3": "削除の権利（「忘れられる権利」）", "h7-li4": "処理の制限権", "h7-li5": "データポータビリティの権利", "h7-li6": "処理への異議申立権", "h7-li7": "地域の監督機関への苦情申立権", "h7-note": "これらの権利を行使するには、下記のアドレスまでご連絡ください。30日以内に回答します。", "h8": "8. 未成年者のプライバシー", "h8-text": "本サービスはビジネス用途を目的としており、16歳未満の方を対象としていません。当社は未成年者から意図的に個人情報を収集しません。", "h9": "9. ポリシーの変更", "h9-text": "当社はこのプライバシーポリシーを随時更新する場合があります。重要な変更については、改訂日付とともにこのページに更新されたポリシーを掲載することでお知らせします。変更後も本サービスを引き続き使用することで、更新されたポリシーへの同意とみなします。", "h10": "10. お問い合わせ", "h10-text": "このプライバシーポリシーに関するご質問・ご要望は下記までご連絡ください：<br><a href=\"mailto:support@ninjalens.net\">support@ninjalens.net</a>", "back": "← Ninjalensに戻る", "link-terms": "利用規約", "link-refund": "返金ポリシー"}};
+const PAGE_TITLES = {"en": "Privacy Policy — Ninjalens", "ja": "プライバシーポリシー — Ninjalens"};
+</script>
 
+<script>
+const COMMON_L = {
+  en: { 'nav-features':'Features','nav-pricing':'Pricing','nav-cta':'Start Free Trial',
+        'footer-privacy':'Privacy Policy','footer-terms':'Terms of Service','footer-refund':'Refund Policy' },
+  ja: { 'nav-features':'機能','nav-pricing':'料金','nav-cta':'無料トライアルを始める',
+        'footer-privacy':'プライバシーポリシー','footer-terms':'利用規約','footer-refund':'返金ポリシー' }
+};
+let currentLang = localStorage.getItem('nl_lang') || 'en';
+
+function setLang(l) {
+  currentLang = l;
+  localStorage.setItem('nl_lang', l);
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
+  Object.entries(COMMON_L[l]).forEach(([id, text]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  });
+  applyPage(l);
+}
+
+function applyPage(l) {
+  const d = PAGE_I18N[l];
+  Object.keys(d).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = d[id];
+  });
+  document.title = PAGE_TITLES[l];
+}
+</script>
+
+<script>setLang(currentLang);</script>
 </body>
 </html>
