@@ -1155,4 +1155,13 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-//
+// Init
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+updateHeroText();
+buildChips();
+buildSidebar();
+renderFAQ();
+</script>
+</body>
+</html>
