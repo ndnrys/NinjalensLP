@@ -345,7 +345,7 @@
   <div class="container">
     <div class="section-label" id="hero-label">Frequently Asked Questions</div>
     <h1 id="hero-title">EVERYTHING YOU<br>NEED TO <span class="highlight">KNOW.</span></h1>
-    <p id="hero-sub">Can't find your answer? Email us at <a href="mailto:support@ninjalens.net" style="color:#f97316;">support@ninjalens.net</a></p>
+    <p id="hero-sub">Can't find your answer? Email us at <a href="/cdn-cgi/l/email-protection#bccfc9ccccd3cec8fcd2d5d2d6ddd0d9d2cf92d2d9c8" style="color:#f97316;"><span class="__cf_email__" data-cfemail="31424441415e4345715f585f5b505d545f421f5f5445">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -379,7 +379,7 @@
 <section class="section" style="padding-top:0">
   <div class="cta-banner">
     <h2 class="cta-banner-title" id="cta-title">START MONITORING.<br><span class="text-orange">BEFORE THEY CALL.</span></h2>
-    <p class="cta-banner-sub" id="cta-sub">14-day free trial. No credit card. Setup in 30 minutes.</p>
+    <p class="cta-banner-sub" id="cta-sub">14-day free trial · 7-day money-back guarantee · Cancel anytime</p>
     <div class="cta-banner-actions">
       <a href="../#pricing" class="btn-primary" id="cta-btn">
         Start Free Trial
@@ -408,7 +408,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ============================================================
 // DATA
 // ============================================================
@@ -462,18 +462,18 @@ const CATEGORIES = [
 const FAQS = [
   // ── TRIAL ──
   { cat: "trial", en: {
-    q: "Is there really no credit card required for the trial?",
-    a: "Correct. You can start the 14-day free trial with just an email address via LemonSqueezy. No credit card is charged until after the trial ends and you choose to continue."
+    q: "Is a credit card required to start the trial?",
+    a: "Yes — a credit card is required to start the 14-day free trial via LemonSqueezy. You will not be charged during the trial period. If you cancel before the trial ends, you will not be billed."
   }, ja: {
-    q: "トライアルはクレジットカードなしで本当に始められますか？",
-    a: "はい。LemonSqueezyでメールアドレスのみで14日間の無料トライアルを開始できます。トライアル終了後、継続を選択した場合のみ請求が発生します。"
+    q: "トライアルの開始にクレジットカードは必要ですか？",
+    a: "はい。LemonSqueezy経由で14日間の無料トライアルを開始する際にクレジットカードの登録が必要です。トライアル期間中は請求されません。トライアル終了前にキャンセルした場合、課金は発生しません。"
   }},
   { cat: "trial", en: {
     q: "What happens when the 14-day trial ends?",
     a: "After 14 days, your account converts to a paid subscription automatically. You'll receive an email reminder before the trial ends. You can cancel at any time before then — no charge applies."
   }, ja: {
     q: "14日間のトライアルが終わるとどうなりますか？",
-    a: "14日後、自動的に有料サブスクリプションに移行します。トライアル終了前にリマインダーメールが届きます。それ以前であればいつでもキャンセルでき、料金は発生しません。"
+    a: "14日後、自動的に有料サブスクリプションに移行し、登録したカードに請求されます。トライアル終了前にリマインダーメールが届きます。トライアル終了前であればいつでもキャンセルでき、料金は発生しません。"
   }},
   { cat: "trial", en: {
     q: "Can I test with a real client's GA4 property during the trial?",
@@ -1007,7 +1007,7 @@ function updateHeroText() {
       title: 'EVERYTHING YOU<br>NEED TO <span class="highlight">KNOW.</span>',
       sub: 'Can\'t find your answer? Email us at <a href="mailto:support@ninjalens.net" style="color:#f97316;">support@ninjalens.net</a>',
       ctaTitle: 'START MONITORING.<br><span class="text-orange">BEFORE THEY CALL.</span>',
-      ctaSub: '14-day free trial. No credit card. Setup in 30 minutes.',
+      ctaSub: '14-day free trial · 7-day money-back guarantee · Cancel anytime',
       ctaBtn: 'Start Free Trial',
     },
     ja: {
@@ -1015,7 +1015,7 @@ function updateHeroText() {
       title: 'すべての疑問に<br><span class="highlight">お答えします。</span>',
       sub: '解決しない場合は <a href="mailto:support@ninjalens.net" style="color:#f97316;">support@ninjalens.net</a> までご連絡ください',
       ctaTitle: '今すぐ監視を始めよう。<br><span class="text-orange">クライアントの前に。</span>',
-      ctaSub: '14日間無料トライアル。クレジットカード不要。30分でセットアップ完了。',
+      ctaSub: '14日間無料トライアル。。30分でセットアップ完了。',
       ctaBtn: '無料トライアルを始める',
     }
   };
@@ -1155,13 +1155,4 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Init
-document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
-updateHeroText();
-buildChips();
-buildSidebar();
-renderFAQ();
-</script>
-</body>
-</html>
+//
