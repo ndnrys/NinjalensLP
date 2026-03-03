@@ -1,0 +1,5 @@
+/privacy.html    /privacy.html    200
+/terms.html      /terms.html      200
+/refund.html     /refund.html     200
+/setup.html      /setup.html      200
+/:splat          /index.html      200
