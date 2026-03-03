@@ -1,7 +1,7 @@
-/privacy.html       /privacy.html       200
-/terms.html         /terms.html         200
-/refund.html        /refund.html        200
-/setup.html         /setup.html         200
-/faq.html           /faq.html           200
-/sales_letter.html  /sales_letter.html  200
-/:splat             /index.html         200
+/privacy.html /privacy.html 200
+/terms.html /terms.html 200
+/refund.html /refund.html 200
+/setup.html /setup.html 200
+/faq.html /faq.html 200
+/sales_letter.html /sales_letter.html 200
+/* /index.html 200
