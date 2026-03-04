@@ -698,21 +698,30 @@ if (!sessionStorage.getItem('entry_slug')) {
   sessionStorage.setItem('entry_slug', location.pathname);
 }
 
-// すべてのボタン・リンクのクリックを記録
-document.addEventListener('click', function(e) {
-  const target = e.target.closest('a, button');
-  if (!target) return;
+// 記録対象のボタンIDリスト（lang切り替えは除外）
+const TRACK_IDS = [
+  'nav-cta', 'nav-cta-btn',
+  'hero-cta-primary', 'hero-cta-secondary',
+  'starter-cta', 'founder-cta', 'early-cta', 'agency-cta', 'unlimited-cta',
+  'cost-cta-btn', 'cta-btn', 'cta-faq',
+  'footer-features', 'footer-pricing', 'footer-faq',
+  'footer-privacy', 'footer-terms', 'footer-refund',
+  'nav-features', 'nav-pricing'
+];
 
-  const label = target.id || target.textContent.trim().slice(0, 40) || 'unknown';
-  const slug = sessionStorage.getItem('entry_slug') || location.pathname;
-
-  navigator.sendBeacon(GAS_URL, JSON.stringify({
-    slug: slug,
-    country: '',
-    browser: navigator.userAgent,
-    event: 'click',
-    label: label
-  }));
+TRACK_IDS.forEach(function(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('click', function() {
+    const slug = sessionStorage.getItem('entry_slug') || location.pathname;
+    navigator.sendBeacon(GAS_URL, JSON.stringify({
+      slug: slug,
+      country: '',
+      browser: navigator.userAgent,
+      event: 'click',
+      label: id
+    }));
+  });
 });
 </script>
 </body>
