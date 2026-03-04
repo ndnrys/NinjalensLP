@@ -687,7 +687,33 @@ window.addEventListener('scroll', () => {
 
 // Init
 setLang(currentLang);
-</script>
 
+// ============================================================
+// Click Tracking
+// ============================================================
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbztNUYz2pbDLsLh4MVyxEsENWKf7Louuqn3gqmm6mkW1eFgWA6tbXjQiIF5job97s2CVw/exec';
+
+// slugをsessionStorageに保存（最初のアクセス時のみ）
+if (!sessionStorage.getItem('entry_slug')) {
+  sessionStorage.setItem('entry_slug', location.pathname);
+}
+
+// すべてのボタン・リンクのクリックを記録
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('a, button');
+  if (!target) return;
+
+  const label = target.id || target.textContent.trim().slice(0, 40) || 'unknown';
+  const slug = sessionStorage.getItem('entry_slug') || location.pathname;
+
+  navigator.sendBeacon(GAS_URL, JSON.stringify({
+    slug: slug,
+    country: '',
+    browser: navigator.userAgent,
+    event: 'click',
+    label: label
+  }));
+});
+</script>
 </body>
 </html>
