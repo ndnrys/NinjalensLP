@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="/favicon.ico">
   <style>
-    .legal-page { max-width: 760px; margin: 0 auto; padding: 140px 24px 100px; }
+    .legal-page { max-width: 760px; margin: 0 auto; padding: 80px 24px 100px; }
     .legal-page h1 { font-family: var(--font-display); font-size: 48px; letter-spacing: 0.04em; color: var(--white); margin-bottom: 8px; }
     .legal-page .updated { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; margin-bottom: 56px; }
     .legal-page h2 { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.04em; color: var(--orange); margin: 48px 0 16px; }
@@ -17,186 +17,115 @@
     .legal-page a { color: var(--orange); text-decoration: underline; }
     .legal-divider { height: 1px; background: var(--navy-border); margin: 48px 0; }
   </style>
-  
-<style>
-  .lang-toggle-nav {
-    display: flex;
-    background: rgba(255,255,255,.06);
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .lang-btn-nav {
-    padding: 5px 12px;
-    font-size: 11px;
-    font-weight: 700;
-    font-family: 'Space Mono', 'Courier New', monospace;
-    letter-spacing: .05em;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    color: #8b949e;
-    transition: all .15s;
-  }
-  .lang-btn-nav.active {
-    background: #f97316;
-    color: #fff;
-  }
-</style>
-
   <script>window.lemonSqueezyAffiliateConfig = { store: "ndnrys-works" };</script>
   <script src="https://lmsqueezy.com/affiliate.js" defer></script>
 </head>
 <body>
-<nav class="nav scrolled">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon">
-          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
-            <filter id="g"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            <g filter="url(#g)">
-              <path d="M32 4 L40 24 L24 24 Z" fill="#f97316"/>
-              <path d="M60 32 L40 40 L40 24 Z" fill="#f97316"/>
-              <path d="M32 60 L24 40 L40 40 Z" fill="#f97316"/>
-              <path d="M4 32 L24 24 L24 40 Z" fill="#f97316"/>
-              <circle cx="32" cy="32" r="14" fill="#0d1117" stroke="#f97316" stroke-width="1.5"/>
-              <circle cx="32" cy="32" r="4" fill="#f97316"/>
-              <circle cx="28" cy="28" r="1.5" fill="white" opacity="0.7"/>
-            </g>
-          </svg>
-        </div>
-        <span class="nav-logo-text">NINJA<span>LENS</span></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="/#features" id="nav-features">Features</a></li>
-        <li><a href="/#pricing" id="nav-pricing">Pricing</a></li>
-        <li>
-          <div class="lang-toggle-nav">
-            <button class="lang-btn-nav active" id="btn-en" onclick="setLang('en')">EN</button>
-            <button class="lang-btn-nav" id="btn-ja" onclick="setLang('ja')">JA</button>
-          </div>
-        </li>
-        <li><a href="/#pricing" class="nav-cta" id="nav-cta">Start Free Trial</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 <div class="legal-page">
-  <h1 id="page-title">TERMS OF SERVICE</h1>
-  <div class="updated" id="updated">Last updated: March 1, 2025</div>
-  <p id="intro1">Please read these Terms of Service ("Terms") carefully before using the Ninjalens service ("Service") operated by Ninjalens ("we", "us", or "our").</p>
-  <p id="intro2">By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not use the Service.</p>
-  <h2 id="h1">1. Description of Service</h2>
-  <p id="h1-text">Ninjalens is a Google Apps Script-based monitoring tool that connects to your Google Analytics 4 (GA4) property, detects statistical anomalies and JavaScript errors, and delivers AI-powered analysis reports via Slack and email. The Service is delivered as a Google Spreadsheet that runs on Google's serverless infrastructure (Google Apps Script). You are responsible for providing your own GA4 Property ID, Gemini API key, and Slack Webhook URL to operate the Service.</p>
-  <h2 id="h2">2. License and Permitted Use</h2>
-  <p id="h2-intro">Upon purchase, you are granted a limited, non-exclusive, non-transferable license to use the Service for the number of Google Spreadsheet instances corresponding to your plan:</p>
-  <ul><li id="h2-li1"><strong>Starter plan:</strong> 1 instance (1 GA4 property)</li><li id="h2-li2"><strong>Agency plan:</strong> 10 instances (up to 10 GA4 properties)</li></ul>
-  <p id="h2-may-intro">You may:</p>
-  <ul><li id="h2-may-li1">Use the Agency plan to provide white-label GA4 monitoring services to your own clients, as the plan is designed for.</li></ul>
-  <p id="h2-maynot-intro">You may not:</p>
+  <div style="margin-bottom:32px;">
+    <a href="/" style="font-family:'Space Mono',monospace;font-size:12px;color:#8b949e;text-decoration:none;">← Back to Ninjalens</a>
+  </div>
+  <h1>TERMS OF SERVICE</h1>
+  <div class="updated">Last updated: March 1, 2025</div>
+
+  <p>Please read these Terms of Service ("Terms") carefully before using the Ninjalens service ("Service") operated by Ninjalens ("we", "us", or "our").</p>
+  <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not use the Service.</p>
+
+  <h2>1. Description of Service</h2>
+  <p>Ninjalens is a Google Apps Script-based monitoring tool that connects to your Google Analytics 4 (GA4) property, detects statistical anomalies and JavaScript errors, and delivers AI-powered analysis reports via Slack and email. The Service is delivered as a Google Spreadsheet that runs on Google's serverless infrastructure (Google Apps Script). You are responsible for providing your own GA4 Property ID, Gemini API key, and Slack Webhook URL to operate the Service.</p>
+
+  <h2>2. License and Permitted Use</h2>
+  <p>Upon purchase, you are granted a limited, non-exclusive, non-transferable license to use the Service for the number of Google Spreadsheet instances corresponding to your plan:</p>
   <ul>
-    <li id="h2-maynot-li1">Share, redistribute, or sublicense your license key to third parties beyond the permitted number of instances.</li>
-    <li id="h2-maynot-li2">Reverse engineer, decompile, or attempt to extract the source code of the underlying Google Apps Script library.</li>
-    <li id="h2-maynot-li3">Use the Service for any unlawful purpose or in violation of any applicable laws or regulations.</li>
-    <li id="h2-maynot-li4">Resell or transfer your license key independently of the permitted use described above.</li>
+    <li><strong>Starter plan:</strong> 1 instance (1 GA4 property)</li>
+    <li><strong>Agency plan:</strong> 10 instances (up to 10 GA4 properties)</li>
   </ul>
-  <h2 id="h3">3. Subscription and Payment</h2>
-  <p id="h3-intro">The Service is offered on a monthly subscription basis. All payments are processed by LemonSqueezy, which acts as our Merchant of Record.</p>
+  <p>You may:</p>
   <ul>
-    <li id="h3-li1">By subscribing, you authorize LemonSqueezy to charge your payment method on a recurring monthly basis.</li><li id="h3-li2">Subscriptions automatically renew each month unless cancelled before the renewal date.</li>
-    <li id="h3-li3">You may cancel your subscription at any time through your LemonSqueezy customer portal.</li><li id="h3-li4">Cancellation takes effect at the end of the current billing period. You retain access to the Service until that date.</li>
-    <li id="h3-li5">We reserve the right to change pricing with at least 30 days' prior notice to your registered email address.</li>
+    <li>Use the Agency plan to provide white-label GA4 monitoring services to your own clients, as the plan is designed for.</li>
   </ul>
-  <h2 id="h4">4. Free Trial</h2>
-  <p id="h4-text">We offer a 14-day free trial with . After the trial period ends, continued use of the Service requires a paid subscription. We reserve the right to modify or discontinue the free trial offer at any time without notice.</p>
-  <h2 id="h5">5. Third-Party Services and Dependencies</h2>
-  <p id="h5-intro">The Service integrates with third-party platforms that you are responsible for independently. These include Google Apps Script, GA4 (Google Analytics 4), Google Gemini API, and Slack. You are solely responsible for:</p>
+  <p>You may not:</p>
   <ul>
-    <li id="h5-li1">Obtaining and maintaining your own API keys and credentials</li><li id="h5-li2">Complying with the terms of service of all third-party platforms you connect to the Service</li>
-    <li id="h5-li3">Any costs incurred from your use of third-party APIs (including Gemini API usage fees)</li><li id="h5-li4">Ensuring your use of GA4 and related tools complies with applicable privacy laws including GDPR</li>
+    <li>Share, redistribute, or sublicense your license key to third parties beyond the permitted number of instances.</li>
+    <li>Reverse engineer, decompile, or attempt to extract the source code of the underlying Google Apps Script library.</li>
+    <li>Use the Service for any unlawful purpose or in violation of any applicable laws or regulations.</li>
+    <li>Resell or transfer your license key independently of the permitted use described above.</li>
   </ul>
-  <p id="h5-note">We are not responsible for any disruptions, changes, or discontinuation of third-party services that may affect the availability or functionality of the Service.</p>
-  <h2 id="h6">6. Disclaimer of Warranties</h2>
-  <p id="h6-intro">THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE SPECIFICALLY DO NOT WARRANT THAT:</p>
+
+  <h2>3. Subscription and Payment</h2>
+  <p>The Service is offered on a monthly subscription basis. All payments are processed by LemonSqueezy, which acts as our Merchant of Record.</p>
   <ul>
-    <li id="h6-li1">The Service will be uninterrupted, error-free, or completely secure at all times</li><li id="h6-li2">AI-generated analysis will be accurate, complete, current, or suitable for any particular business decision</li>
-    <li id="h6-li3">The Service will detect all anomalies, JavaScript errors, or revenue issues on your site</li><li id="h6-li4">Results obtained through the Service will meet your specific expectations or requirements</li>
+    <li>By subscribing, you authorize LemonSqueezy to charge your payment method on a recurring monthly basis.</li>
+    <li>Subscriptions automatically renew each month unless cancelled before the renewal date.</li>
+    <li>You may cancel your subscription at any time through your LemonSqueezy customer portal.</li>
+    <li>Cancellation takes effect at the end of the current billing period. You retain access to the Service until that date.</li>
+    <li>We reserve the right to change pricing with at least 30 days' prior notice to your registered email address.</li>
   </ul>
-  <p id="h6-note">AI-generated reports are provided for informational purposes only and should not be the sole basis for business decisions. You are responsible for independently verifying any information provided by the Service.</p>
-  <h2 id="h7">7. Limitation of Liability</h2>
-  <p id="h7-p1">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OR BUSINESS OPPORTUNITIES, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR INABILITY TO USE THE SERVICE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
-  <p id="h7-p2">OUR TOTAL CUMULATIVE LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATED TO THESE TERMS OR THE SERVICE SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID TO US IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
-  <h2 id="h8">8. Indemnification</h2>
-  <p id="h8-text">You agree to defend, indemnify, and hold harmless Ninjalens and its operators from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from: (a) your use of the Service; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; or (d) your violation of any third-party rights.</p>
-  <h2 id="h9">9. Intellectual Property</h2>
-  <p id="h9-text">The Ninjalens name, logo, website content, and underlying Google Apps Script library code are the exclusive intellectual property of Ninjalens. These Terms do not grant you any ownership rights or intellectual property rights beyond the limited license explicitly described in Section 2.</p>
-  <h2 id="h10">10. Termination</h2>
-  <p id="h10-text">We reserve the right to suspend or terminate your access to the Service at our sole discretion if you violate these Terms or engage in conduct we reasonably determine to be harmful to the Service or other users. Upon termination, your license key will be deactivated and your access to the Service will cease. You remain responsible for any outstanding payment obligations. Termination does not entitle you to a refund except as described in our Refund Policy.</p>
-  <h2 id="h11">11. Governing Law and Jurisdiction</h2>
-  <p id="h11-text">These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions. Any disputes arising from or relating to these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of Japan. If you are a consumer in the EEA or UK, you may also have rights under the mandatory consumer protection laws of your country of residence.</p>
-  <h2 id="h12">12. Changes to Terms</h2>
-  <p id="h12-text">We reserve the right to modify these Terms at any time. We will provide at least 14 days' prior notice of material changes via email or prominent notice on our website. Continued use of the Service after the effective date of changes constitutes your acceptance of the updated Terms.</p>
-  <h2 id="h13">13. Severability</h2>
-  <p id="h13-text">If any provision of these Terms is found to be unenforceable or invalid under applicable law, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.</p>
-  <h2 id="h14">14. Contact</h2>
-  <p id="h14-text">For any questions regarding these Terms, please contact us at:<br><a href="/cdn-cgi/l/email-protection#3a494f4a4a55484e7a545354505b565f544914545f4e"><span class="__cf_email__" data-cfemail="ddaea8adadb2afa99db3b4b3b7bcb1b8b3aef3b3b8a9">[email&#160;protected]</span></a></p>
+
+  <h2>4. Free Trial</h2>
+  <p>We offer a 14-day free trial. After the trial period ends, continued use of the Service requires a paid subscription. We reserve the right to modify or discontinue the free trial offer at any time without notice.</p>
+
+  <h2>5. Third-Party Services and Dependencies</h2>
+  <p>The Service integrates with third-party platforms that you are responsible for independently. These include Google Apps Script, GA4 (Google Analytics 4), Google Gemini API, and Slack. You are solely responsible for:</p>
+  <ul>
+    <li>Obtaining and maintaining your own API keys and credentials</li>
+    <li>Complying with the terms of service of all third-party platforms you connect to the Service</li>
+    <li>Any costs incurred from your use of third-party APIs (including Gemini API usage fees)</li>
+    <li>Ensuring your use of GA4 and related tools complies with applicable privacy laws including GDPR</li>
+  </ul>
+  <p>We are not responsible for any disruptions, changes, or discontinuation of third-party services that may affect the availability or functionality of the Service.</p>
+
+  <h2>6. Disclaimer of Warranties</h2>
+  <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE SPECIFICALLY DO NOT WARRANT THAT:</p>
+  <ul>
+    <li>The Service will be uninterrupted, error-free, or completely secure at all times</li>
+    <li>AI-generated analysis will be accurate, complete, current, or suitable for any particular business decision</li>
+    <li>The Service will detect all anomalies, JavaScript errors, or revenue issues on your site</li>
+    <li>Results obtained through the Service will meet your specific expectations or requirements</li>
+  </ul>
+  <p>AI-generated reports are provided for informational purposes only and should not be the sole basis for business decisions. You are responsible for independently verifying any information provided by the Service.</p>
+
+  <h2>7. Limitation of Liability</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OR BUSINESS OPPORTUNITIES, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR INABILITY TO USE THE SERVICE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+  <p>OUR TOTAL CUMULATIVE LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATED TO THESE TERMS OR THE SERVICE SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID TO US IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+
+  <h2>8. Indemnification</h2>
+  <p>You agree to defend, indemnify, and hold harmless Ninjalens and its operators from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from: (a) your use of the Service; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; or (d) your violation of any third-party rights.</p>
+
+  <h2>9. Intellectual Property</h2>
+  <p>The Ninjalens name, logo, website content, and underlying Google Apps Script library code are the exclusive intellectual property of Ninjalens. These Terms do not grant you any ownership rights or intellectual property rights beyond the limited license explicitly described in Section 2.</p>
+
+  <h2>10. Termination</h2>
+  <p>We reserve the right to suspend or terminate your access to the Service at our sole discretion if you violate these Terms or engage in conduct we reasonably determine to be harmful to the Service or other users. Upon termination, your license key will be deactivated and your access to the Service will cease. You remain responsible for any outstanding payment obligations. Termination does not entitle you to a refund except as described in our Refund Policy.</p>
+
+  <h2>11. Governing Law and Jurisdiction</h2>
+  <p>These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions. Any disputes arising from or relating to these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of Japan. If you are a consumer in the EEA or UK, you may also have rights under the mandatory consumer protection laws of your country of residence.</p>
+
+  <h2>12. Changes to Terms</h2>
+  <p>We reserve the right to modify these Terms at any time. We will provide at least 14 days' prior notice of material changes via email or prominent notice on our website. Continued use of the Service after the effective date of changes constitutes your acceptance of the updated Terms.</p>
+
+  <h2>13. Severability</h2>
+  <p>If any provision of these Terms is found to be unenforceable or invalid under applicable law, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.</p>
+
+  <h2>14. Contact</h2>
+  <p>For any questions regarding these Terms, please contact us at:<br><a href="mailto:support@ninjalens.net">support@ninjalens.net</a></p>
+
   <div class="legal-divider"></div>
-  <p style="font-size:13px;"><a href="/" id="back">← Back to Ninjalens</a> &nbsp;·&nbsp; <a href="/privacy.html" id="link-privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/refund.html" id="link-refund">Refund Policy</a></p>
+  <p style="font-size:13px;"><a href="/">← Back to Ninjalens</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/refund.html">Refund Policy</a></p>
 </div>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">NINJA<span>LENS</span></div>
       <ul class="footer-links">
-        <li><a href="/privacy.html" id="footer-privacy">Privacy Policy</a></li>
-        <li><a href="/terms.html" id="footer-terms">Terms of Service</a></li>
-        <li><a href="/refund.html" id="footer-refund">Refund Policy</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/refund.html">Refund Policy</a></li>
       </ul>
       <div class="footer-copy">© 2025 Ninjalens · Built in Japan 🇯🇵</div>
     </div>
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const L = {
-  en: {
-    'nav-features': 'Features', 'nav-pricing': 'Pricing', 'nav-cta': 'Start Free Trial',
-    'footer-privacy': 'Privacy Policy', 'footer-terms': 'Terms of Service', 'footer-refund': 'Refund Policy',
-    'back-link': '← Back to Ninjalens',
-  },
-  ja: {
-    'nav-features': '機能', 'nav-pricing': '料金', 'nav-cta': '無料トライアルを始める',
-    'footer-privacy': 'プライバシーポリシー', 'footer-terms': '利用規約', 'footer-refund': '返金ポリシー',
-    'back-link': '← Ninjalensに戻る',
-  }
-};
-
-let currentLang = localStorage.getItem('nl_lang') || 'en';
-
-function setLang(l) {
-  currentLang = l;
-  localStorage.setItem('nl_lang', l);
-  document.getElementById('btn-en').classList.toggle('active', l === 'en');
-  document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
-  applyCommon(l);
-  applyPage(l);
-}
-
-function applyCommon(l) {
-  const d = L[l];
-  Object.keys(d).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = d[id];
-  });
-}
-
-function setLangEl(id, html) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = html;
-}
-function setLangText(id, text) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = text;
-}
-</script>
+</body>
+</html>
