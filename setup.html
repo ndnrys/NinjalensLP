@@ -325,6 +325,13 @@
     <p>Follow these steps to set up Ninjalens in under 30 minutes. Have your GA4 Property ID, Gemini API key, and Slack Webhook URL ready before you begin.</p>
   </div>
 
+
+  <!-- Setup Service Banner -->
+  <div style="background:rgba(249,115,22,0.05);border:1px solid rgba(249,115,22,0.2);border-radius:var(--radius);padding:14px 20px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="font-size:14px;color:var(--text-dim);line-height:1.6;">⚙️ Don't have time to set this up yourself? Our <strong style="color:var(--white);">Setup Service</strong> covers everything except GTM/script installation ($99).</div>
+    <a href="/#setup-service" style="white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid rgba(249,115,22,0.3);border-radius:6px;padding:6px 14px;transition:all 0.2s;" onmouseover="this.style.background='rgba(249,115,22,0.1)'" onmouseout="this.style.background='transparent'">Learn more →</a>
+  </div>
+
   <!-- Table of Contents -->
   <div class="guide-toc">
     <div class="guide-toc-title">Table of Contents</div>
@@ -352,7 +359,7 @@
     <div class="guide-step-body">
       <p class="guide-step-desc">Open the Ninjalens master spreadsheet from the link in your purchase confirmation and copy it to your own Google Drive.</p>
 
-      <img src="./img/setup/1.png" alt="Purchase confirmation screen - Thanks for your order" class="guide-img">
+      <img src="./img/setup/1.png" alt="Purchase confirmation screen - Thanks for your order" class="guide-img" style="max-width:480px;">
       <img src="./img/setup/2.png" alt="Order confirmation page - Ninjalens spreadsheet link" class="guide-img">
       <img src="./img/setup/3.png" alt="File → Make a copy to copy the spreadsheet" class="guide-img">
 
@@ -593,6 +600,11 @@
   <!-- ============================================================
     STEP 5
   ============================================================ -->
+  <!-- Setup Service Callout -->
+  <div class="guide-callout" style="background:rgba(249,115,22,0.05);border:1px solid rgba(249,115,22,0.2);display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border-radius:var(--radius);margin-bottom:32px;">
+    <div style="flex-shrink:0;margin-top:2px;">⚙️</div>
+    <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">The GCP configuration in this step is the most technically involved part of the setup. If you'd prefer to skip it, our <a href="/#setup-service" style="color:var(--orange);text-decoration:underline;text-decoration-color:rgba(249,115,22,0.4);">Setup Service ($99)</a> covers everything except GTM/script installation — we'll have it running within 3 business days.</div>
+  </div>
   <div class="guide-step" id="step-5">
     <div class="guide-step-header">
       <div class="guide-step-num">5</div>
@@ -751,25 +763,32 @@
     <div class="guide-step-body">
       <p class="guide-step-desc">Ninjalens uses your own Gemini API key for AI analysis. This keeps your data private and costs typically under $1/month per property.</p>
 
-      <!-- image area -->
-      <div class="guide-img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div class="guide-img-placeholder-label">Screenshot coming soon</div>
-        <div class="guide-img-placeholder-sub">Google AI Studio — Create API Key</div>
-      </div>
+      <img src="./img/setup/21.png" alt="Google AI Studio — Get API key → Create API key → Copy → Paste into Ninjalens sheet → Connection Successful" class="guide-img">
 
       <div class="guide-substeps">
         <div class="guide-substep">
           <div class="guide-substep-num">1</div>
-          <div class="guide-substep-text">Go to <strong>aistudio.google.com</strong> and sign in with your Google account.</div>
+          <div class="guide-substep-text">Go to <a href="https://aistudio.google.com" target="_blank" style="color:var(--orange)"><strong>aistudio.google.com</strong></a> and sign in with your Google account.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">2</div>
-          <div class="guide-substep-text">Click <strong>Get API Key → Create API Key</strong>.</div>
+          <div class="guide-substep-text">Click <strong>"Get API key"</strong> in the left sidebar.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">3</div>
-          <div class="guide-substep-text">Copy the key and paste it into the <strong>Gemini</strong> field in the Ninjalens sheet.</div>
+          <div class="guide-substep-text">Click <strong>"Create API key"</strong>, enter a key name (e.g., Ninjalens API KEY), select a project, and click <strong>"Create key"</strong>.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">4</div>
+          <div class="guide-substep-text">Click the <strong>copy icon</strong> next to the generated key to copy it.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">5</div>
+          <div class="guide-substep-text">Paste it into the <strong>Gemini</strong> field in the Ninjalens sheet.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">6</div>
+          <div class="guide-substep-text">Click <strong>"CHECK AI CONNECTION"</strong> to verify the connection.</div>
         </div>
       </div>
 
@@ -790,37 +809,57 @@
       <div class="guide-step-title">Add the error tracking script</div>
     </div>
     <div class="guide-step-body">
-      <p class="guide-step-desc">Generate a script tag from Ninjalens and add it to your site to enable JS error detection.</p>
+      <p class="guide-step-desc">Get your GA4 Measurement ID, configure page groups, generate the JS error tracking script, and add it to your site.</p>
 
-      <!-- image area -->
-      <div class="guide-img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div class="guide-img-placeholder-label">Screenshot coming soon</div>
-        <div class="guide-img-placeholder-sub">Ninjalens menu → Generate Error Tracking Script</div>
-      </div>
+      <h3 style="font-family:var(--font-display);font-size:18px;color:var(--white);margin:0 0 16px;letter-spacing:0.04em;">① Get GA4 Measurement ID and configure page groups</h3>
+
+      <img src="./img/setup/22.png" alt="Get Measurement ID from GA4 Data Streams and enter URL patterns in the PAGE GROUPS section" class="guide-img">
 
       <div class="guide-substeps">
         <div class="guide-substep">
           <div class="guide-substep-num">1</div>
-          <div class="guide-substep-text">Enter URL patterns in the <strong>Page Group</strong> fields in the Ninjalens sheet (e.g., <code>/cart</code> for the cart page).</div>
+          <div class="guide-substep-text">In GA4 Admin, open <strong>"Data collection and modification" → "Data streams"</strong> and click on your stream.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">2</div>
-          <div class="guide-substep-text">Click <strong>Ninjalens → Generate Error Tracking Script</strong>.</div>
+          <div class="guide-substep-text">Copy the <strong>Measurement ID (starts with G-)</strong> shown in the top right of the Stream details panel.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">3</div>
-          <div class="guide-substep-text">Copy the generated <code>&lt;script&gt;</code> tag.</div>
+          <div class="guide-substep-text">Paste it into the <strong>GA4 Measurement ID</strong> field in the <strong>PAGE GROUPS</strong> section of the Ninjalens sheet.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">4</div>
-          <div class="guide-substep-text">Paste it inside the <code>&lt;head&gt;</code> tag of your site, or add it as a Custom HTML tag in GTM.</div>
+          <div class="guide-substep-text">Enter URL path patterns for each page group (e.g., HOME → <code>/</code>, Cart → <code>/cart/</code>, Purchase → <code>/thanks</code>). If a page group has multiple URL patterns, separate them with a pipe character (e.g., Product Detail → <code>/products/ | /item/</code>). Any pages left blank will be tracked as <strong>"other"</strong>.</div>
         </div>
       </div>
 
-      <div class="guide-callout warning">
-        <div class="guide-callout-icon">⚠️</div>
-        <div>Make sure the GA4 Measurement ID is entered in the Ninjalens sheet before generating the script. The script uses this ID to send error events to GA4.</div>
+      <h3 style="font-family:var(--font-display);font-size:18px;color:var(--white);margin:32px 0 16px;letter-spacing:0.04em;">② Generate the script and add it to your site</h3>
+
+      <img src="./img/setup/23.png" alt="GENERATE SCRIPT button → Pattern Test → Copy to Clipboard" class="guide-img">
+
+      <div class="guide-substeps">
+        <div class="guide-substep">
+          <div class="guide-substep-num">5</div>
+          <div class="guide-substep-text">Click the <strong>"GENERATE SCRIPT"</strong> button.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">6</div>
+          <div class="guide-substep-text">Enter a URL path (e.g., <code>/cart/checkout</code>) in the <strong>Pattern Test</strong> field and click <strong>"Run Test"</strong> to verify each page group is matched correctly.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">7</div>
+          <div class="guide-substep-text">Once all patterns check out, click <strong>"Copy to Clipboard"</strong>.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">8</div>
+          <div class="guide-substep-text">Add the copied script as a <strong>Custom HTML tag</strong> in GTM (all pages trigger), or paste it directly inside the <code>&lt;head&gt;</code> tag of your site.</div>
+        </div>
+      </div>
+
+      <div class="guide-callout info">
+        <div class="guide-callout-icon">💡</div>
+        <div>Checking <strong>"Always notify"</strong> in the PAGE GROUPS header will send hourly alerts even when error rates are below the threshold. Leave it unchecked unless you need that level of frequency.</div>
       </div>
     </div>
   </div>
@@ -837,35 +876,35 @@
     <div class="guide-step-body">
       <p class="guide-step-desc">Before enabling the daily trigger, run a manual test report to verify your setup is working correctly.</p>
 
-      <!-- image area -->
-      <div class="guide-img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div class="guide-img-placeholder-label">Screenshot coming soon</div>
-        <div class="guide-img-placeholder-sub">Ninjalens menu → Run Report (Yesterday)</div>
-      </div>
+      <img src="./img/setup/24.png" alt="Select a date and click Run Analysis → Connection Successful → Report arrives in Slack" class="guide-img">
 
       <div class="guide-substeps">
         <div class="guide-substep">
           <div class="guide-substep-num">1</div>
-          <div class="guide-substep-text">Click <strong>Ninjalens → Run Report (Yesterday)</strong>.</div>
+          <div class="guide-substep-text">Select the date you want to run the report for using the <strong>SELECTED DATE</strong> picker in the Ninjalens sheet.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">2</div>
-          <div class="guide-substep-text">On the first run only, a permission dialog will appear. Review and approve it.</div>
+          <div class="guide-substep-text">Click the <strong>"Run Analysis"</strong> button.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">3</div>
-          <div class="guide-substep-text">Check your Slack channel. The report should arrive within 1–2 minutes.</div>
+          <div class="guide-substep-text">When you see "Connection Successful — Manual report for [date] has been sent.", the report has been dispatched.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">4</div>
-          <div class="guide-substep-text">If no report arrives, check the <strong>Console</strong> sheet for error messages.</div>
+          <div class="guide-substep-text">Check your Slack channel to confirm the report arrived. It includes a GA4 data summary, AI analysis, and a Next Action Plan.</div>
         </div>
+      </div>
+
+      <div class="guide-callout info">
+        <div class="guide-callout-icon">ℹ️</div>
+        <div>On the first run only, a permission dialog may appear — review and approve it. If no report arrives, check the <strong>Console</strong> sheet for error messages.</div>
       </div>
 
       <div class="guide-callout success">
         <div class="guide-callout-icon">✅</div>
-        <div>Setup is complete once you receive a Slack message with GA4 data and AI analysis.</div>
+        <div>Once the report arrives in Slack, setup is almost done. One last step: enable the daily trigger.</div>
       </div>
     </div>
   </div>
@@ -880,47 +919,47 @@
       <div class="guide-step-title">Enable the daily trigger</div>
     </div>
     <div class="guide-step-body">
-      <p class="guide-step-desc">Once everything is working correctly, enable the daily trigger so Ninjalens runs automatically every morning.</p>
+      <p class="guide-step-desc">Once everything is working correctly, enable the triggers so Ninjalens runs automatically.</p>
 
-      <!-- image area -->
-      <div class="guide-img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div class="guide-img-placeholder-label">Screenshot coming soon</div>
-        <div class="guide-img-placeholder-sub">Ninjalens sheet — Daily trigger settings</div>
-      </div>
+      <img src="./img/setup/25.png" alt="SCHEDULE &amp; NOTIFY section — Daily Report Slack Notification, Trigger Time, HOURLY TRIGGER STATUS settings → Trigger Setup" class="guide-img">
 
       <div class="guide-substeps">
         <div class="guide-substep">
           <div class="guide-substep-num">1</div>
-          <div class="guide-substep-text">Set <strong>Daily Trigger</strong> to <strong>ON</strong> (check the checkbox) in the Ninjalens sheet.</div>
+          <div class="guide-substep-text">Check the <strong>Daily Report Slack Notification</strong> checkbox to enable daily report delivery to Slack.</div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">2</div>
-          <div class="guide-substep-text">Set the time you want to receive the daily report in <strong>Trigger Time</strong> (e.g., 08:00).</div>
+          <div class="guide-substep-text">Enter the time you want to receive the daily report in <strong>Daily Report Trigger Execution Time</strong> (e.g., 08:00).<br><small style="color:var(--text-dim)">Note: Due to a Google Apps Script limitation, execution may vary by up to 15–30 minutes from the configured time.</small></div>
         </div>
         <div class="guide-substep">
           <div class="guide-substep-num">3</div>
-          <div class="guide-substep-text">Click <strong>Ninjalens → Save Trigger Settings</strong> to save.</div>
+          <div class="guide-substep-text">Check the <strong>HOURLY TRIGGER STATUS</strong> checkbox to enable hourly JS error monitoring.</div>
+        </div>
+        <div class="guide-substep">
+          <div class="guide-substep-num">4</div>
+          <div class="guide-substep-text">Click <strong>🚀 Ninjalens → Trigger Setup</strong> from the menu bar to register the settings as GAS triggers. Whenever you change any of these settings, you must re-run <strong>Trigger Setup</strong> for the changes to take effect.</div>
         </div>
       </div>
 
       <div class="guide-callout success">
         <div class="guide-callout-icon">🎉</div>
-        <div>All done! Ninjalens will now automatically send AI-powered GA4 reports to Slack every day.</div>
+        <div>All done! Ninjalens will now automatically send AI-powered GA4 reports to Slack every day and monitor for JS errors every hour.</div>
       </div>
     </div>
   </div>
 
+  <!-- Outro -->
+  <div style="text-align:center;padding:64px 24px 48px;border-top:1px solid var(--navy-border);margin-top:48px;">
+    <div style="font-size:48px;margin-bottom:16px;">🎉</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(28px,4vw,42px);color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">YOU'RE ALL SET!</h2>
+    <p style="font-size:17px;color:var(--text-dim);line-height:1.8;max-width:520px;margin:0 auto;">Setup is complete. Your first automated report should arrive in Slack tomorrow morning. If you run into any issues, feel free to reach out to support.</p>
+  </div>
+
   <!-- Navigation -->
-  <div class="guide-nav">
-    <a href="/" class="guide-nav-btn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Ninjalens
-    </a>
-    <a href="/cdn-cgi/l/email-protection#374442474758454377595e595d565b52594419595243" class="guide-nav-btn primary">
-      Need help? Contact support
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+  <div style="text-align:center;padding:32px 24px 48px;">
+    <p style="font-size:15px;color:var(--text-dim);margin-bottom:12px;">Feel free to reach out anytime</p>
+    <button onclick="navigator.clipboard.writeText('support@ninjalens.net').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='support@ninjalens.net'},2000)})" style="background:none;border:1px solid var(--navy-border);border-radius:8px;padding:10px 20px;color:var(--white);font-family:var(--font-mono);font-size:14px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='var(--navy-border)';this.style.color='var(--white)'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1b2b4b1b1aeb3b581afa8afaba0ada4afb2efafa4b5">[email&#160;protected]</a></button>
   </div>
 
 </div><!-- /guide-wrap -->
@@ -934,9 +973,4 @@
         <li><a href="/terms.html">Terms of Service</a></li>
         <li><a href="/refund.html">Refund Policy</a></li>
       </ul>
-      <div class="footer-copy">© 2025 Ninjalens · Built in Japan 🇯🇵</div>
-    </div>
-  </div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-de
+      <div class="footer-copy">© 2025 Ninjalens · Built in Japan 🇯🇵
