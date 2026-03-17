@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>How to Update — Ninjalens</title>
 <meta name="description" content="How to update the Ninjalens library version in your Google Apps Script editor.">
 <link rel="stylesheet" href="../css/style.css">
-<link rel="icon" href="../favicon.ico">
+<link rel="icon" href="/favicon.ico">
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav" id="nav">
+<nav class="nav scrolled">
   <div class="container">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">
+      <a href="/" class="nav-logo">
         <div class="nav-logo-icon">
-          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <filter id="glow-nav"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            <g filter="url(#glow-nav)">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+            <filter id="g"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <g filter="url(#g)">
               <path d="M32 4 L40 24 L24 24 Z" fill="#f97316"/>
               <path d="M60 32 L40 40 L40 24 Z" fill="#f97316"/>
               <path d="M32 60 L24 40 L40 40 Z" fill="#f97316"/>
@@ -31,10 +32,11 @@
         </div>
         <span class="nav-logo-text">NINJA<span>LENS</span></span>
       </a>
-      <a href="../index.html" class="nav-back">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Home
-      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+      </ul>
     </div>
   </div>
 </nav>
@@ -125,7 +127,7 @@
   </div>
 </section>
 
-<!-- DONE BANNER -->
+<!-- DONE -->
 <div class="docs-done-banner">
   <div class="docs-done-inner">
     <div class="docs-done-icon">✓</div>
@@ -133,23 +135,38 @@
       <div class="docs-done-title">UPDATE COMPLETE</div>
       <div class="docs-done-text">
         Your spreadsheet will run the latest version of Ninjalens from the next trigger execution.<br>
-        No further action needed. If you have questions, contact <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>.
+        No further action needed.
       </div>
     </div>
   </div>
 </div>
 
+<!-- SUPPORT -->
+<div style="text-align:center;padding:32px 24px 80px;">
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:12px;">Feel free to reach out anytime</p>
+  <button
+    onclick="navigator.clipboard.writeText('support@ninjalens.net').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='support@ninjalens.net'},2000)})"
+    style="background:none;border:1px solid var(--navy-border);border-radius:8px;padding:10px 20px;color:var(--white);font-family:var(--font-mono);font-size:14px;cursor:pointer;transition:all 0.2s;"
+    onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'"
+    onmouseout="this.style.borderColor='var(--navy-border)';this.style.color='var(--white)'"
+  >support@ninjalens.net</button>
+</div>
+
 <!-- FOOTER -->
-<footer class="docs-footer">
-  <a href="../index.html">ninjalens.net</a> &nbsp;·&nbsp;
-  <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">NINJA<span>LENS</span></div>
+      <ul class="footer-links">
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/refund.html">Refund Policy</a></li>
+      </ul>
+      <div class="footer-copy">© 2026 Ninjalens · Built in Japan 🇯🇵</div>
+    </div>
+  </div>
 </footer>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
+
 </body>
 </html>
