@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Update — Ninjalens</title>
+<meta name="description" content="How to update the Ninjalens library version in your Google Apps Script editor.">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="../favicon.ico">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <filter id="glow-nav"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <g filter="url(#glow-nav)">
+              <path d="M32 4 L40 24 L24 24 Z" fill="#f97316"/>
+              <path d="M60 32 L40 40 L40 24 Z" fill="#f97316"/>
+              <path d="M32 60 L24 40 L40 40 Z" fill="#f97316"/>
+              <path d="M4 32 L24 24 L24 40 Z" fill="#f97316"/>
+              <circle cx="32" cy="32" r="14" fill="#0d1117" stroke="#f97316" stroke-width="1.5"/>
+              <circle cx="32" cy="32" r="4" fill="#f97316"/>
+              <circle cx="28" cy="28" r="1.5" fill="white" opacity="0.7"/>
+            </g>
+          </svg>
+        </div>
+        <span class="nav-logo-text">NINJA<span>LENS</span></span>
+      </a>
+      <a href="../index.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="docs-hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="container">
+    <div class="hero-badge fade-up fade-up-1">
+      <div class="hero-badge-dot"></div>
+      Docs · Library Update
+    </div>
+    <h1 class="hero-title fade-up fade-up-2">HOW TO <span class="text-orange">UPDATE</span><br>NINJALENS</h1>
+    <p class="hero-sub fade-up fade-up-3">You received a Slack notification that a new version is available. Follow these steps to update your library — it takes under a minute.</p>
+  </div>
+</section>
+
+<!-- NOTIFICATION PREVIEW -->
+<div class="docs-notif-wrap fade-up fade-up-4">
+  <div class="container">
+    <div class="section-label" style="margin-bottom:12px;">What the Slack notification looks like</div>
+    <div class="screenshot-wrap">
+      <img src="../img/docs/version_slack.png" alt="Slack update notification from Ninjalens" class="screenshot">
+    </div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<section class="docs-steps-section section">
+  <div class="container">
+    <div class="section-label">Update Guide</div>
+    <h2 class="section-title">3 STEPS. <span class="text-orange">UNDER A MINUTE.</span></h2>
+
+    <div class="docs-steps">
+
+      <!-- Step 1 -->
+      <div class="docs-step">
+        <div class="docs-step-left">
+          <div class="docs-step-num">1</div>
+          <div class="docs-step-line"></div>
+        </div>
+        <div class="docs-step-right">
+          <div class="docs-step-title">OPEN YOUR SPREADSHEET → APPS SCRIPT</div>
+          <div class="docs-step-body">
+            Open your Ninjalens spreadsheet.<br>
+            Click <strong>Extensions</strong> in the menu bar → <strong>Apps Script</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="docs-step">
+        <div class="docs-step-left">
+          <div class="docs-step-num">2</div>
+          <div class="docs-step-line"></div>
+        </div>
+        <div class="docs-step-right">
+          <div class="docs-step-title">OPEN LIBRARIES → CLICK "NINJALENS"</div>
+          <div class="docs-step-body">
+            In the Apps Script editor, click the <strong>&lt;&gt;</strong> (Editor) icon in the left sidebar.<br>
+            Find <strong>Libraries</strong> section → click <strong>Ninjalens</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="docs-step">
+        <div class="docs-step-left">
+          <div class="docs-step-num">3</div>
+          <div class="docs-step-line"></div>
+        </div>
+        <div class="docs-step-right">
+          <div class="docs-step-title">CHANGE THE VERSION NUMBER & SAVE</div>
+          <div class="docs-step-body">
+            In the <strong>Version</strong> dropdown, select the version number shown in the Slack notification.<br>
+            Click <strong>Save</strong>. That's it.
+          </div>
+          <div class="screenshot-wrap" style="margin-top:16px;">
+            <img src="../img/docs/versionup.png" alt="Apps Script library version update screen" class="screenshot">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DONE BANNER -->
+<div class="docs-done-banner">
+  <div class="docs-done-inner">
+    <div class="docs-done-icon">✓</div>
+    <div>
+      <div class="docs-done-title">UPDATE COMPLETE</div>
+      <div class="docs-done-text">
+        Your spreadsheet will run the latest version of Ninjalens from the next trigger execution.<br>
+        No further action needed. If you have questions, contact <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="docs-footer">
+  <a href="../index.html">ninjalens.net</a> &nbsp;·&nbsp;
+  <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>
