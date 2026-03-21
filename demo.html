@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ninjalens Demo — See how GA4 AI monitoring works in real Slack notifications.">
+<title>Ninjalens — Demo Videos</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="/favicon.ico">
+<style>
+  .demo-hero {
+    padding: 160px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-hero .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent);
+  }
+
+  .demo-hero .hero-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .demo-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin-top: 48px;
+  }
+
+  .video-card {
+    background: var(--navy-2);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .video-card:hover {
+    border-color: rgba(249,115,22,0.3);
+    transform: translateY(-2px);
+  }
+
+  .video-card-header {
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--navy-border);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .video-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .video-card-icon--alert  { background: rgba(224,30,90,0.12); border: 1px solid rgba(224,30,90,0.25); }
+  .video-card-icon--setup  { background: rgba(46,182,125,0.12); border: 1px solid rgba(46,182,125,0.25); }
+  .video-card-icon--privacy { background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.25); }
+
+  .video-card-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .video-card-tag--alert   { color: rgba(224,30,90,0.9); }
+  .video-card-tag--setup   { color: rgba(46,182,125,0.9); }
+  .video-card-tag--privacy { color: var(--orange); }
+
+  .video-card-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .video-card-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .video-coming-soon {
+    padding: 56px 32px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .coming-soon-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--navy-border);
+    border-radius: 100px;
+    padding: 5px 14px;
+  }
+
+  .coming-soon-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+
+  .demo-cta {
+    text-align: center;
+    padding: 80px 0;
+    border-top: 1px solid var(--navy-border);
+  }
+
+  .demo-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .demo-footer {
+    border-top: 1px solid var(--navy-border);
+    padding: 32px 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+
+  .demo-footer a { color: var(--text-dim); transition: color 0.2s; }
+  .demo-footer a:hover { color: var(--orange); }
+
+  @media (max-width: 640px) {
+    .video-card-header { flex-direction: column; }
+    .demo-hero { padding: 120px 0 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <filter id="glow-nav"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <g filter="url(#glow-nav)">
+              <path d="M32 4 L40 24 L24 24 Z" fill="#f97316"/>
+              <path d="M60 32 L40 40 L40 24 Z" fill="#f97316"/>
+              <path d="M32 60 L24 40 L40 40 Z" fill="#f97316"/>
+              <path d="M4 32 L24 24 L24 40 Z" fill="#f97316"/>
+              <circle cx="32" cy="32" r="14" fill="#0d1117" stroke="#f97316" stroke-width="1.5"/>
+              <circle cx="32" cy="32" r="4" fill="#f97316"/>
+              <circle cx="28" cy="28" r="1.5" fill="white" opacity="0.7"/>
+            </g>
+          </svg>
+        </div>
+        <span class="nav-logo-text">NINJA<span>LENS</span></span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="/" style="display:flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to LP
+          </a>
+        </li>
+        <li><a href="/#pricing" class="nav-cta">Start Free Trial</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="demo-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="demo-hero-content">
+      <div class="hero-badge fade-up fade-up-1">
+        <div class="hero-badge-dot"></div>
+        Demo Videos
+      </div>
+      <h1 class="hero-title fade-up fade-up-2">SEE IT<br>IN <span class="highlight">ACTION.</span></h1>
+      <p class="hero-sub fade-up fade-up-3" style="margin: 0 auto;">Real Slack notifications. Actual screenshots. No mockups — this is exactly what lands in your Slack.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="section" style="border-top:1px solid var(--navy-border);">
+  <div class="container">
+    <div class="section-label">Videos</div>
+    <h2 class="section-title">Watch how<br><span class="text-orange">Ninjalens works.</span></h2>
+    <p class="section-subtitle">Each video covers a different part of the product. Start with the demo, then explore the others.</p>
+
+    <div class="video-grid">
+
+      <!-- VIDEO 1: DEMO -->
+      <div class="video-card">
+        <div class="video-card-header">
+          <div class="video-card-icon video-card-icon--alert">🚨</div>
+          <div>
+            <div class="video-card-tag video-card-tag--alert">Product Demo</div>
+            <div class="video-card-title">JS Error Detection + Daily AI Report</div>
+            <div class="video-card-desc">See a critical JS error spike get detected on the checkout page — and watch the daily AI-powered GA4 report land in Slack the next morning.</div>
+          </div>
+        </div>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/PmdLwix2HWA"
+            title="Ninjalens Demo — JS Error Detection + Daily AI Report"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- VIDEO 2: SETUP (COMING SOON) -->
+      <div class="video-card">
+        <div class="video-card-header">
+          <div class="video-card-icon video-card-icon--setup">⚙️</div>
+          <div>
+            <div class="video-card-tag video-card-tag--setup">Setup</div>
+            <div class="video-card-title">Live in 30 Minutes — No Code, No Server</div>
+            <div class="video-card-desc">A walkthrough of the entire setup: Google Spreadsheet, GA4 connection, Gemini API key, and Slack Webhook — start to finish.</div>
+          </div>
+        </div>
+        <div class="video-coming-soon">
+          <div class="coming-soon-badge">Coming Soon</div>
+          <div class="coming-soon-title">Setup Walkthrough</div>
+          <p style="font-size:13px;color:var(--text-dim);">Video in production — check back soon.</p>
+        </div>
+      </div>
+
+      <!-- VIDEO 3: PRIVACY (COMING SOON) -->
+      <div class="video-card">
+        <div class="video-card-header">
+          <div class="video-card-icon video-card-icon--privacy">🔒</div>
+          <div>
+            <div class="video-card-tag video-card-tag--privacy">Data Privacy</div>
+            <div class="video-card-title">Your Client Data Never Leaves Your Google Account</div>
+            <div class="video-card-desc">Why Ninjalens is structurally different from SaaS monitoring tools — and why your client data stays 100% in your own Google environment.</div>
+          </div>
+        </div>
+        <div class="video-coming-soon">
+          <div class="coming-soon-badge">Coming Soon</div>
+          <div class="coming-soon-title">Privacy Explainer</div>
+          <p style="font-size:13px;color:var(--text-dim);">Video in production — check back soon.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="demo-cta">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Get Started</div>
+    <h2 class="section-title" style="text-align:center;">READY TO <span class="text-orange">START?</span></h2>
+    <p class="section-subtitle" style="margin:0 auto;text-align:center;">14-day free trial. No credit card surprises. Cancel anytime.</p>
+    <div class="demo-cta-actions">
+      <a href="https://ndnrys-works.lemonsqueezy.com/checkout/buy/ed3454a5-996e-4d4e-adad-8e3c4e43d17e?enabled=1404256" target="_blank" rel="noopener" class="btn-primary">
+        Start Free Trial — Founder
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/" class="btn-secondary">Back to LP</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="demo-footer">
+  <p>© 2026 Ninjalens · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@ninjalens.net">support@ninjalens.net</a></p>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+</script>
+
+</body>
+</html>
