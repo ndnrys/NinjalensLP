@@ -933,6 +933,110 @@ TRACK_IDS.forEach(function(id) {
     }));
   });
 });
+
+/**
+ * Ninjalens LP Tracker — LP側追加スニペット
+ *
+ * index.html の </body> 直前に追加してください。
+ * WORKER_URL だけ自分の Worker の URL に変更すれば動きます。
+ */
+
+(function () {
+  // ─── 設定 ──────────────────────────────────────────────────
+  const WORKER_URL = 'https://ninjalens-lp-tracker.ndnrys-works.workers.dev';
+
+  // slug は既存の sessionStorage の値を使い回す
+  const slug = sessionStorage.getItem('entry_slug') || location.pathname;
+
+  // ─── 送信関数 ───────────────────────────────────────────────
+  function send(event, label) {
+    const payload = {
+      slug,
+      event,
+      label: label || '',
+      ua: navigator.userAgent,
+    };
+    // sendBeacon が使えれば使う（ページ離脱時も確実に送れる）
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(WORKER_URL + '/track', JSON.stringify(payload));
+    } else {
+      fetch(WORKER_URL + '/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {});
+    }
+  }
+
+  // ─── ページビュー ───────────────────────────────────────────
+  send('pageview');
+
+  // ─── スクロール深度 (25 / 50 / 75 / 90%) ───────────────────
+  const scrollMilestones = [25, 50, 75, 90];
+  const reached = new Set();
+
+  window.addEventListener('scroll', function () {
+    const scrolled =
+      (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    scrollMilestones.forEach(function (m) {
+      if (scrolled >= m && !reached.has(m)) {
+        reached.add(m);
+        send('scroll', String(m));
+      }
+    });
+  }, { passive: true });
+
+  // ─── セクション到達（Intersection Observer）────────────────
+  const sectionIds = [
+    'features', 'how', 'pricing', 'faq', 'why',
+    'cost', 'gain', 'showcase', 'demo', 'setup-service',
+  ];
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          send('section', entry.target.id);
+          observer.unobserve(entry.target); // 1回だけ送る
+        }
+      });
+    },
+    { threshold: 0.3 } // 30%見えたら「到達」とみなす
+  );
+
+  sectionIds.forEach(function (id) {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // ─── ボタンクリック（既存 TRACK_IDS を Worker にも送る）────
+  // ※ 既存の GAS への sendBeacon はそのまま残して OK
+  const TRACK_IDS = [
+    'nav-cta-btn',
+    'hero-cta-primary', 'hero-cta-secondary',
+    'starter-cta', 'founder-cta', 'early-cta', 'agency-cta', 'unlimited-cta',
+    'cost-cta-btn', 'cta-btn', 'cta-faq',
+    'footer-features', 'footer-pricing', 'footer-faq',
+    'setup-svc-cta',
+  ];
+
+  TRACK_IDS.forEach(function (id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', function () {
+      send('click', id);
+    });
+  });
+
+  // ─── 離脱時間 ───────────────────────────────────────────────
+  const startTime = Date.now();
+
+  window.addEventListener('beforeunload', function () {
+    const seconds = Math.round((Date.now() - startTime) / 1000);
+    send('exit', String(seconds));
+  });
+})();
 </script>
 </body>
 </html>
