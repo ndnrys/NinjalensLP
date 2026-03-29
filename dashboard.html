@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex, nofollow">
 <title>Ninjalens LP Tracker</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
@@ -148,6 +148,8 @@
     <div class="logo">NINJA<span>LENS</span> / LP TRACKER</div>
     <div class="header-right">
       <span id="last-updated" style="font-family:var(--mono);font-size:11px;color:var(--text-dim);"></span>
+      <button class="btn-sm" onclick="downloadJSON('filtered')">↓ 表示中 JSON</button>
+      <button class="btn-sm" onclick="downloadJSON('all')">↓ 全件 JSON</button>
       <button class="btn-sm" onclick="loadData()">↺ 更新</button>
     </div>
   </header>
@@ -603,6 +605,63 @@ function openPanel(d) {
     : entries.map(([k,v]) => '<div class="panel-metric"><span class="key" style="font-family:var(--mono);font-size:11px;">'+k+'</span><span class="val hit">'+v+'回</span></div>').join('');
 
   document.getElementById('detail-panel').classList.add('open');
+}
+
+
+// ── ダウンロード ──────────────────────────────────────────────
+function downloadJSON(mode) {
+  const source = mode === 'all' ? allData : getFiltered();
+  const enriched = source.map(d => {
+    const co = companyMap[d.slug];
+    return {
+      slug: d.slug,
+      company: co ? co.name      : null,
+      location: co ? co.location : null,
+      employees: co ? co.employees : null,
+      sales_date: co ? co.salesDate : null,
+      pageviews: d.pageviews || 0,
+      max_scroll: d.max_scroll || 0,
+      avg_time_sec: d.avg_time_sec || 0,
+      cta_clicked: hasCTA(d),
+      pricing_reached: !!(d.sections && d.sections['pricing']),
+      sections_reached: Object.keys(d.sections || {}),
+      clicks: d.clicks || {},
+      first_seen: d.first_seen || null,
+      last_seen: d.last_seen || null,
+    };
+  });
+  const blob = new Blob([JSON.stringify(enriched, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ninjalens-lp-' + mode + '-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+}
+
+function getFiltered() {
+  const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const weekStart = new Date(todayStart); weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  return allData.filter(d => {
+    if (filters.date !== 'all' && d.last_seen) {
+      const t = new Date(d.last_seen);
+      if (filters.date === 'today' && t < todayStart) return false;
+      if (filters.date === 'week'  && t < weekStart)  return false;
+      if (filters.date === 'month' && t < monthStart) return false;
+    }
+    if (filters.cta === 'yes' && !hasCTA(d)) return false;
+    if (filters.cta === 'no'  && hasCTA(d))  return false;
+    const ph = d.sections && d.sections['pricing'];
+    if (filters.pricing === 'yes' && !ph) return false;
+    if (filters.pricing === 'no'  && ph)  return false;
+    if (filters.scroll > 0 && (d.max_scroll||0) < filters.scroll) return false;
+    if (filters.search) {
+      const co = companyMap[d.slug];
+      const name = co ? co.name.toLowerCase() : '';
+      if (!d.slug.toLowerCase().includes(filters.search) && !name.includes(filters.search)) return false;
+    }
+    return true;
+  });
 }
 
 function closePanel() { document.getElementById('detail-panel').classList.remove('open'); }
