@@ -7,109 +7,127 @@
 <title>Ninjalens LP Tracker</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-
   :root {
-    --bg: #0a0d12;
-    --surface: #111620;
-    --surface2: #181e2a;
-    --border: rgba(255,255,255,0.07);
-    --orange: #f97316;
-    --orange-dim: rgba(249,115,22,0.12);
-    --green: #34d399;
-    --text: #e2e8f0;
-    --text-dim: #64748b;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Inter', sans-serif;
+    --bg:#0a0d12;--surface:#111620;--surface2:#181e2a;--border:rgba(255,255,255,0.07);
+    --orange:#f97316;--orange-dim:rgba(249,115,22,0.12);--green:#34d399;
+    --text:#e2e8f0;--text-dim:#64748b;--mono:'Space Mono',monospace;--sans:'Inter',sans-serif;
   }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+  /* login */
+  #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .login-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:40px;width:360px;text-align:center;}
+  .login-box h1{font-family:var(--mono);font-size:18px;letter-spacing:.15em;color:var(--orange);margin-bottom:8px;}
+  .login-box p{font-size:13px;color:var(--text-dim);margin-bottom:28px;}
+  .login-box input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--mono);font-size:14px;margin-bottom:12px;outline:none;transition:border-color .2s;}
+  .login-box input:focus{border-color:var(--orange);}
+  .login-box button{width:100%;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:12px;font-family:var(--mono);font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;}
+  .login-box button:hover{opacity:.85;}
 
-  #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-  .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 40px; width: 360px; text-align: center; }
-  .login-box h1 { font-family: var(--mono); font-size: 18px; letter-spacing: 0.15em; color: var(--orange); margin-bottom: 8px; }
-  .login-box p { font-size: 13px; color: var(--text-dim); margin-bottom: 28px; }
-  .login-box input { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; color: var(--text); font-family: var(--mono); font-size: 14px; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
-  .login-box input:focus { border-color: var(--orange); }
-  .login-box button { width: 100%; background: var(--orange); color: #fff; border: none; border-radius: 8px; padding: 12px; font-family: var(--mono); font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
-  .login-box button:hover { opacity: 0.85; }
+  /* header */
+  header{border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:var(--mono);font-size:14px;letter-spacing:.15em;color:var(--orange);}
+  .logo span{color:var(--text-dim);}
+  .header-right{display:flex;align-items:center;gap:10px;}
+  .btn-sm{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--mono);font-size:12px;padding:6px 14px;cursor:pointer;transition:border-color .2s;white-space:nowrap;}
+  .btn-sm:hover{border-color:var(--orange);color:var(--orange);}
+  .btn-sm.orange{background:var(--orange-dim);border-color:rgba(249,115,22,.4);color:var(--orange);}
 
-  header { border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: var(--mono); font-size: 14px; letter-spacing: 0.15em; color: var(--orange); }
-  .logo span { color: var(--text-dim); }
-  .btn-refresh { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--mono); font-size: 12px; padding: 6px 14px; cursor: pointer; transition: border-color 0.2s; }
-  .btn-refresh:hover { border-color: var(--orange); color: var(--orange); }
+  /* csv drop zone */
+  .csv-bar{background:var(--surface);border:1px dashed rgba(249,115,22,.3);border-radius:10px;padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s;}
+  .csv-bar:hover,.csv-bar.drag{border-color:var(--orange);background:var(--orange-dim);}
+  .csv-bar-icon{font-size:18px;}
+  .csv-bar-text{font-size:13px;color:var(--text-dim);}
+  .csv-bar-text strong{color:var(--text);}
+  .csv-bar-badge{margin-left:auto;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:4px;padding:2px 10px;font-family:var(--mono);font-size:11px;color:var(--green);}
+  .csv-bar-badge.none{background:transparent;border-color:var(--border);color:var(--text-dim);}
+  #csv-file-input{display:none;}
 
-  main { max-width: 1200px; margin: 0 auto; padding: 32px; }
+  main{max-width:1200px;margin:0 auto;padding:28px 32px;}
 
-  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-  .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
-  .summary-card .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
-  .summary-card .value { font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--text); line-height: 1; }
-  .summary-card .value.orange { color: var(--orange); }
-  .summary-card .value.green { color: var(--green); }
-  .summary-card .sub { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
+  /* summary */
+  .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;}
+  .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+  .summary-card .label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+  .summary-card .value{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--text);line-height:1;}
+  .summary-card .value.orange{color:var(--orange);}
+  .summary-card .value.green{color:var(--green);}
+  .summary-card .sub{font-size:12px;color:var(--text-dim);margin-top:5px;}
 
-  .filter-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  .filter-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
-  .filter-divider { width: 1px; height: 18px; background: var(--border); }
-  .filter-group { display: flex; gap: 5px; align-items: center; }
-  .filter-btn { background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); font-family: var(--mono); font-size: 11px; padding: 4px 10px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
-  .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .filter-btn.active { background: var(--orange-dim); border-color: var(--orange); color: var(--orange); }
-  .filter-select { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); font-family: var(--mono); font-size: 11px; padding: 4px 10px; cursor: pointer; outline: none; transition: border-color 0.15s; }
-  .filter-select:focus { border-color: var(--orange); color: var(--text); }
-  .filter-select option { background: var(--surface); }
-  .filter-search { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--mono); font-size: 11px; padding: 4px 10px; outline: none; width: 150px; transition: border-color 0.15s; }
-  .filter-search:focus { border-color: var(--orange); }
-  .filter-reset { margin-left: auto; background: transparent; border: none; color: var(--text-dim); font-family: var(--mono); font-size: 11px; cursor: pointer; padding: 4px 8px; transition: color 0.15s; }
-  .filter-reset:hover { color: var(--orange); }
+  /* filter */
+  .filter-bar{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .filter-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);white-space:nowrap;}
+  .filter-divider{width:1px;height:16px;background:var(--border);}
+  .filter-group{display:flex;gap:4px;}
+  .filter-btn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);font-family:var(--mono);font-size:11px;padding:4px 10px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .filter-btn:hover{border-color:var(--orange);color:var(--orange);}
+  .filter-btn.active{background:var(--orange-dim);border-color:var(--orange);color:var(--orange);}
+  .filter-select{background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);font-family:var(--mono);font-size:11px;padding:4px 10px;cursor:pointer;outline:none;}
+  .filter-select:focus{border-color:var(--orange);}
+  .filter-select option{background:var(--surface);}
+  .filter-search{background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--mono);font-size:11px;padding:4px 10px;outline:none;width:150px;}
+  .filter-search:focus{border-color:var(--orange);}
+  .filter-reset{margin-left:auto;background:transparent;border:none;color:var(--text-dim);font-family:var(--mono);font-size:11px;cursor:pointer;padding:4px 8px;}
+  .filter-reset:hover{color:var(--orange);}
 
-  .table-header { display: flex; align-items: center; margin-bottom: 10px; }
-  .table-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
-  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-  table { width: 100%; border-collapse: collapse; }
-  thead tr { border-bottom: 1px solid var(--border); }
-  thead th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 14px 20px; font-weight: 400; cursor: pointer; user-select: none; white-space: nowrap; }
-  thead th:hover { color: var(--text); }
-  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; cursor: pointer; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: var(--surface2); }
-  tbody td { padding: 13px 20px; font-size: 13px; color: var(--text); vertical-align: middle; }
-  .slug-cell { font-family: var(--mono); font-size: 12px; color: var(--orange); }
-  .scroll-bar-wrap { width: 60px; height: 5px; background: var(--bg); border-radius: 3px; display: inline-block; overflow: hidden; }
-  .scroll-bar-fill { height: 100%; border-radius: 3px; }
-  .click-badge { display: inline-flex; align-items: center; background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.2); border-radius: 4px; padding: 2px 8px; font-family: var(--mono); font-size: 11px; color: var(--orange); }
-  .click-badge.none { background: transparent; border-color: var(--border); color: var(--text-dim); }
-  .good { color: var(--green); } .mid { color: var(--orange); } .low { color: var(--text-dim); }
-  .loading { text-align: center; padding: 80px; font-family: var(--mono); font-size: 13px; color: var(--text-dim); }
-  .empty { text-align: center; padding: 60px; font-size: 14px; color: var(--text-dim); }
+  /* table */
+  .table-header{display:flex;align-items:center;margin-bottom:10px;}
+  .table-title{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);}
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;}
+  thead tr{border-bottom:1px solid var(--border);}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);text-align:left;padding:12px 18px;font-weight:400;cursor:pointer;user-select:none;white-space:nowrap;}
+  thead th:hover{color:var(--text);}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:var(--surface2);}
+  tbody td{padding:12px 18px;font-size:13px;color:var(--text);vertical-align:middle;}
+  .company-cell{display:flex;flex-direction:column;gap:2px;}
+  .company-name{font-size:13px;font-weight:500;color:var(--text);}
+  .company-slug{font-family:var(--mono);font-size:10px;color:var(--text-dim);}
+  .slug-only{font-family:var(--mono);font-size:12px;color:var(--orange);}
+  .scroll-bar-wrap{width:56px;height:5px;background:var(--bg);border-radius:3px;display:inline-block;overflow:hidden;}
+  .scroll-bar-fill{height:100%;border-radius:3px;}
+  .click-badge{display:inline-flex;align-items:center;background:var(--orange-dim);border:1px solid rgba(249,115,22,.2);border-radius:4px;padding:2px 8px;font-family:var(--mono);font-size:11px;color:var(--orange);}
+  .click-badge.none{background:transparent;border-color:var(--border);color:var(--text-dim);}
+  .good{color:var(--green);}.mid{color:var(--orange);}.low{color:var(--text-dim);}
+  .loading{text-align:center;padding:80px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
+  .empty{text-align:center;padding:60px;font-size:14px;color:var(--text-dim);}
 
-  .detail-panel { display: none; position: fixed; top: 0; right: 0; width: 400px; height: 100vh; background: var(--surface); border-left: 1px solid var(--border); overflow-y: auto; z-index: 100; padding: 28px 24px; }
-  .detail-panel.open { display: block; }
-  .panel-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
-  .panel-close:hover { color: var(--text); }
-  .panel-slug { font-family: var(--mono); font-size: 14px; color: var(--orange); margin-bottom: 4px; padding-right: 30px; }
-  .panel-seen { font-size: 12px; color: var(--text-dim); margin-bottom: 24px; }
-  .panel-section { margin-bottom: 20px; }
-  .panel-section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
-  .panel-metric { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .panel-metric:last-child { border-bottom: none; }
-  .panel-metric .key { color: var(--text-dim); }
-  .panel-metric .val { font-family: var(--mono); font-size: 13px; color: var(--text); }
-  .panel-metric .val.hit { color: var(--green); }
-  .section-map { display: flex; flex-direction: column; gap: 6px; }
-  .section-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-  .section-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .section-dot.hit { background: var(--green); }
-  .section-dot.miss { background: var(--border); border: 1px solid var(--text-dim); }
-  .section-name { color: var(--text-dim); flex: 1; }
-  .section-count { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+  /* detail panel */
+  .detail-panel{display:none;position:fixed;top:0;right:0;width:420px;height:100vh;background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;z-index:100;padding:28px 24px;}
+  .detail-panel.open{display:block;}
+  .panel-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;}
+  .panel-close:hover{color:var(--text);}
 
-  @media (max-width: 768px) {
-    .summary-grid { grid-template-columns: repeat(2, 1fr); }
-    .detail-panel { width: 100%; }
-    main { padding: 16px; }
+  /* company card in panel */
+  .company-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px;}
+  .company-card-name{font-size:16px;font-weight:600;color:var(--text);margin-bottom:10px;}
+  .company-card-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:var(--text-dim);}
+  .company-card-row span{color:var(--text);}
+  .company-card-slug{font-family:var(--mono);font-size:11px;color:var(--orange);margin-top:6px;}
+  .no-company{font-size:12px;color:var(--text-dim);font-style:italic;margin-bottom:20px;}
+
+  .panel-section{margin-bottom:20px;}
+  .panel-section-title{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+  .panel-metric{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+  .panel-metric:last-child{border-bottom:none;}
+  .panel-metric .key{color:var(--text-dim);}
+  .panel-metric .val{font-family:var(--mono);font-size:13px;color:var(--text);}
+  .panel-metric .val.hit{color:var(--green);}
+  .section-map{display:flex;flex-direction:column;gap:6px;}
+  .section-row{display:flex;align-items:center;gap:10px;font-size:12px;}
+  .section-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .section-dot.hit{background:var(--green);}
+  .section-dot.miss{background:var(--border);border:1px solid var(--text-dim);}
+  .section-name{color:var(--text-dim);flex:1;}
+  .section-count{font-family:var(--mono);font-size:11px;color:var(--text-dim);}
+
+  @media(max-width:768px){
+    .summary-grid{grid-template-columns:repeat(2,1fr);}
+    .detail-panel{width:100%;}
+    main{padding:16px;}
   }
 </style>
 </head>
@@ -128,13 +146,25 @@
 <div id="app" style="display:none;">
   <header>
     <div class="logo">NINJA<span>LENS</span> / LP TRACKER</div>
-    <div style="display:flex;align-items:center;gap:12px;">
+    <div class="header-right">
       <span id="last-updated" style="font-family:var(--mono);font-size:11px;color:var(--text-dim);"></span>
-      <button class="btn-refresh" onclick="loadData()">↺ 更新</button>
+      <button class="btn-sm" onclick="loadData()">↺ 更新</button>
     </div>
   </header>
 
   <main>
+    <!-- CSV読み込みバー -->
+    <div class="csv-bar" id="csv-bar" onclick="document.getElementById('csv-file-input').click()"
+      ondragover="event.preventDefault();this.classList.add('drag')"
+      ondragleave="this.classList.remove('drag')"
+      ondrop="handleCsvDrop(event)">
+      <div class="csv-bar-icon">📋</div>
+      <div class="csv-bar-text"><strong>営業リストCSVを読み込む</strong> — ドラッグ＆ドロップ またはクリックして選択</div>
+      <div class="csv-bar-badge none" id="csv-badge">未読み込み</div>
+    </div>
+    <input type="file" id="csv-file-input" accept=".csv,.tsv" onchange="handleCsvFile(event)" />
+
+    <!-- サマリー -->
     <div class="summary-grid">
       <div class="summary-card">
         <div class="label">表示中 Slugs</div>
@@ -158,6 +188,7 @@
       </div>
     </div>
 
+    <!-- フィルター -->
     <div class="filter-bar">
       <span class="filter-label">期間</span>
       <div class="filter-group">
@@ -190,7 +221,7 @@
         <option value="90">90%以上</option>
       </select>
       <div class="filter-divider"></div>
-      <input class="filter-search" type="text" id="search" placeholder="slug を検索..." oninput="applyFilters()" />
+      <input class="filter-search" type="text" id="search" placeholder="会社名 / slug を検索..." oninput="applyFilters()" />
       <button class="filter-reset" onclick="resetFilters()">✕ リセット</button>
     </div>
 
@@ -202,7 +233,7 @@
       <table id="main-table" style="display:none;">
         <thead>
           <tr>
-            <th onclick="setSort('slug')">Slug <span id="sort-slug"></span></th>
+            <th onclick="setSort('company')">会社名 / Slug <span id="sort-company"></span></th>
             <th onclick="setSort('scroll')">スクロール <span id="sort-scroll"></span></th>
             <th onclick="setSort('time')">滞在時間 <span id="sort-time"></span></th>
             <th>CTAクリック</th>
@@ -217,20 +248,27 @@
   </main>
 </div>
 
+<!-- 詳細パネル -->
 <div class="detail-panel" id="detail-panel">
   <button class="panel-close" onclick="closePanel()">✕</button>
-  <div class="panel-slug" id="panel-slug"></div>
-  <div class="panel-seen" id="panel-seen"></div>
+
+  <!-- 会社情報カード -->
+  <div id="panel-company-area"></div>
+
   <div class="panel-section">
-    <div class="panel-section-title">概要</div>
+    <div class="panel-section-title">行動データ</div>
     <div class="panel-metric"><span class="key">ページビュー</span><span class="val" id="pd-pv">—</span></div>
     <div class="panel-metric"><span class="key">最大スクロール</span><span class="val" id="pd-scroll">—</span></div>
     <div class="panel-metric"><span class="key">平均滞在時間</span><span class="val" id="pd-time">—</span></div>
+    <div class="panel-metric"><span class="key">初回訪問</span><span class="val" id="pd-first">—</span></div>
+    <div class="panel-metric"><span class="key">最終訪問</span><span class="val" id="pd-last">—</span></div>
   </div>
+
   <div class="panel-section">
     <div class="panel-section-title">セクション到達</div>
     <div class="section-map" id="pd-sections"></div>
   </div>
+
   <div class="panel-section">
     <div class="panel-section-title">クリックしたボタン</div>
     <div id="pd-clicks"></div>
@@ -244,12 +282,14 @@ const CTA_BUTTONS = ['founder-cta','starter-cta','early-cta','agency-cta','unlim
 let WORKER_URL = '';
 let STATS_SECRET = '';
 let allData = [];
-let filters = { date: 'all', cta: 'all', pricing: 'all', scroll: 0, search: '' };
+let companyMap = {}; // slug -> { name, employees, location, salesDate }
+let filters = { date:'all', cta:'all', pricing:'all', scroll:0, search:'' };
 let sortKey = 'last';
 let sortDir = -1;
 
+// ── ログイン ─────────────────────────────────────────────────
 function doLogin() {
-  const url = document.getElementById('worker-url-input').value.trim().replace(/\/$/, '');
+  const url = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
   const secret = document.getElementById('secret-input').value.trim();
   if (!url) return alert('Worker URL を入力してください');
   WORKER_URL = url; STATS_SECRET = secret;
@@ -273,6 +313,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// ── データ取得 ────────────────────────────────────────────────
 async function loadData() {
   document.getElementById('table-loading').style.display = 'block';
   document.getElementById('main-table').style.display = 'none';
@@ -284,13 +325,104 @@ async function loadData() {
     allData = await res.json();
     applyFilters();
     document.getElementById('last-updated').textContent = '更新: ' + new Date().toLocaleTimeString('ja-JP');
-  } catch (e) {
+  } catch(e) {
     alert('取得エラー: ' + e.message);
   } finally {
     document.getElementById('table-loading').style.display = 'none';
   }
 }
 
+// ── CSV読み込み ───────────────────────────────────────────────
+function handleCsvDrop(e) {
+  e.preventDefault();
+  document.getElementById('csv-bar').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) parseCsvFile(file);
+}
+
+function handleCsvFile(e) {
+  const file = e.target.files[0];
+  if (file) parseCsvFile(file);
+}
+
+// RFC4180準拠CSVパーサー（クォート内カンマ・改行対応）
+function parseCSV(text) {
+  const rows = [];
+  let col = '', row = [], inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], nx = text[i+1];
+    if (inQ) {
+      if (c === '"' && nx === '"') { col += '"'; i++; }
+      else if (c === '"') { inQ = false; }
+      else { col += c; }
+    } else {
+      if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(col.trim()); col = ''; }
+      else if (c === '\n' || (c === '\r' && nx === '\n')) {
+        row.push(col.trim()); col = '';
+        if (row.some(v => v !== '')) rows.push(row);
+        row = [];
+        if (c === '\r') i++;
+      } else { col += c; }
+    }
+  }
+  if (col || row.length) { row.push(col.trim()); if (row.some(v => v !== '')) rows.push(row); }
+  return rows;
+}
+
+function parseCsvFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const text = e.target.result;
+    const rows = parseCSV(text);
+    if (rows.length < 2) { alert('CSVのデータが見つかりませんでした。'); return; }
+    const headers = rows[0];
+
+    const colIdx = (names) => {
+      for (const n of names) {
+        const i = headers.findIndex(h => h === n);
+        if (i !== -1) return i;
+      }
+      return -1;
+    };
+
+    const slugIdx = colIdx(['Slug','slug','SLUG']);
+    const nameIdx = colIdx(['会社名','Company','company','Company Name','company_name']);
+    const empIdx  = colIdx(['従業員数','Employees','employees','Employee Count']);
+    const locIdx  = colIdx(['所在地','Location','location','City']);
+    const dateIdx = colIdx(['営業日','Sales Date','sales_date','Date']);
+
+    if (slugIdx === -1 || nameIdx === -1) {
+      alert('CSVに「Slug」列と「会社名」列が見つかりませんでした。\n列名を確認してください。');
+      return;
+    }
+
+    companyMap = {};
+    let count = 0;
+    for (let i = 1; i < rows.length; i++) {
+      const cols = rows[i];
+      const rawSlug = (cols[slugIdx] || '').replace(/^\//, '').trim();
+      if (!rawSlug) continue;
+      const slug = '/' + rawSlug;
+      companyMap[slug] = {
+        name:      cols[nameIdx] || '',
+        employees: empIdx  !== -1 ? (cols[empIdx]  || '') : '',
+        location:  locIdx  !== -1 ? (cols[locIdx]  || '') : '',
+        salesDate: dateIdx !== -1 ? (cols[dateIdx] || '') : '',
+      };
+      count++;
+    }
+
+    const badge = document.getElementById('csv-badge');
+    badge.textContent = count + '社 読み込み済み';
+    badge.classList.remove('none');
+
+    applyFilters();
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+
+// ── フィルター ────────────────────────────────────────────────
 function setDateFilter(btn) {
   filters.date = btn.dataset.date;
   document.querySelectorAll('[data-date]').forEach(b => b.classList.remove('active'));
@@ -307,10 +439,10 @@ function setPricingFilter(btn) {
   btn.classList.add('active'); applyFilters();
 }
 function resetFilters() {
-  filters = { date: 'all', cta: 'all', pricing: 'all', scroll: 0, search: '' };
-  document.querySelectorAll('[data-date]').forEach(b => b.classList.toggle('active', b.dataset.date === 'all'));
-  document.querySelectorAll('[data-cta]').forEach(b => b.classList.toggle('active', b.dataset.cta === 'all'));
-  document.querySelectorAll('[data-pricing]').forEach(b => b.classList.toggle('active', b.dataset.pricing === 'all'));
+  filters = { date:'all', cta:'all', pricing:'all', scroll:0, search:'' };
+  document.querySelectorAll('[data-date]').forEach(b => b.classList.toggle('active', b.dataset.date==='all'));
+  document.querySelectorAll('[data-cta]').forEach(b => b.classList.toggle('active', b.dataset.cta==='all'));
+  document.querySelectorAll('[data-pricing]').forEach(b => b.classList.toggle('active', b.dataset.pricing==='all'));
   document.getElementById('scroll-filter').value = '0';
   document.getElementById('search').value = '';
   applyFilters();
@@ -328,16 +460,20 @@ function applyFilters() {
     if (filters.date !== 'all' && d.last_seen) {
       const t = new Date(d.last_seen);
       if (filters.date === 'today' && t < todayStart) return false;
-      if (filters.date === 'week' && t < weekStart) return false;
+      if (filters.date === 'week'  && t < weekStart)  return false;
       if (filters.date === 'month' && t < monthStart) return false;
     }
     if (filters.cta === 'yes' && !hasCTA(d)) return false;
-    if (filters.cta === 'no' && hasCTA(d)) return false;
+    if (filters.cta === 'no'  && hasCTA(d))  return false;
     const ph = d.sections && d.sections['pricing'];
     if (filters.pricing === 'yes' && !ph) return false;
-    if (filters.pricing === 'no' && ph) return false;
-    if (filters.scroll > 0 && (d.max_scroll || 0) < filters.scroll) return false;
-    if (filters.search && !d.slug.toLowerCase().includes(filters.search)) return false;
+    if (filters.pricing === 'no'  && ph)  return false;
+    if (filters.scroll > 0 && (d.max_scroll||0) < filters.scroll) return false;
+    if (filters.search) {
+      const co = companyMap[d.slug];
+      const name = co ? co.name.toLowerCase() : '';
+      if (!d.slug.toLowerCase().includes(filters.search) && !name.includes(filters.search)) return false;
+    }
     return true;
   });
 
@@ -347,33 +483,40 @@ function applyFilters() {
   document.getElementById('filter-count').textContent = filtered.length + ' 件';
 }
 
+// ── ソート ───────────────────────────────────────────────────
 function setSort(key) {
   if (sortKey === key) sortDir *= -1; else { sortKey = key; sortDir = -1; }
-  ['slug','scroll','time','last'].forEach(k => { const e = document.getElementById('sort-' + k); if (e) e.textContent = ''; });
-  const el = document.getElementById('sort-' + key);
+  ['company','scroll','time','last'].forEach(k => { const e = document.getElementById('sort-'+k); if(e) e.textContent=''; });
+  const el = document.getElementById('sort-'+key);
   if (el) el.textContent = sortDir === -1 ? '▼' : '▲';
   applyFilters();
 }
 
 function sortData(data) {
-  return [...data].sort((a, b) => {
-    if (sortKey === 'slug') return a.slug > b.slug ? sortDir : -sortDir;
+  return [...data].sort((a,b) => {
+    if (sortKey === 'company') {
+      const an = (companyMap[a.slug] ? companyMap[a.slug].name : a.slug).toLowerCase();
+      const bn = (companyMap[b.slug] ? companyMap[b.slug].name : b.slug).toLowerCase();
+      return an > bn ? sortDir : -sortDir;
+    }
     if (sortKey === 'scroll') return ((a.max_scroll||0) - (b.max_scroll||0)) * sortDir;
-    if (sortKey === 'time') return ((a.avg_time_sec||0) - (b.avg_time_sec||0)) * sortDir;
-    if (sortKey === 'last') return (a.last_seen||'') > (b.last_seen||'') ? sortDir : -sortDir;
+    if (sortKey === 'time')   return ((a.avg_time_sec||0) - (b.avg_time_sec||0)) * sortDir;
+    if (sortKey === 'last')   return (a.last_seen||'') > (b.last_seen||'') ? sortDir : -sortDir;
     return 0;
   });
 }
 
+// ── サマリー ─────────────────────────────────────────────────
 function renderSummary(data) {
   document.getElementById('sum-slugs').textContent = data.length;
   document.getElementById('sum-cta').textContent = data.filter(d => hasCTA(d)).length;
-  const sa = avg(data.map(d => d.max_scroll || 0));
-  document.getElementById('sum-scroll').textContent = data.length ? sa + '%' : '—';
+  const sa = avg(data.map(d => d.max_scroll||0));
+  document.getElementById('sum-scroll').textContent = data.length ? sa+'%' : '—';
   const ta = avg(data.filter(d => d.avg_time_sec).map(d => d.avg_time_sec));
   document.getElementById('sum-time').textContent = (data.length && ta) ? fmtTime(ta) : '—';
 }
 
+// ── テーブル ─────────────────────────────────────────────────
 function renderTable(filtered) {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
@@ -384,6 +527,7 @@ function renderTable(filtered) {
   }
   document.getElementById('main-table').style.display = 'table';
   document.getElementById('table-empty').style.display = 'none';
+
   filtered.forEach(d => {
     const tr = document.createElement('tr');
     tr.onclick = () => openPanel(d);
@@ -393,9 +537,19 @@ function renderTable(filtered) {
     const ph = d.sections && d.sections['pricing'];
     const tv = d.avg_time_sec ? fmtTime(d.avg_time_sec) : '—';
     const tc = !d.avg_time_sec ? 'low' : d.avg_time_sec >= 60 ? 'good' : d.avg_time_sec >= 20 ? 'mid' : 'low';
+    const co = companyMap[d.slug];
+
+    // 会社名セル
+    const nameCell = co
+      ? `<div class="company-cell"><div class="company-name">${co.name}</div><div class="company-slug">${d.slug}${co.location ? ' · ' + co.location : ''}</div></div>`
+      : `<span class="slug-only">${d.slug}</span>`;
+
     tr.innerHTML = `
-      <td class="slug-cell">${d.slug}</td>
-      <td><div style="display:flex;align-items:center;gap:8px;"><div class="scroll-bar-wrap"><div class="scroll-bar-fill" style="width:${scroll}%;background:${sc};"></div></div><span style="font-family:var(--mono);font-size:11px;color:${sc};">${scroll}%</span></div></td>
+      <td>${nameCell}</td>
+      <td><div style="display:flex;align-items:center;gap:8px;">
+        <div class="scroll-bar-wrap"><div class="scroll-bar-fill" style="width:${scroll}%;background:${sc};"></div></div>
+        <span style="font-family:var(--mono);font-size:11px;color:${sc};">${scroll}%</span>
+      </div></td>
       <td><span class="${tc}" style="font-family:var(--mono);font-size:12px;">${tv}</span></td>
       <td><span class="click-badge ${cta?'':'none'}">${cta?'✓ クリックあり':'—'}</span></td>
       <td><span style="font-family:var(--mono);font-size:12px;color:${ph?'var(--green)':'var(--text-dim)'};">${ph?'✓':'—'}</span></td>
@@ -405,12 +559,32 @@ function renderTable(filtered) {
   });
 }
 
+// ── 詳細パネル ────────────────────────────────────────────────
 function openPanel(d) {
-  document.getElementById('panel-slug').textContent = d.slug;
-  document.getElementById('panel-seen').textContent = '初回: ' + (d.first_seen ? fmtDate(d.first_seen) : '—') + ' / 最終: ' + (d.last_seen ? fmtDate(d.last_seen) : '—');
+  const co = companyMap[d.slug];
+
+  // 会社情報カード
+  const area = document.getElementById('panel-company-area');
+  if (co) {
+    area.innerHTML = `
+      <div class="company-card">
+        <div class="company-card-name">${co.name}</div>
+        ${co.location   ? `<div class="company-card-row">📍 <span>${co.location}</span></div>` : ''}
+        ${co.employees  ? `<div class="company-card-row">👥 <span>${co.employees}</span></div>` : ''}
+        ${co.salesDate  ? `<div class="company-card-row">📅 営業日: <span>${co.salesDate}</span></div>` : ''}
+        <div class="company-card-slug">${d.slug}</div>
+      </div>
+    `;
+  } else {
+    area.innerHTML = `<div class="no-company">${d.slug} — CSVに会社情報なし</div>`;
+  }
+
   document.getElementById('pd-pv').textContent = d.pageviews || 0;
-  document.getElementById('pd-scroll').textContent = d.max_scroll ? d.max_scroll + '%' : '—';
+  document.getElementById('pd-scroll').textContent = d.max_scroll ? d.max_scroll+'%' : '—';
   document.getElementById('pd-time').textContent = d.avg_time_sec ? fmtTime(d.avg_time_sec) : '—';
+  document.getElementById('pd-first').textContent = d.first_seen ? fmtDate(d.first_seen) : '—';
+  document.getElementById('pd-last').textContent  = d.last_seen  ? fmtDate(d.last_seen)  : '—';
+
   const sectMap = document.getElementById('pd-sections');
   sectMap.innerHTML = '';
   SECTIONS_ORDER.forEach(s => {
@@ -418,28 +592,32 @@ function openPanel(d) {
     const hit = count > 0;
     const row = document.createElement('div');
     row.className = 'section-row';
-    row.innerHTML = '<div class="section-dot ' + (hit?'hit':'miss') + '"></div><span class="section-name">#' + s + '</span><span class="section-count">' + (hit ? count + '回' : '未到達') + '</span>';
+    row.innerHTML = '<div class="section-dot '+(hit?'hit':'miss')+'"></div><span class="section-name">#'+s+'</span><span class="section-count">'+(hit?count+'回':'未到達')+'</span>';
     sectMap.appendChild(row);
   });
+
   const clicks = d.clicks || {};
   const entries = Object.entries(clicks);
   document.getElementById('pd-clicks').innerHTML = entries.length === 0
     ? '<div style="font-size:13px;color:var(--text-dim);">クリックなし</div>'
-    : entries.map(([k,v]) => '<div class="panel-metric"><span class="key" style="font-family:var(--mono);font-size:11px;">' + k + '</span><span class="val hit">' + v + '回</span></div>').join('');
+    : entries.map(([k,v]) => '<div class="panel-metric"><span class="key" style="font-family:var(--mono);font-size:11px;">'+k+'</span><span class="val hit">'+v+'回</span></div>').join('');
+
   document.getElementById('detail-panel').classList.add('open');
 }
 
 function closePanel() { document.getElementById('detail-panel').classList.remove('open'); }
+
+// ── ユーティリティ ────────────────────────────────────────────
 function hasCTA(d) { return d.clicks && CTA_BUTTONS.some(b => d.clicks[b] > 0); }
-function avg(arr) { return arr.length ? Math.round(arr.reduce((a,b) => a+b, 0) / arr.length) : 0; }
-function fmtTime(sec) { return sec < 60 ? sec + '秒' : Math.floor(sec/60) + '分' + (sec%60 ? (sec%60)+'秒' : ''); }
-function fmtDate(iso) { return new Date(iso).toLocaleString('ja-JP', {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+function avg(arr) { return arr.length ? Math.round(arr.reduce((a,b)=>a+b,0)/arr.length) : 0; }
+function fmtTime(sec) { return sec < 60 ? sec+'秒' : Math.floor(sec/60)+'分'+(sec%60?(sec%60)+'秒':''); }
+function fmtDate(iso) { return new Date(iso).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
 function relativeTime(iso) {
   const diff = (Date.now() - new Date(iso).getTime()) / 1000;
   if (diff < 60) return 'たった今';
-  if (diff < 3600) return Math.floor(diff/60) + '分前';
-  if (diff < 86400) return Math.floor(diff/3600) + '時間前';
-  return Math.floor(diff/86400) + '日前';
+  if (diff < 3600) return Math.floor(diff/60)+'分前';
+  if (diff < 86400) return Math.floor(diff/3600)+'時間前';
+  return Math.floor(diff/86400)+'日前';
 }
 </script>
 </body>
