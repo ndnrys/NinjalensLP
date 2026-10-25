@@ -34,8 +34,22 @@
     }
     if (cell.length || row.length) { row.push(cell); if (row.some(value => value.trim() !== '')) rows.push(row); }
     if (rows.length < 2) throw new Error('This file has no product rows below its header.');
-    const headers = rows.shift().map((header, index) => (index === 0 ? header.replace(/^\uFEFF/, '') : header).trim());
-    if (!headers.includes('Handle')) throw new Error('The CSV must include a Shopify “Handle” column.');
+    const aliases = new Map([
+      ['url handle', 'Handle'], ['handle', 'Handle'],
+      ['description', 'Body (HTML)'], ['body (html)', 'Body (HTML)'],
+      ['product category', 'Product Category'],
+      ['option1 name', 'Option1 Name'], ['option1 value', 'Option1 Value'],
+      ['option2 name', 'Option2 Name'], ['option2 value', 'Option2 Value'],
+      ['option3 name', 'Option3 Name'], ['option3 value', 'Option3 Value'],
+      ['sku', 'Variant SKU'], ['variant sku', 'Variant SKU'],
+      ['price', 'Variant Price'], ['variant price', 'Variant Price'],
+      ['image position', 'Image Position'], ['image alt text', 'Image Alt Text']
+    ]);
+    const headers = rows.shift().map((header, index) => {
+      const trimmed = (index === 0 ? header.replace(/^\uFEFF/, '') : header).trim();
+      return aliases.get(trimmed.toLowerCase()) || trimmed;
+    });
+    if (!headers.includes('Handle')) throw new Error('The CSV must include a Shopify “URL handle” (or older “Handle”) column.');
     if (new Set(headers).size !== headers.length) throw new Error('This CSV contains duplicate column names. Please check the header row.');
     return { headers, rows: rows.map(values => Object.fromEntries(headers.map((header, index) => [header, (values[index] ?? '').trim()]))) };
   }
@@ -92,9 +106,9 @@
   currentInput.addEventListener('change', () => readFile(currentInput, currentName, 'current'));
   updateInput.addEventListener('change', () => readFile(updateInput, updateName, 'update'));
   document.querySelector('#sample-button').addEventListener('click', () => {
-    const headers = 'Handle,Title,Vendor,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Variant SKU,Variant Price';
-    currentCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,Studio North,Color,Blue,Size,Small,LIN-BLU-S,48.00\nlinen-shirt,,,,,Size,Medium,LIN-BLU-M,48.00`);
-    updateCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,,Color,Blue,Size,Small,LIN-BLU-S,52.00\nlinen-shirt,,,,,Size,Medium,LIN-BLU-M,`);
+    const headers = 'URL handle,Title,Vendor,Option1 name,Option1 value,Option2 name,Option2 value,SKU,Price';
+    currentCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,Studio North,Color,Blue,Size,Small,LIN-BLU-S,48.00\nlinen-shirt,,,,Blue,Size,Medium,LIN-BLU-M,48.00`);
+    updateCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,,Color,Blue,Size,Small,LIN-BLU-S,52.00\nlinen-shirt,,,,Blue,Size,Medium,LIN-BLU-M,`);
     currentInput.value = '';
     updateInput.value = '';
     currentName.textContent = 'sample-current.csv';
