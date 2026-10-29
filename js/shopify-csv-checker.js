@@ -9,6 +9,8 @@
   const updateName = document.querySelector('#update-name');
   let currentCsv = null;
   let updateCsv = null;
+  let inputType = "uploaded";
+
 
   document.querySelector('#year').textContent = new Date().getFullYear();
 
@@ -59,12 +61,13 @@
     results.hidden = true;
     const file = input.files[0];
     if (!file) return;
-    if (!file.name.toLowerCase().endsWith('.csv')) { showError('Please choose a .csv file.'); input.value = ''; return; }
-    if (file.size > 15 * 1024 * 1024) { showError('This preview supports files up to 15 MB.'); input.value = ''; return; }
+    if (!file.name.toLowerCase().endsWith('.csv')) { showError('Please choose a .csv file.'); window.NinjalensAnalytics?.shopify?.csvCheckerError('invalid_extension'); input.value = ''; return; }
+    if (file.size > 15 * 1024 * 1024) { showError('This preview supports files up to 15 MB.'); window.NinjalensAnalytics?.shopify?.csvCheckerError('file_too_large'); input.value = ''; return; }
     try {
       const parsed = parseCsv(await file.text());
       if (slot === 'current') currentCsv = parsed;
       else updateCsv = parsed;
+      inputType = 'uploaded';
       nameTarget.textContent = file.name;
       nameTarget.closest('.file-card').classList.add('has-file');
       prepareHandles();
@@ -74,6 +77,7 @@
       nameTarget.closest('.file-card').classList.remove('has-file');
       input.value = '';
       showError(error.message || 'Could not read this file. Please check that it is a Shopify product CSV.');
+      window.NinjalensAnalytics?.shopify?.csvCheckerError('csv_parse_error');
       prepareHandles();
     }
   }
@@ -106,6 +110,7 @@
   currentInput.addEventListener('change', () => readFile(currentInput, currentName, 'current'));
   updateInput.addEventListener('change', () => readFile(updateInput, updateName, 'update'));
   document.querySelector('#sample-button').addEventListener('click', () => {
+    inputType = 'sample';
     const headers = 'URL handle,Title,Vendor,Option1 name,Option1 value,Option2 name,Option2 value,SKU,Price';
     currentCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,Studio North,Color,Blue,Size,Small,LIN-BLU-S,48.00\nlinen-shirt,,,,Blue,Size,Medium,LIN-BLU-M,48.00`);
     updateCsv = parseCsv(`${headers}\nlinen-shirt,Linen Shirt,,Color,Blue,Size,Small,LIN-BLU-S,52.00\nlinen-shirt,,,,Blue,Size,Medium,LIN-BLU-M,`);
@@ -124,8 +129,13 @@
   compareButton.addEventListener('click', () => {
     if (!handleSelect.value || !currentCsv || !updateCsv) return;
     errorBox.hidden = true;
-    try { renderComparison(handleSelect.value); }
-    catch (error) { showError(error.message || 'Could not compare these product rows.'); }
+    try {
+      renderComparison(handleSelect.value);
+      window.NinjalensAnalytics?.shopify?.csvCheckerResult(inputType);
+    } catch (error) {
+      showError(error.message || 'Could not compare these product rows.');
+      window.NinjalensAnalytics?.shopify?.csvCheckerError('comparison_error');
+    }
   });
 
   const productColumns = ['Title', 'Body (HTML)', 'Vendor', 'Product Category', 'Type', 'Tags', 'Published', 'Status', 'Template Suffix'];
