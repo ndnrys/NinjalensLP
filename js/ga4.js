@@ -13,6 +13,15 @@
 
   window.NinjalensAnalytics = {
     shopify: {
+      csvFileLoaded(fileRole) {
+        window.gtag("event", "shopify_csv_file_loaded", { file_role: fileRole });
+      },
+      csvSampleLoaded() {
+        window.gtag("event", "shopify_csv_sample_load");
+      },
+      csvCompareClick(inputType) {
+        window.gtag("event", "shopify_csv_compare_click", { input_type: inputType });
+      },
       csvCheckerResult(inputType) {
         window.gtag("event", "shopify_csv_check_result", { input_type: inputType });
       },

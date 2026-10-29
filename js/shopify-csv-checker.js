@@ -11,7 +11,6 @@
   let updateCsv = null;
   let inputType = "uploaded";
 
-
   document.querySelector('#year').textContent = new Date().getFullYear();
 
   function parseCsv(text) {
@@ -71,6 +70,7 @@
       nameTarget.textContent = file.name;
       nameTarget.closest('.file-card').classList.add('has-file');
       prepareHandles();
+      window.NinjalensAnalytics?.shopify?.csvFileLoaded(slot);
     } catch (error) {
       if (slot === 'current') currentCsv = null; else updateCsv = null;
       nameTarget.textContent = 'Choose CSV file';
@@ -125,10 +125,12 @@
     compareButton.disabled = false;
     errorBox.hidden = true;
     results.hidden = true;
+    window.NinjalensAnalytics?.shopify?.csvSampleLoaded();
   });
   compareButton.addEventListener('click', () => {
     if (!handleSelect.value || !currentCsv || !updateCsv) return;
     errorBox.hidden = true;
+    window.NinjalensAnalytics?.shopify?.csvCompareClick(inputType);
     try {
       renderComparison(handleSelect.value);
       window.NinjalensAnalytics?.shopify?.csvCheckerResult(inputType);
