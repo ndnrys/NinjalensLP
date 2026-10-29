@@ -14,10 +14,10 @@
   window.NinjalensAnalytics = {
     shopify: {
       csvCheckerResult(inputType) {
-        window.gtag("event", "checker_result", { input_type: inputType });
+        window.gtag("event", "shopify_csv_check_result", { input_type: inputType });
       },
       csvCheckerError(errorType) {
-        window.gtag("event", "checker_error", { error_type: errorType });
+        window.gtag("event", "shopify_csv_check_error", { error_type: errorType });
       }
     }
   };
