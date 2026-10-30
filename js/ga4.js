@@ -99,6 +99,9 @@
       inventoryDiff() { if (analyticsEnabled) window.gtag("event", "seller_inventory_compare"); },
       labelSheetPrinted() { if (analyticsEnabled) window.gtag("event", "shipping_label_sheet_print"); }
     },
+    etsy: {
+      orderProfit() { if (analyticsEnabled) window.gtag("event", "etsy_order_profit_calculate"); }
+    },
     openPrivacySettings: openSettings
   };
 
