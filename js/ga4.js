@@ -93,7 +93,11 @@
       altDownload() { if (analyticsEnabled) window.gtag("event", "shopify_alt_csv_download"); },
       inventoryReconcile(hasMatches) { if (analyticsEnabled) window.gtag("event", "shopify_inventory_reconcile", { has_matches: hasMatches }); },
       inventoryDownload() { if (analyticsEnabled) window.gtag("event", "shopify_inventory_csv_download"); },
-      seoAudit() { if (analyticsEnabled) window.gtag("event", "shopify_seo_audit"); }
+      seoAudit() { if (analyticsEnabled) window.gtag("event", "shopify_seo_audit"); },
+      salesSnapshot() { if (analyticsEnabled) window.gtag("event", "seller_sales_snapshot"); },
+      customizationSheet() { if (analyticsEnabled) window.gtag("event", "seller_customization_sheet"); },
+      inventoryDiff() { if (analyticsEnabled) window.gtag("event", "seller_inventory_compare"); },
+      labelSheetPrinted() { if (analyticsEnabled) window.gtag("event", "shipping_label_sheet_print"); }
     },
     openPrivacySettings: openSettings
   };
