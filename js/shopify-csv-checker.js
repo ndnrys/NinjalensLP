@@ -3,6 +3,7 @@
   const updateInput = document.querySelector('#update-file');
   const handleSelect = document.querySelector('#product-handle');
   const compareButton = document.querySelector('#compare-button');
+  const auditButton = document.querySelector('#audit-button');
   const errorBox = document.querySelector('#error-message');
   const results = document.querySelector('#results');
   const currentName = document.querySelector('#current-name');
@@ -92,18 +93,21 @@
       handleSelect.add(new Option('Upload both CSV files first', ''));
       handleSelect.disabled = true;
       compareButton.disabled = true;
+      auditButton.disabled = !updateCsv;
       return;
     }
     if (!handles.length) {
       handleSelect.add(new Option('No product Handles found', ''));
       handleSelect.disabled = true;
       compareButton.disabled = true;
+      auditButton.disabled = !updateCsv;
       return;
     }
     handleSelect.add(new Option('Select a product…', ''));
     handles.forEach(handle => handleSelect.add(new Option(handle, handle)));
     handleSelect.disabled = false;
     compareButton.disabled = true;
+    auditButton.disabled = !updateCsv;
   }
 
   handleSelect.addEventListener('change', () => { compareButton.disabled = !handleSelect.value; });
@@ -138,6 +142,12 @@
       showError(error.message || 'Could not compare these product rows.');
       window.NinjalensAnalytics?.shopify?.csvCheckerError('comparison_error');
     }
+  });
+  auditButton.addEventListener('click', () => {
+    if (!updateCsv) return;
+    errorBox.hidden = true;
+    window.NinjalensAnalytics?.shopify?.csvAuditClick?.(inputType);
+    renderAudit();
   });
 
   const productColumns = ['Title', 'Body (HTML)', 'Vendor', 'Product Category', 'Type', 'Tags', 'Published', 'Status', 'Template Suffix'];
@@ -244,6 +254,65 @@
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function renderAudit() {
+    const findings = [];
+    const rows = updateCsv.rows;
+    const handles = new Map();
+    const skuRows = new Map();
+    rows.forEach((row, index) => {
+      const line = index + 2;
+      if (!row.Handle) findings.push({ kind: 'MISSING HANDLE', title: 'A row has no product Handle', detail: `CSV row ${line} cannot be reliably grouped with a product.` });
+      else {
+        if (!handles.has(row.Handle)) handles.set(row.Handle, []);
+        handles.get(row.Handle).push({ row, line });
+      }
+      const sku = row['Variant SKU'];
+      if (sku) {
+        if (!skuRows.has(sku)) skuRows.set(sku, []);
+        skuRows.get(sku).push(line);
+      }
+      for (let option = 1; option <= 3; option += 1) {
+        const name = row[`Option${option} Name`];
+        const value = row[`Option${option} Value`];
+        if (name && !value) findings.push({ kind: 'EMPTY OPTION', title: `Option${option} has a name but no value`, detail: `CSV row ${line}: “${name}” may be missing a variant value.` });
+      }
+    });
+
+    for (const [handle, entries] of handles) {
+      for (let option = 1; option <= 3; option += 1) {
+        const names = [...new Set(entries.map(({ row }) => row[`Option${option} Name`]).filter(Boolean))];
+        if (names.length > 1) findings.push({ kind: 'INCONSISTENT OPTION', title: `Option${option} name changes within a product`, detail: `${handle}: found ${names.join(' / ')} across rows for the same Handle.` });
+      }
+      const seen = new Map();
+      for (const { row, line } of entries) {
+        const key = [1, 2, 3].map(option => row[`Option${option} Value`] || '').join(' / ');
+        if (!key.replaceAll('/', '').trim()) continue;
+        if (seen.has(key)) findings.push({ kind: 'DUPLICATE VARIANT', title: 'Variant option combination is repeated', detail: `${handle}: rows ${seen.get(key)} and ${line} have the same option values (${key}).` });
+        else seen.set(key, line);
+      }
+    }
+    for (const [sku, lines] of skuRows) {
+      if (lines.length > 1) findings.push({ kind: 'DUPLICATE SKU', title: 'A SKU appears on multiple rows', detail: `SKU ${sku} appears on rows ${lines.join(', ')}. Confirm each variant should share this SKU.` });
+    }
+
+    document.querySelector('#result-title').textContent = 'CSV structure check';
+    document.querySelector('#result-count').textContent = findings.length ? `${findings.length} item${findings.length === 1 ? '' : 's'} to review` : 'No structure issues found';
+    const cards = document.querySelector('#summary-cards');
+    cards.replaceChildren(
+      summaryCard(rows.length, 'CSV rows checked', ''),
+      summaryCard(handles.size, 'Product Handles', ''),
+      summaryCard(findings.length, 'Items to review', findings.length ? 'warn' : '')
+    );
+    const list = document.querySelector('#change-list');
+    list.replaceChildren();
+    findings.forEach(finding => list.append(makeNotice(finding.detail, finding.kind, finding.title)));
+    if (!findings.length) list.append(makeNotice('The file passed these basic structure checks. This does not confirm every field or import setting is valid.', 'CHECK COMPLETE', 'No common structure issues found'));
+    window.NinjalensAnalytics?.shopify?.csvAuditResult?.(inputType, findings.length, rows.length);
+    document.querySelector('#no-changes').hidden = true;
+    results.hidden = false;
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function summaryCard(number, label, kind) {
     const card = document.createElement('div');
     card.className = `summary-card ${kind}`.trim();
@@ -267,10 +336,10 @@
     }
     item.append(kind, body); return item;
   }
-  function makeNotice(message) {
+  function makeNotice(message, label = 'COLUMN NOTE', heading = 'CSV columns differ') {
     const item = document.createElement('article'); item.className = 'change-item';
-    const kind = document.createElement('span'); kind.className = 'change-kind'; kind.textContent = 'COLUMN NOTE';
-    const body = document.createElement('div'); const title = document.createElement('h3'); title.textContent = 'CSV columns differ';
+    const kind = document.createElement('span'); kind.className = 'change-kind'; kind.textContent = label;
+    const body = document.createElement('div'); const title = document.createElement('h3'); title.textContent = heading;
     const detail = document.createElement('p'); detail.textContent = message;
     body.append(title, detail); item.append(kind, body); return item;
   }

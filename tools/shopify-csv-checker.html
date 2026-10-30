@@ -3,15 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Compare one Shopify product between two CSV files before import. Files are processed locally in your browser.">
+  <meta name="description" content="Compare Shopify product CSVs or check an update file for common structure issues before import. Files are processed locally in your browser.">
   <meta name="theme-color" content="#f6f5f1">
   <title>Shopify CSV Change Checker — Ninjalens</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/store.css">
-  <link rel="stylesheet" href="/css/checker.css?v=2">
+  <link rel="stylesheet" href="/css/checker.css?v=4">
+  <link rel="stylesheet" href="/css/privacy.css?v=1">
   <script src="/js/ga4.js" defer></script>
 </head>
 <body>
@@ -19,8 +17,9 @@
   <main class="checker-page">
     <div class="checker-wrap">
       <a class="back-link" href="/#tools">← All tools</a>
-      <div class="checker-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> FREE BROWSER TOOL</div><h1>Shopify CSV<br><span>Change Checker</span></h1><p>See what changed between your current product export and an update file before you import it. Start with one product and all of its variants.</p></div>
+      <div class="checker-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> FREE BROWSER TOOL</div><h1>Shopify CSV<br><span>Change Checker</span></h1><p>Compare a product export with an update file, or check the update CSV for common variant and structure issues before importing.</p></div>
       <section class="privacy-note"><span class="privacy-icon">◉</span><div><b>Your files stay on your device.</b><span>This page reads your CSV files in your browser. Nothing is uploaded or saved by Ninjalens.</span></div></section>
+      <section class="import-warning" aria-labelledby="import-warning-title"><span class="warning-icon" aria-hidden="true">!</span><div><b id="import-warning-title">Important: review your CSV before importing</b><p>This tool only checks selected patterns. It may miss errors, and a clean result does not guarantee that Shopify will accept the file or that your product data will remain unchanged. You are responsible for reviewing the CSV, Shopify’s import settings, and keeping a separate backup before importing. To the maximum extent permitted by law, Ninjalens is not responsible for data loss, lost sales, or other damage resulting from use of this tool or an import.</p></div></section>
       <section class="checker-panel" aria-labelledby="steps-title">
         <div class="panel-heading"><div><div class="eyebrow">THREE QUICK STEPS</div><h2 id="steps-title">Preview your update</h2></div><span class="local-badge"><i></i> LOCAL PROCESSING</span></div>
         <div class="file-grid">
@@ -29,7 +28,7 @@
         </div>
         <div class="sample-row"><span>Want to see how it works?</span><button id="sample-button" type="button">Load example CSVs</button><small>Uses made-up product data.</small></div>
         <div class="select-row"><label for="product-handle">03 &nbsp; Choose a product (Handle)</label><select id="product-handle" disabled><option value="">Upload both CSV files first</option></select></div>
-        <div class="action-row"><button id="compare-button" class="button button-dark" type="button" disabled>Compare this product <span aria-hidden="true">→</span></button><span class="limit-note">Free preview: one product at a time, including all its variant rows.</span></div>
+        <div class="action-row"><button id="compare-button" class="button button-dark" type="button" disabled>Compare this product <span aria-hidden="true">→</span></button><button id="audit-button" class="button button-outline" type="button" disabled>Check CSV structure <span aria-hidden="true">→</span></button><span class="limit-note">The structure check reviews the planned update file.</span></div>
         <p id="error-message" class="error-message" role="alert" hidden></p>
       </section>
       <section id="results" class="results" hidden aria-live="polite">
@@ -37,12 +36,12 @@
         <div id="summary-cards" class="summary-cards"></div>
         <div id="change-list" class="change-list"></div>
         <div id="no-changes" class="no-changes" hidden><span>✓</span><div><b>No differences found in the compared fields.</b><small>This is a preview, not a guarantee that Shopify will accept the import.</small></div></div>
-        <div class="shopify-note"><b>Before you import</b><p>When you choose Shopify’s overwrite option, blank values in included columns can overwrite existing values. Columns omitted from the update file behave differently. Variant option columns can also affect variant IDs. Always review Shopify’s import settings and keep a backup of your original export.</p><a href="https://help.shopify.com/en/manual/products/import-export/using-csv" target="_blank" rel="noopener">Read Shopify’s CSV guide ↗</a></div>
+        <div class="shopify-note"><b>Before you import</b><p>When you choose Shopify’s overwrite option, blank values in included columns can overwrite existing values. Columns omitted from the update file behave differently. Variant option columns can also affect variant IDs. This structure check only flags common patterns; review blank cells, Shopify’s import settings, and keep a backup of your original export. You are responsible for the import and its results. Ninjalens is not responsible for data loss or other damage arising from use of this tool or an import, to the maximum extent permitted by law.</p><a href="https://help.shopify.com/en/manual/products/import-export/using-csv" target="_blank" rel="noopener">Read Shopify’s CSV guide ↗</a></div>
       </section>
       <div class="checker-disclaimer">This checker compares CSV contents and highlights patterns to review. It does not connect to your Shopify store or predict every Shopify import outcome.</div>
     </div>
   </main>
-  <footer class="site-footer"><a class="brand" href="/"><span class="brand-mark">N</span><span>NINJALENS</span></a><span>Small software for real work.</span><span>© <span id="year"></span> Ninjalens</span></footer>
+  <footer class="site-footer"><a class="brand" href="/"><span class="brand-mark">N</span><span>NINJALENS</span></a><span>Small software for real work.</span><nav class="legal-footer-links" aria-label="Legal"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" data-open-privacy-settings>Cookie settings</button></nav><span>© <span id="year"></span> Ninjalens</span></footer>
   <script src="/js/shopify-csv-checker.js" defer></script>
 </body>
 </html>

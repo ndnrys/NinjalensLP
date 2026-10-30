@@ -1,142 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service — Ninjalens</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="/favicon.ico">
-  <style>
-    .legal-page { max-width: 760px; margin: 0 auto; padding: 80px 24px 100px; }
-    .legal-page h1 { font-family: var(--font-display); font-size: 48px; letter-spacing: 0.04em; color: var(--white); margin-bottom: 8px; }
-    .legal-page .updated { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; margin-bottom: 56px; }
-    .legal-page h2 { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.04em; color: var(--orange); margin: 48px 0 16px; }
-    .legal-page p { font-size: 15px; color: var(--text-dim); line-height: 1.9; margin-bottom: 16px; }
-    .legal-page ul { margin: 0 0 16px 24px; }
-    .legal-page ul li { font-size: 15px; color: var(--text-dim); line-height: 1.9; margin-bottom: 8px; }
-    .legal-page a { color: var(--orange); text-decoration: underline; }
-    .legal-divider { height: 1px; background: var(--navy-border); margin: 48px 0; }
-  </style>
-  <script>window.lemonSqueezyAffiliateConfig = { store: "ndnrys-works" };</script>
-  <script src="https://lmsqueezy.com/affiliate.js" defer></script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PMQTKLQ5');</script>
-<!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Terms for using Ninjalens website and browser-based tools.">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Terms of Use — Ninjalens</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/store.css">
+  <link rel="stylesheet" href="/css/checker.css?v=4">
+  <link rel="stylesheet" href="/css/privacy.css?v=1">
+  <script src="/js/ga4.js" defer></script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMQTKLQ5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div class="legal-page">
-  <div style="margin-bottom:32px;">
-    <a href="/" style="font-family:'Space Mono',monospace;font-size:12px;color:#8b949e;text-decoration:none;">← Back to Ninjalens</a>
-  </div>
-  <h1>TERMS OF SERVICE</h1>
-  <div class="updated">Last updated: March 1, 2026</div>
+  <header class="site-header"><a class="brand" href="/" aria-label="Ninjalens home"><span class="brand-mark">N</span><span>NINJALENS</span></a><nav aria-label="Main navigation"><a href="/#tools">Tools</a><a href="/privacy.html">Privacy</a></nav></header>
+  <main class="legal-page checker-wrap">
+    <a class="back-link" href="/">← Back to Ninjalens</a>
+    <div class="checker-heading"><div class="eyebrow">PLEASE READ BEFORE USE</div><h1>Terms of <span>Use</span></h1><p>Last updated: October 29, 2026</p></div>
+    <article class="legal-document">
+      <p>These Terms of Use (“Terms”) apply to your access to ninjalens.net and its free browser-based tools (“Site”). By using the Site, you agree to these Terms. If you do not agree, do not use the Site. The Site is operated by Ninjalens from Japan. Contact: <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>.</p>
 
-  <p>Please read these Terms of Service ("Terms") carefully before using the Ninjalens service ("Service") operated by Ninjalens ("we", "us", or "our").</p>
-  <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not use the Service.</p>
+      <h2>1. The tools are informational</h2>
+      <p>Ninjalens provides small utilities, including a Shopify CSV Checker, for general informational and convenience purposes. The tools are not affiliated with, endorsed by, or operated by Shopify. “Shopify” is used only to identify the platform the CSV Checker is designed to assist with.</p>
+      <p>The CSV Checker reviews selected patterns in files processed by your browser. It may not identify every error, data change, compatibility issue, or import consequence. A clean result does not mean a file is correct, safe to import, or guaranteed to be accepted by Shopify. We do not connect to your Shopify store and cannot see or restore your store data.</p>
 
-  <h2>1. Description of Service</h2>
-  <p>Ninjalens is a Google Apps Script-based monitoring tool that connects to your Google Analytics 4 (GA4) property, detects statistical anomalies and JavaScript errors, and delivers AI-powered analysis reports via Slack and email. The Service is delivered as a Google Spreadsheet that runs on Google's serverless infrastructure (Google Apps Script). You are responsible for providing your own GA4 Property ID, Gemini API key, and Slack Webhook URL to operate the Service.</p>
+      <h2>2. Your responsibility before importing</h2>
+      <p>You are solely responsible for reviewing your CSV and Shopify’s current documentation and import settings, retaining an independent backup, deciding whether to import, and checking the outcome. Importing may change or remove product, variant, inventory, image, or other store data. Do not rely on this tool as your only safeguard.</p>
 
-  <h2>2. License and Permitted Use</h2>
-  <p>Upon purchase, you are granted a limited, non-exclusive, non-transferable license to use the Service for the number of Google Spreadsheet instances corresponding to your plan:</p>
-  <ul>
-    <li><strong>Starter plan:</strong> 1 instance (1 GA4 property)</li>
-    <li><strong>Agency plan:</strong> 10 instances (up to 10 GA4 properties)</li>
-  </ul>
-  <p>You may:</p>
-  <ul>
-    <li>Use the Agency plan to provide white-label GA4 monitoring services to your own clients, as the plan is designed for.</li>
-  </ul>
-  <p>You may not:</p>
-  <ul>
-    <li>Share, redistribute, or sublicense your license key to third parties beyond the permitted number of instances.</li>
-    <li>Reverse engineer, decompile, or attempt to extract the source code of the underlying Google Apps Script library.</li>
-    <li>Use the Service for any unlawful purpose or in violation of any applicable laws or regulations.</li>
-    <li>Resell or transfer your license key independently of the permitted use described above.</li>
-  </ul>
+      <h2>3. Local file processing</h2>
+      <p>The CSV Checker processes selected files in your browser and does not upload their contents to Ninjalens. This statement does not cover your browser, browser extensions, operating system, or other services you use. For analytics details, see our <a href="/privacy.html">Privacy Policy</a>.</p>
 
-  <h2>3. Subscription and Payment</h2>
-  <p>The Service is offered on a monthly subscription basis. All payments are processed by LemonSqueezy, which acts as our Merchant of Record.</p>
-  <ul>
-    <li>By subscribing, you authorize LemonSqueezy to charge your payment method on a recurring monthly basis.</li>
-    <li>Subscriptions automatically renew each month unless cancelled before the renewal date.</li>
-    <li>You may cancel your subscription at any time through your LemonSqueezy customer portal.</li>
-    <li>Cancellation takes effect at the end of the current billing period. You retain access to the Service until that date.</li>
-    <li>We reserve the right to change pricing with at least 30 days' prior notice to your registered email address.</li>
-  </ul>
+      <h2>4. Acceptable use</h2>
+      <p>You may use the Site for lawful purposes. You must not interfere with the Site, attempt unauthorized access, use it to process unlawful material, or use automated means in a way that harms availability or security.</p>
 
-  <h2>4. Free Trial</h2>
-  <p>We offer a 14-day free trial. After the trial period ends, continued use of the Service requires a paid subscription. We reserve the right to modify or discontinue the free trial offer at any time without notice.</p>
+      <h2>5. Availability and changes</h2>
+      <p>The Site is provided free of charge and may be changed, suspended, or discontinued at any time. We do not promise uninterrupted availability, error-free operation, compatibility with every CSV file, or continued availability of any particular feature.</p>
 
-  <h2>5. Third-Party Services and Dependencies</h2>
-  <p>The Service integrates with third-party platforms that you are responsible for independently. These include Google Apps Script, GA4 (Google Analytics 4), Google Gemini API, and Slack. You are solely responsible for:</p>
-  <ul>
-    <li>Obtaining and maintaining your own API keys and credentials</li>
-    <li>Complying with the terms of service of all third-party platforms you connect to the Service</li>
-    <li>Any costs incurred from your use of third-party APIs (including Gemini API usage fees)</li>
-    <li>Ensuring your use of GA4 and related tools complies with applicable privacy laws including GDPR</li>
-  </ul>
-  <p>We are not responsible for any disruptions, changes, or discontinuation of third-party services that may affect the availability or functionality of the Service.</p>
+      <h2>6. Disclaimer</h2>
+      <p>To the maximum extent permitted by applicable law, the Site and its tools are provided “as is” and “as available”, without warranties or guarantees, whether express, implied, or statutory. We do not warrant the accuracy, completeness, reliability, fitness for a particular purpose, or import outcome of any result.</p>
 
-  <h2>6. Disclaimer of Warranties</h2>
-  <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE SPECIFICALLY DO NOT WARRANT THAT:</p>
-  <ul>
-    <li>The Service will be uninterrupted, error-free, or completely secure at all times</li>
-    <li>AI-generated analysis will be accurate, complete, current, or suitable for any particular business decision</li>
-    <li>The Service will detect all anomalies, JavaScript errors, or revenue issues on your site</li>
-    <li>Results obtained through the Service will meet your specific expectations or requirements</li>
-  </ul>
-  <p>AI-generated reports are provided for informational purposes only and should not be the sole basis for business decisions. You are responsible for independently verifying any information provided by the Service.</p>
+      <h2>7. Limitation of liability</h2>
+      <p>To the maximum extent permitted by applicable law, Ninjalens and its operators will not be liable for losses or damages arising from or related to your use of, inability to use, or reliance on the Site or its tools, including data loss, lost sales, loss of profits, or business interruption. Nothing in these Terms excludes or limits liability or rights that cannot lawfully be excluded or limited.</p>
 
-  <h2>7. Limitation of Liability</h2>
-  <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OR BUSINESS OPPORTUNITIES, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR INABILITY TO USE THE SERVICE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
-  <p>OUR TOTAL CUMULATIVE LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATED TO THESE TERMS OR THE SERVICE SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID TO US IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+      <h2>8. Third-party services and links</h2>
+      <p>The Site may link to third-party websites or use third-party services, including Google Analytics. Those services are governed by their own terms and privacy practices. We are not responsible for third-party services, websites, or content.</p>
 
-  <h2>8. Indemnification</h2>
-  <p>You agree to defend, indemnify, and hold harmless Ninjalens and its operators from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from: (a) your use of the Service; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; or (d) your violation of any third-party rights.</p>
+      <h2>9. Changes and governing law</h2>
+      <p>We may update these Terms by publishing a revised version on this page. The revised date above indicates when the latest version was published. These Terms are subject to applicable law, including any mandatory consumer protections that apply to you.</p>
 
-  <h2>9. Intellectual Property</h2>
-  <p>The Ninjalens name, logo, website content, and underlying Google Apps Script library code are the exclusive intellectual property of Ninjalens. These Terms do not grant you any ownership rights or intellectual property rights beyond the limited license explicitly described in Section 2.</p>
-
-  <h2>10. Termination</h2>
-  <p>We reserve the right to suspend or terminate your access to the Service at our sole discretion if you violate these Terms or engage in conduct we reasonably determine to be harmful to the Service or other users. Upon termination, your license key will be deactivated and your access to the Service will cease. You remain responsible for any outstanding payment obligations. Termination does not entitle you to a refund except as described in our Refund Policy.</p>
-
-  <h2>11. Governing Law and Jurisdiction</h2>
-  <p>These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions. Any disputes arising from or relating to these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of Japan. If you are a consumer in the EEA or UK, you may also have rights under the mandatory consumer protection laws of your country of residence.</p>
-
-  <h2>12. Changes to Terms</h2>
-  <p>We reserve the right to modify these Terms at any time. We will provide at least 14 days' prior notice of material changes via email or prominent notice on our website. Continued use of the Service after the effective date of changes constitutes your acceptance of the updated Terms.</p>
-
-  <h2>13. Severability</h2>
-  <p>If any provision of these Terms is found to be unenforceable or invalid under applicable law, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.</p>
-
-  <h2>14. Contact</h2>
-  <p>For any questions regarding these Terms, please contact us at:<br><a href="mailto:support@ninjalens.net">support@ninjalens.net</a></p>
-
-  <div class="legal-divider"></div>
-  <p style="font-size:13px;"><a href="/">← Back to Ninjalens</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/refund.html">Refund Policy</a></p>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">NINJA<span>LENS</span></div>
-      <ul class="footer-links">
-        <li><a href="/privacy.html">Privacy Policy</a></li>
-        <li><a href="/terms.html">Terms of Service</a></li>
-        <li><a href="/refund.html">Refund Policy</a></li>
-      </ul>
-      <div class="footer-copy">© 2026 Ninjalens · Built in Japan 🇯🇵</div>
-    </div>
-  </div>
-</footer>
+      <h2>10. Contact</h2>
+      <p>Questions about these Terms can be sent to <a href="mailto:support@ninjalens.net">support@ninjalens.net</a>.</p>
+    </article>
+  </main>
+  <footer class="site-footer"><a class="brand" href="/"><span class="brand-mark">N</span><span>NINJALENS</span></a><nav class="legal-footer-links" aria-label="Legal"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" data-open-privacy-settings>Cookie settings</button></nav><span>© <span id="year"></span> Ninjalens</span></footer>
 </body>
 </html>
